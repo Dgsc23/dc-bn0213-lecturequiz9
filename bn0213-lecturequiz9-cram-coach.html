@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>BN0213 Lecture Quiz 9 — Cholesterol · Cram Coach</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#0A0B12; --bg2:#111324; --card:#171A2E; --card2:#1E2238;
+    --acc:#A78BFA; --accHi:#CFC4FF; --crim:#F0736F; --good:#63D08A; --amber:#F5B841;
+    --line:rgba(167,139,250,0.18); --lineSoft:rgba(167,139,250,0.09);
+    --text:#EEF0FA; --textMid:#B4B8CE; --textDim:#7C melody; --textDim:#7E82A0;
+    --disp:'Space Grotesk',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+  }
+  *{box-sizing:border-box} html,body{margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:780px;margin:0 auto;padding:0 16px 70px}
+  ::selection{background:rgba(167,139,250,.3)}
+  ::-webkit-scrollbar{width:9px;height:9px}::-webkit-scrollbar-thumb{background:var(--card2);border-radius:8px}
+  header{padding:24px 0 10px}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:1.3px;color:var(--acc);border:1px solid var(--line);border-radius:6px;padding:3px 9px;display:inline-block}
+  h1{font-family:var(--disp);font-weight:700;font-size:27px;line-height:1.1;margin:11px 0 5px}
+  .sub{color:var(--textMid);font-size:13.5px;max-width:640px}
+  .tabs{display:flex;gap:7px;margin:18px 0 16px;position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:5;flex-wrap:wrap}
+  .tab{font-family:var(--body);font-weight:600;font-size:13px;padding:9px 15px;border-radius:999px;cursor:pointer;border:1px solid var(--line);color:var(--textMid);background:transparent;transition:.15s}
+  .tab.active{background:var(--acc);color:var(--bg);border-color:var(--acc)}
+  .seclabel{font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--acc);margin:2px 0 12px}
+  .intro{color:var(--textMid);font-size:13.5px;margin-bottom:16px;line-height:1.6}
+  .obj{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:13px}
+  .obj h3{font-family:var(--disp);font-weight:600;font-size:16.5px;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  .objn{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--bg);background:var(--acc);border-radius:6px;padding:2px 7px}
+  .listenbtn{margin-left:auto;font-family:var(--body);font-weight:600;font-size:11.5px;color:var(--acc);border:1px solid var(--line);background:transparent;border-radius:8px;padding:5px 11px;cursor:pointer;white-space:nowrap}
+  .listenbtn.playing{background:var(--acc);color:var(--bg)}
+  .obj ul{margin:9px 0 0;padding-left:2px;list-style:none}
+  .obj li{position:relative;padding:5px 0 5px 20px;font-size:14px;color:var(--text);line-height:1.5;border-bottom:1px solid var(--lineSoft)}
+  .obj li:last-child{border-bottom:none}
+  .obj li::before{content:"";position:absolute;left:4px;top:12px;width:6px;height:6px;border-radius:50%;background:var(--acc)}
+  .obj li b{color:var(--accHi)}
+  .obj li .hot{color:var(--amber);font-weight:600}
+  .src{font-family:var(--mono);font-size:10px;color:var(--textDim);border:1px solid var(--lineSoft);border-radius:5px;padding:1px 6px;margin-left:5px;white-space:nowrap}
+  .flag{background:var(--card);border:1px solid rgba(240,115,111,.32);border-left:3px solid var(--crim);border-radius:12px;padding:14px 16px;margin-bottom:12px}
+  .flag h4{font-family:var(--disp);font-weight:600;font-size:15px;margin:0 0 6px;color:var(--accHi)}
+  .flag .why{font-size:13.5px;color:var(--textMid);line-height:1.55}
+  .flag .why b{color:var(--text)}
+  .filters{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+  .fbtn{font-family:var(--body);font-weight:600;font-size:12px;padding:6px 11px;border-radius:999px;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--textMid)}
+  .fbtn.on{background:var(--acc);color:var(--bg);border-color:var(--acc)}
+  .drillbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:4px 0 12px;flex-wrap:wrap}
+  .stat{font-family:var(--mono);font-size:12.5px;color:var(--textMid)}
+  .nav{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 16px}
+  .ncell{width:29px;height:29px;border-radius:7px;cursor:pointer;font-family:var(--mono);font-size:11px;font-weight:600;border:1.5px solid var(--line);background:transparent;color:var(--textMid)}
+  .ncell.cur{box-shadow:0 0 0 2px rgba(167,139,250,.5)} .ncell.ok{border-color:var(--good);background:rgba(99,208,138,.2);color:var(--good)} .ncell.no{border-color:var(--crim);background:rgba(240,115,111,.2);color:var(--crim)}
+  .qcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+  .qcat{margin-bottom:11px}
+  .chip{font-family:var(--mono);font-size:11px;border-radius:6px;padding:2px 8px}
+  .qstem{font-size:16px;font-weight:500;color:var(--text);line-height:1.42;margin-bottom:15px}
+  .opts{display:flex;flex-direction:column;gap:9px}
+  .opt{text-align:left;cursor:pointer;border:1.5px solid var(--line);background:var(--bg2);border-radius:11px;padding:12px 14px;display:flex;gap:11px;align-items:flex-start;font-size:14px;color:var(--text);line-height:1.4;transition:.12s}
+  .opt .lt{flex:0 0 24px;width:24px;height:24px;border-radius:7px;display:grid;place-items:center;font-family:var(--mono);font-size:12px;font-weight:600;border:1px solid var(--line);color:var(--textMid)}
+  .opt.correct{border-color:var(--good);background:rgba(99,208,138,.12)} .opt.correct .lt{border-color:var(--good);color:var(--good)}
+  .opt.wrong{border-color:var(--crim);background:rgba(240,115,111,.12)} .opt.wrong .lt{border-color:var(--crim);color:var(--crim)}
+  .opt.dim{color:var(--textDim)}
+  .expl{margin-top:15px;background:var(--bg2);border:1px solid var(--lineSoft);border-radius:11px;padding:13px 14px}
+  .expl .lab{font-family:var(--mono);font-size:10.5px;letter-spacing:1px;margin-bottom:6px}
+  .expl .et{font-size:14px;color:var(--text);line-height:1.55}
+  .navbtns{display:flex;justify-content:space-between;margin-top:16px;gap:10px}
+  .nb{font-family:var(--body);font-weight:600;font-size:14px;padding:10px 18px;border-radius:10px;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--textMid)}
+  .nb.primary{background:var(--acc);color:var(--bg);border-color:var(--acc)} .nb.off{opacity:.35;cursor:default}
+  .chatlog{display:flex;flex-direction:column;gap:12px;margin-bottom:16px;min-height:120px}
+  .msg{padding:12px 15px;border-radius:13px;font-size:14px;line-height:1.55;max-width:88%}
+  .msg.u{align-self:flex-end;background:var(--acc);color:var(--bg);font-weight:500}
+  .msg.a{align-self:flex-start;background:var(--card);border:1px solid var(--line)}
+  .msg.a b{color:var(--accHi)}
+  .chatrow{display:flex;gap:9px}
+  .chatrow input{flex:1;background:var(--bg2);border:1px solid var(--line);border-radius:11px;padding:12px 14px;color:var(--text);font-family:var(--body);font-size:14px}
+  .chatrow input:focus{outline:none;border-color:var(--acc)}
+  .sendbtn{background:var(--acc);color:var(--bg);border:none;border-radius:11px;padding:0 18px;font-family:var(--body);font-weight:700;font-size:14px;cursor:pointer}
+  .sendbtn:disabled{opacity:.5;cursor:default}
+  .quickq{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
+  .quickq button{font-family:var(--body);font-size:12px;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--textMid);cursor:pointer}
+  .speedbar{display:flex;align-items:center;gap:8px;margin-bottom:14px;font-family:var(--mono);font-size:11px;color:var(--textDim)}
+  .speedbar input{flex:1;max-width:170px;accent-color:var(--acc)}
+  footer{margin-top:32px;padding-top:16px;border-top:1px solid var(--lineSoft);font-family:var(--mono);font-size:10.5px;color:var(--textDim);line-height:1.6}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<a href="index.html" style="position:fixed;top:10px;left:10px;z-index:99;font-size:12px;font-weight:600;color:var(--acc,#EC5C6A);background:rgba(0,0,0,.35);border:1px solid var(--line,rgba(236,92,106,.3));border-radius:8px;padding:5px 10px;text-decoration:none">&#8592; Hub</a>
+<div class="wrap">
+  <header>
+    <span class="eyebrow">BN0213 LECTURE · DR. BASSO · MODULE 11 · QUIZ 9</span>
+    <h1>Cholesterol — Lecture Cram Coach</h1>
+    <p class="sub">Module 11 — cholesterol, bile acids & lipoproteins — taught from Dr. Basso's lecture, with what he stressed (and what he said to skip) and a fresh 41-question drill. ExamSoft, due Mon 7/20.</p>
+  </header>
+  <div class="tabs">
+    <button class="tab active" data-tab="cram">Cram</button>
+    <button class="tab" data-tab="flags">Basso Flags</button>
+    <button class="tab" data-tab="drill">Drill</button>
+    <button class="tab" data-tab="coach">AI Coach</button>
+  </div>
+  <section id="cram"></section>
+  <section id="flags" style="display:none"></section>
+  <section id="drill" style="display:none"></section>
+  <section id="coach" style="display:none"></section>
+  <footer id="foot"></footer>
+</div>
+<script>
+var MC = [["struct", "Cholesterol's core is built from how many fused rings, and how are they labeled?", "Four fused steroid rings, A, B, C, and D", "Three fused rings, A, B, C", "Five fused rings, A through E", "Two fused rings, A and B", "Basso"], ["struct", "Which is NOT one of the roles of cholesterol Basso listed?", "A direct source of ATP energy", "A component of cell membranes", "A precursor to steroid hormones", "A precursor to bile acids and vitamin D", "Basso"], ["struct", "Cholesterol is the precursor to which steroid hormones Basso named?", "Estrogen and testosterone", "Insulin and glucagon", "Thyroxine and cortisol only", "Epinephrine and dopamine", "Basso"], ["struct", "Which wavelength of light actually manufactures vitamin D in the skin, per Basso?", "Ultraviolet B (UVB)", "Red light", "Ultraviolet A (UVA)", "Infrared", "Basso"], ["struct", "Basso said people in northern climates get essentially ZERO vitamin D during which months?", "October to March", "June to August", "April to May", "No months; it's year-round", "Basso"], ["struct", "Basso stressed cholesterol is essential, not simply 'bad.' Which particle 'mops up' excess cholesterol?", "HDL", "LDL", "VLDL", "Chylomicrons", "Basso"], ["struct", "Cholesterol is a precursor to vitamin D. What does the body do with cholesterol that it CANNOT do with most molecules?", "Recycle nearly all of it (only <5% of bile salts are lost)", "Burn it directly for ATP", "Excrete it unchanged in urine", "Exhale it as CO2", "Basso"], ["synth", "What is the rate-limiting enzyme of cholesterol synthesis and the target of statin drugs?", "HMG-CoA reductase", "HMG-CoA synthase", "CYP7A1", "Lipoprotein lipase", "Basso"], ["synth", "Basso said you also need HMG-CoA synthase, but why isn't it the key regulatory step?", "It is not the rate-limiting enzyme", "It doesn't exist in humans", "It only works in the intestine", "It is the statin target instead", "Basso"], ["synth", "When cholesterol levels are high, what happens to HMG-CoA reductase?", "Cholesterol negatively inhibits it (feedback)", "Cholesterol activates it", "It is unaffected", "It converts into a statin", "Basso"], ["synth", "Statin drugs lower cholesterol by acting at which specific step?", "Inhibiting HMG-CoA reductase", "Inhibiting CYP7A1", "Blocking LDL receptors", "Activating LPL", "Basso"], ["synth", "Which regulatory factor controls cholesterol synthesis and up-regulates LDL receptors?", "SREBP", "FXR", "PPAR", "ESR1", "Basso"], ["synth", "When SREBP stimulates LDL-receptor expression, what happens to plasma LDL cholesterol?", "It decreases (more LDL cleared to the liver)", "It increases", "It stays exactly the same", "It converts to HDL", "Basso"], ["synth", "Cholesterol synthesis begins from which two-carbon building block?", "Acetyl-CoA", "Pyruvate", "Glycerol", "Palmitate", "Basso"], ["synth", "Basso explicitly said you do NOT need to memorize which of the following?", "The detailed mevalonate synthesis steps and structures", "That HMG-CoA reductase is rate-limiting", "That statins target HMG-CoA reductase", "The four rings of cholesterol", "Basso"], ["homeo", "In the intestine, cholesterol from micelles is taken up via contact with which protein?", "Niemann-Pick C1-like protein (NPC1L1)", "The LDL receptor", "SREBP", "Apolipoprotein B-100", "Basso"], ["homeo", "Basso stressed that dietary lipids do NOT do what at the intestine?", "Go directly into the bloodstream (they route via chylomicrons/lymph)", "Get absorbed at all", "Form micelles", "Contact enterocytes", "Basso"], ["homeo", "The body cannot simply break cholesterol down. How is it eliminated?", "Conversion to bile acids/salts, then excretion", "Exhaled as CO2", "Filtered unchanged by the kidney", "Burned for ATP", "Basso"], ["homeo", "Only about what fraction of bile salts is actually excreted in the feces (the rest reabsorbed)?", "Less than 5%", "About 50%", "About 90%", "100%", "Basso"], ["homeo", "The recycling of bile salts from the intestine back to the liver is called what?", "Enterohepatic circulation", "Reverse cholesterol transport", "De novo lipogenesis", "The mevalonate pathway", "Basso"], ["bile", "What is the rate-limiting enzyme for bile-acid synthesis from cholesterol?", "CYP7A1 (7-alpha-hydroxylase)", "HMG-CoA reductase", "Lipoprotein lipase", "SREBP", "Basso"], ["bile", "By negative feedback, what inhibits 7-alpha-hydroxylase (CYP7A1)?", "Bile acids themselves", "Cholesterol", "Glucose", "Statins", "Basso"], ["bile", "Which are the two primary (unconjugated) bile acids Basso named?", "Chenodeoxycholic acid and cholic acid", "Glycocholic and taurocholic acid", "Deoxycholic and lithocholic acid", "Glycine and taurine", "Basso"], ["bile", "What does it mean to CONJUGATE a bile acid?", "Add an amino acid, taurine or glycine", "Remove the cholesterol from it", "Oxidize it to a steroid hormone", "Attach it to an LDL particle", "Basso"], ["bile", "Cholic acid conjugated with glycine yields which bile salt?", "Glycocholic acid", "Taurocholic acid", "Chenodeoxycholic acid", "Lithocholic acid", "Basso"], ["bile", "Cholic acid conjugated with taurine yields which bile salt?", "Taurocholic acid", "Glycocholic acid", "Deoxycholic acid", "Cholesterol", "Basso"], ["bile", "Bile acids are amphipathic detergents. What structure do they form to emulsify fat?", "Micelles", "Chylomicrons", "Foam cells", "Steroid rings", "Basso"], ["bile", "Basso pointed out an irony about bile: it contains cholesterol yet does what?", "Helps break down / emulsify dietary fat", "Raises blood glucose", "Blocks vitamin D", "Stores iron", "Basso"], ["bile", "Where are the bile salts reabsorbed to complete their circulation?", "The intestine, back into the body", "The kidney, into the urine", "The skin", "The lungs", "Basso"], ["lipo", "Basso called lipoproteins the 'lipid ubers' of the body. Which set lists the major classes?", "Chylomicrons, VLDL, IDL, LDL, HDL", "Only LDL and HDL", "Albumin and globulin", "Micelles and vesicles", "Basso"], ["lipo", "Most lipoproteins are made in the liver, but which is special, made in the intestine?", "Chylomicrons", "VLDL", "LDL", "HDL", "Basso"], ["lipo", "Which apolipoprotein marks the chylomicron?", "ApoB-48", "ApoB-100", "ApoC-II", "ApoE", "Basso"], ["lipo", "Which apolipoprotein marks VLDL (and LDL)?", "ApoB-100", "ApoB-48", "ApoA-I", "ApoE", "Basso"], ["lipo", "Which apolipoprotein ACTIVATES lipoprotein lipase (LPL)?", "ApoC-II", "ApoB-48", "ApoE", "ApoA-I", "Basso"], ["lipo", "Which apolipoprotein mediates remnant uptake by the liver?", "ApoE", "ApoC-II", "ApoB-48", "ApoA-I", "Basso"], ["lipo", "Which lipoprotein DELIVERS cholesterol to tissues and is tied to atherosclerosis?", "LDL", "HDL", "Chylomicron", "IDL", "Basso"], ["lipo", "Why did Basso say 'we like HDL' and want high levels?", "It returns cholesterol from the periphery to the liver (made into bile salts)", "It delivers cholesterol to arteries", "It forms foam cells", "It blocks LDL receptors", "Basso"], ["lipo", "LDL receptors (up-regulated by SREBP) are used by the body to do what?", "Clear LDL from the plasma back to the liver", "Make new cholesterol", "Excrete bile", "Produce vitamin D", "Basso"], ["dis", "HDL performs which process, moving cholesterol from tissues back to the liver?", "Reverse cholesterol transport", "De novo lipogenesis", "Enterohepatic circulation", "Beta-oxidation", "Basso"], ["dis", "Basso noted it's hard to define a single 'good' number for which lipid marker?", "LDL", "HDL", "Bile acids", "Vitamin D", "Basso"], ["dis", "LDL is often called 'bad cholesterol,' but Basso's framing is that cholesterol is what?", "Essential, not simply bad", "Useless", "Only harmful", "Not made by the body", "Basso"]] ;
+var GA='#A78BFA';
+
+/* ================= CRAM (6 topics, grounded in Basso's cholesterol lecture) ================= */
+var CRAM=[
+["Cholesterol structure & functions","struct",[
+ "<b>Core = four fused steroid rings, A, B, C, D.</b> Basso: know the four rings, but you do <b>not</b> need to draw or memorize the synthesis. <span class='src'>Basso</span>",
+ "<b>Four functions:</b> a component of <b>cell membranes</b>; a precursor to <b>steroid hormones</b> (estrogen, testosterone); a precursor to <b>bile acids</b>; a precursor to <b>vitamin D</b>. It is NOT a direct ATP energy source. <span class='src'>Basso</span>",
+ "<b class='hot'>Cholesterol is essential, not simply 'bad.'</b> HDL 'mops up' the excess. <span class='src'>Basso</span>",
+ "<b>Vitamin D:</b> <b>UVB</b> manufactures it in the skin — <b>red light does NOT</b>. In northern climates you get ~zero vitamin D from <b>October to March</b> → deficiency → supplement. <span class='src'>Basso</span>"
+]],
+["Cholesterol synthesis & regulation","synth",[
+ "Synthesis starts from <b>acetyl-CoA</b> → HMG-CoA (via HMG-CoA <b>synthase</b> — needed, but NOT the rate-limiting step) → mevalonate → … → cholesterol. <span class='src'>Basso</span>",
+ "<b class='hot'>HMG-CoA reductase = the RATE-LIMITING enzyme and the STATIN target.</b> <span class='src'>Basso</span>",
+ "<b>Feedback:</b> when cholesterol is high, it <b>negatively inhibits HMG-CoA reductase</b>. <span class='src'>Basso</span>",
+ "<b>SREBP</b> regulates synthesis and <b>up-regulates LDL receptors</b> → more LDL cleared to the liver → <b>plasma LDL cholesterol decreases</b>. <span class='src'>Basso</span>",
+ "<b class='hot'>NOT tested:</b> the detailed mevalonate / isoprenoid steps and structures (\"you don't need to draw it out… the diagram is not tested\"). Know the high-level. <span class='src'>Basso</span>"
+]],
+["Cholesterol homeostasis & absorption","homeo",[
+ "<b>Intestinal absorption:</b> bile salts emulsify fat → tiny <b>micelles</b> → contact <b>Niemann-Pick C1-like protein (NPC1L1)</b> on enterocytes → absorbed. <span class='src'>Basso</span>",
+ "<b>Dietary lipids do NOT go directly into the bloodstream</b> at the intestine — they route via chylomicrons into lymph first. <span class='src'>Basso</span>",
+ "<b>You can't break cholesterol down.</b> The only way out is <b>conversion to bile acids/salts</b>, then excretion. And only <b>&lt;5%</b> of bile salts leave in the feces — the rest are reabsorbed. <span class='src'>Basso</span>"
+]],
+["Bile acids & salts","bile",[
+ "Bile acids are made <b>from cholesterol</b>. <b class='hot'>CYP7A1 (7-alpha-hydroxylase) = the RATE-LIMITING enzyme.</b> <span class='src'>Basso</span>",
+ "<b>Feedback:</b> bile acids themselves <b>inhibit 7-alpha-hydroxylase (CYP7A1)</b> — too much bile acid shuts down its own synthesis. <span class='src'>Basso</span>",
+ "<b>Unconjugated (primary) bile acids:</b> <b>chenodeoxycholic acid</b> and <b>cholic acid</b>. <span class='src'>Basso</span>",
+ "<b>Conjugated</b> = add an amino acid, <b>glycine or taurine</b>: cholic + glycine = <b>glycocholic acid</b>; cholic + taurine = <b>taurocholic acid</b>. <span class='src'>Basso</span>",
+ "Bile acids are <b>amphipathic detergents</b> → form <b>micelles</b> → emulsify fat. <b>Enterohepatic circulation</b>: reabsorbed in the intestine back to the liver. Bile = the route to <b>excrete cholesterol</b>. <span class='src'>Basso</span>"
+]],
+["Lipoproteins","lipo",[
+ "<b>The 'lipid ubers' of the body.</b> Major classes: <b>chylomicron, VLDL, IDL, LDL, HDL</b>. <span class='src'>Basso</span>",
+ "Made in the <b>liver</b> — except <b>chylomicrons</b>, which are special, made in the <b>intestine</b> (enterocytes). <span class='src'>Basso</span>",
+ "<b class='hot'>Apoproteins:</b> chylomicron = <b>apoB-48</b>; VLDL/LDL = <b>apoB-100</b>; <b>apoC-II activates LPL</b>; <b>apoE</b> = remnant uptake by the liver. <span class='src'>Basso</span>",
+ "<b>LDL delivers cholesterol</b> to tissues (tied to atherosclerosis). <b>HDL = reverse cholesterol transport</b> (periphery → liver → bile salts). Basso: 'we like HDL,' want it high. <span class='src'>Basso</span>"
+]],
+["Diseases & clinical","dis",[
+ "<b>Atherosclerosis:</b> trapped/oxidized LDL → foam cells → plaque. Know atherosclerosis vs arteriosclerosis. <span class='src'>Basso</span>",
+ "<b>HDL good, LDL delivers</b> — but cholesterol is <b>essential, not simply bad</b>. Basso noted it's hard to define a single 'good' <b>LDL</b> number. <span class='src'>Basso</span>",
+ "<b>LDL clearance:</b> SREBP up-regulates LDL receptors → LDL returns to the liver → plasma LDL cholesterol drops. This is how the body (and statins, indirectly) lowers circulating LDL. <span class='src'>Basso</span>"
+]]
+];
+/* ================= BASSO'S FLAGS ================= */
+var FLAGS=[
+["HMG-CoA reductase = rate-limiting + statin target","This is the one enzyme to know cold for cholesterol synthesis. Basso: you also need HMG-CoA <b>synthase</b>, but that is <b>NOT</b> the rate-limiting enzyme — don't pick it as the statin target."],
+["Do NOT memorize the synthesis steps","Basso said it outright: \"you don't need to draw it out… the diagram is not tested.\" The mevalonate/isoprenoid steps and structures are OUT. Know the high-level (rate-limiting enzyme, SREBP, feedback, the four rings)."],
+["Two different rate-limiting enzymes — don't swap them","<b>HMG-CoA reductase</b> = rate-limiting for <b>cholesterol</b> synthesis. <b>CYP7A1 (7-alpha-hydroxylase)</b> = rate-limiting for <b>bile-acid</b> synthesis (and bile acids feedback-inhibit it)."],
+["Conjugated vs unconjugated bile acids","Basso flagged this specifically. Unconjugated (primary) = <b>chenodeoxycholic + cholic</b>. Conjugated = add <b>glycine or taurine</b> → glycocholic / taurocholic acid."],
+["Apoprotein map to lock","<b>Chylomicron = apoB-48</b> (made in the intestine). <b>VLDL/LDL = apoB-100</b> (liver). <b>apoC-II activates LPL</b>. <b>apoE</b> = remnant uptake. These are the ones he said to know."],
+["HDL good, LDL delivers — but cholesterol is essential","<b>HDL</b> = reverse cholesterol transport, want it high. <b>LDL</b> delivers cholesterol (atherosclerosis). But Basso's framing: cholesterol is <b>essential, not simply 'bad.'</b>"],
+["Vitamin D trivia he stressed","<b>UVB</b> makes vitamin D — <b>red light does not</b>. October–March = essentially zero vitamin D in northern climates."]
+];
+/* ================= helpers ================= */
+function el(t,c,h){ var e=document.createElement(t); if(c)e.className=c; if(h!=null)e.innerHTML=h; return e; }
+function letter(i){ return String.fromCharCode(65+i); }
+var LABEL={struct:'Structure & functions',synth:'Synthesis & regulation',homeo:'Homeostasis & absorption',bile:'Bile acids & salts',lipo:'Lipoproteins',dis:'Diseases & clinical'};
+var BORDER=['struct','synth','homeo','bile','lipo','dis'];
+
+/* ================= TTS ================= */
+var TTS={rate:1.0,voiceA:null};
+function pickVoice(){ var vs=speechSynthesis.getVoices(); TTS.voiceA=vs.find(function(v){return /Ava|Samantha|Emma|Google US English|Zira/i.test(v.name);})||vs.find(function(v){return /en-US|en_GB|en-GB/i.test(v.lang);})||vs[0]; }
+if('speechSynthesis' in window){ pickVoice(); speechSynthesis.onvoiceschanged=pickVoice; }
+function stripHTML(h){ var d=el('div',null,h); return (d.textContent||'').replace(/\s+/g,' ').trim(); }
+function speak(text,btn){
+  if(!('speechSynthesis' in window)) return;
+  speechSynthesis.cancel();
+  document.querySelectorAll('.listenbtn.playing').forEach(function(b){b.classList.remove('playing');b.textContent='\u25b6 Listen';});
+  var u=new SpeechSynthesisUtterance(text); u.rate=TTS.rate; if(TTS.voiceA)u.voice=TTS.voiceA;
+  if(btn){ btn.classList.add('playing'); btn.textContent='\u25a0 Stop'; u.onend=function(){ btn.classList.remove('playing'); btn.textContent='\u25b6 Listen'; }; }
+  speechSynthesis.speak(u);
+}
+
+/* ================= CRAM ================= */
+function renderCram(){
+  var root=document.getElementById('cram'); root.innerHTML='';
+  root.appendChild(el('div','seclabel','Cram \u2014 the 6 topics'));
+  root.appendChild(el('div','intro','Grounded in Dr. Basso\u2019s cholesterol lecture. Hot amber text = something he stressed or told you to skip. Tap <b>\u25b6 Listen</b> to hear a section read aloud.'));
+  var sb=el('div','speedbar'); sb.innerHTML='<span>Voice speed</span>';
+  var r=el('input'); r.type='range'; r.min='0.6'; r.max='3'; r.step='0.1'; r.value='1';
+  var val=el('span',null,'1.0\u00d7');
+  r.oninput=function(){ TTS.rate=parseFloat(r.value); val.textContent=TTS.rate.toFixed(1)+'\u00d7'; };
+  sb.appendChild(r); sb.appendChild(val); root.appendChild(sb);
+  CRAM.forEach(function(o,i){
+    var card=el('div','obj');
+    var h=el('h3',null,'<span class="objn">'+(i+1)+'</span> '+o[0]);
+    var lb=el('button','listenbtn','\u25b6 Listen');
+    lb.onclick=function(){ if(lb.classList.contains('playing')){ speechSynthesis.cancel(); lb.classList.remove('playing'); lb.textContent='\u25b6 Listen'; } else { speak(o[0]+'. '+o[2].map(stripHTML).join('. '), lb); } };
+    h.appendChild(lb); card.appendChild(h);
+    var ul=el('ul');
+    o[2].forEach(function(pt){ ul.appendChild(el('li',null,pt)); });
+    card.appendChild(ul); root.appendChild(card);
+  });
+}
+
+/* ================= FLAGS ================= */
+function renderFlags(){
+  var root=document.getElementById('flags'); root.innerHTML='';
+  root.appendChild(el('div','seclabel','Basso Flags \u2014 stress + skip'));
+  root.appendChild(el('div','intro','What Dr. Basso stressed as high-yield \u2014 and, just as important, what he said you can skip. These are the highest-leverage points for a 10-question quiz.'));
+  FLAGS.forEach(function(f){
+    var c=el('div','flag');
+    c.appendChild(el('h4',null,f[0]));
+    c.appendChild(el('div','why',f[1]));
+    root.appendChild(c);
+  });
+}
+
+/* ================= DRILL (MC + Flashcard on the fresh 52) ================= */
+var pmode='mc', pfilter='all';
+var mcDeck=[], mcPicks={}, mcI=0;
+var fcI=0, fcRev=false, fcDeck=[];
+function shuf(a){ for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i];a[i]=a[j];a[j]=t; } return a; }
+function poolIdx(){ var out=[]; MC.forEach(function(r,ix){ if(pfilter==='all'||r[0]===pfilter) out.push(ix); }); return out; }
+function buildMC(){ mcDeck=[]; mcPicks={}; poolIdx().forEach(function(ix){ var r=MC[ix]; var opts=shuf([r[2],r[3],r[4],r[5]].slice()); mcDeck.push({b:r[0],q:r[1],o:opts,c:opts.indexOf(r[2]),src:r[6]}); }); mcI=0; }
+function buildFC(){ fcDeck=poolIdx().map(function(ix){return MC[ix];}); fcI=0; fcRev=false; }
+function renderDrill(){
+  var root=document.getElementById('drill'); root.innerHTML='';
+  root.appendChild(el('div','seclabel','Drill \u2014 41 fresh questions'));
+  root.appendChild(el('div','intro','Fresh questions written from Basso\u2019s lecture (none test the mevalonate steps he skipped). <b>Multiple Choice</b> = pick; <b>Flashcard</b> = recall, then reveal.'));
+  var mrow=el('div','filters'); mrow.style.marginBottom='10px';
+  [['mc','\u25c9 Multiple Choice'],['flash','\u2921 Flashcard']].forEach(function(m){ var b=el('button','fbtn'+(pmode===m[0]?' on':''),m[1]); b.style.fontWeight='600'; b.onclick=function(){ pmode=m[0]; if(pmode==='mc')buildMC(); else buildFC(); renderDrill(); }; mrow.appendChild(b); });
+  root.appendChild(mrow);
+  var filt=el('div','filters');
+  var all=el('button','fbtn'+(pfilter==='all'?' on':''),'All ('+MC.length+')'); all.onclick=function(){ pfilter='all'; buildMC(); buildFC(); renderDrill(); }; filt.appendChild(all);
+  BORDER.forEach(function(bk){ var n=MC.filter(function(r){return r[0]===bk;}).length; if(!n)return; var fb=el('button','fbtn'+(pfilter===bk?' on':''),LABEL[bk]+' ('+n+')'); fb.onclick=function(){ pfilter=bk; buildMC(); buildFC(); renderDrill(); }; filt.appendChild(fb); });
+  root.appendChild(filt);
+  if(pmode==='mc') renderMC(root); else renderFC(root);
+}
+function renderMC(root){
+  if(!mcDeck.length) buildMC();
+  if(!mcDeck.length){ root.appendChild(el('div','intro','No questions in this topic.')); return; }
+  var answered=Object.keys(mcPicks).length, correct=0; for(var k in mcPicks){ if(mcDeck[k]&&mcPicks[k]===mcDeck[k].c) correct++; }
+  var bar=el('div','drillbar'); bar.appendChild(el('div','stat', mcDeck.length+' questions \u00b7 <span style="color:var(--good)">'+correct+' correct</span> \u00b7 '+answered+' answered'));
+  var rs=el('button','fbtn','\u21ba reset'); rs.onclick=function(){ buildMC(); renderDrill(); }; bar.appendChild(rs); root.appendChild(bar);
+  var nav=el('div','nav');
+  mcDeck.forEach(function(q,pos){ var st=mcPicks[pos]===undefined?'':(mcPicks[pos]===q.c?' ok':' no'); var cell=el('button','ncell'+(pos===mcI?' cur':'')+st,String(pos+1)); cell.onclick=function(){ mcI=pos; renderDrill(); }; nav.appendChild(cell); });
+  root.appendChild(nav);
+  if(mcI>=mcDeck.length) mcI=0;
+  var q=mcDeck[mcI]; var ans=mcPicks[mcI]!==undefined;
+  var qc=el('div','qcard');
+  qc.appendChild(el('div','qcat','<span class="chip" style="color:'+GA+';border:1px solid '+GA+'66;background:'+GA+'18">&nbsp;'+LABEL[q.b]+'&nbsp;</span>'));
+  qc.appendChild(el('div','qstem',q.q));
+  var od=el('div','opts');
+  q.o.forEach(function(opt,oi){ var cls='opt'; if(ans){ if(oi===q.c)cls+=' correct'; else if(oi===mcPicks[mcI])cls+=' wrong'; else cls+=' dim'; } var b=el('button',cls,''); var mark=ans?(oi===q.c?'\u2713':(oi===mcPicks[mcI]?'\u2715':letter(oi))):letter(oi); b.innerHTML='<span class="lt">'+mark+'</span><span>'+opt+'</span>'; b.onclick=function(){ if(mcPicks[mcI]!==undefined) return; mcPicks[mcI]=oi; renderDrill(); }; od.appendChild(b); });
+  qc.appendChild(od);
+  if(ans){ var ex=el('div','expl'); var ok=mcPicks[mcI]===q.c; var lab=el('div','lab',ok?'CORRECT':'NOT QUITE'); lab.style.color=ok?'var(--good)':'var(--crim)'; ex.appendChild(lab); ex.appendChild(el('div','et','Answer: <b style="color:var(--text)">'+q.o[q.c]+'</b>')); var sc=el('div',null,'<span class="src">'+(q.src||'')+'</span>'); sc.style.marginTop='9px'; ex.appendChild(sc); qc.appendChild(ex); }
+  root.appendChild(qc);
+  var nb=el('div','navbtns');
+  var prev=el('button','nb'+(mcI===0?' off':''),'\u2039 Prev'); prev.onclick=function(){ if(mcI>0){mcI--;renderDrill();} };
+  var next=el('button','nb primary'+(mcI>=mcDeck.length-1?' off':''),'Next \u203a'); next.onclick=function(){ if(mcI<mcDeck.length-1){mcI++;renderDrill();} };
+  nb.appendChild(prev); nb.appendChild(next); root.appendChild(nb);
+}
+function renderFC(root){
+  if(!fcDeck.length) buildFC();
+  if(!fcDeck.length){ root.appendChild(el('div','intro','No cards in this topic.')); return; }
+  var bar=el('div','drillbar'); bar.appendChild(el('div','stat','Card '+(fcI+1)+' of '+fcDeck.length)); root.appendChild(bar);
+  if(fcI>=fcDeck.length) fcI=0;
+  var r=fcDeck[fcI];
+  var qc=el('div','qcard');
+  qc.appendChild(el('div','qcat','<span class="chip" style="color:'+GA+';border:1px solid '+GA+'66;background:'+GA+'18">&nbsp;'+LABEL[r[0]]+'&nbsp;</span>'));
+  qc.appendChild(el('div','qstem',r[1]));
+  if(!fcRev){ var rb=el('button','nb primary','Reveal answer'); rb.style.width='100%'; rb.onclick=function(){ fcRev=true; renderDrill(); }; qc.appendChild(rb); }
+  else { var ex=el('div','expl'); var lab=el('div','lab','ANSWER'); lab.style.color='var(--good)'; ex.appendChild(lab); ex.appendChild(el('div','et',r[2])); var sc=el('div',null,'<span class="src">'+(r[6]||'')+'</span>'); sc.style.marginTop='9px'; ex.appendChild(sc); qc.appendChild(ex); }
+  root.appendChild(qc);
+  var nb=el('div','navbtns');
+  var prev=el('button','nb'+(fcI===0?' off':''),'\u2039 Prev'); prev.onclick=function(){ if(fcI>0){fcI--;fcRev=false;renderDrill();} };
+  var next=el('button','nb primary'+(fcI>=fcDeck.length-1?' off':''),'Next \u203a'); next.onclick=function(){ if(fcI<fcDeck.length-1){fcI++;fcRev=false;renderDrill();} };
+  nb.appendChild(prev); nb.appendChild(next); root.appendChild(nb);
+}
+
+/* ================= AI COACH ================= */
+var COACH_SYS="You are a sharp biochemistry tutor for BN0213 Lecture Quiz 9 (Dr. Basso), Module 11: Cholesterol, Bile Acids, and Lipoproteins. Teach ONLY what Basso taught. Key points: cholesterol = four fused steroid rings (A-D), a precursor to steroid hormones/bile acids/vitamin D and a membrane component; HMG-CoA reductase is the rate-limiting enzyme of cholesterol synthesis and the statin target (HMG-CoA synthase is needed but NOT rate-limiting); SREBP regulates synthesis and up-regulates LDL receptors, lowering plasma LDL; CYP7A1 (7-alpha-hydroxylase) is the rate-limiting enzyme for bile-acid synthesis and is feedback-inhibited by bile acids; unconjugated bile acids = chenodeoxycholic + cholic, conjugated = add glycine or taurine (glycocholic/taurocholic); lipoproteins = chylomicron (apoB-48, made in intestine), VLDL/LDL (apoB-100), apoC-II activates LPL, apoE for remnant uptake; HDL does reverse cholesterol transport (want it high), LDL delivers cholesterol (atherosclerosis), but cholesterol is essential not simply bad; vitamin D is made by UVB (not red light). Do NOT quiz the detailed mevalonate/synthesis steps or structures (Basso said not to memorize them). Be concise, quiz back, and do not invent facts.";
+var CHAT=[];
+var WORKER="https://bn-ai.dgync1.workers.dev/BN0213";
+function renderCoach(){
+  var root=document.getElementById('coach'); root.innerHTML='';
+  root.appendChild(el('div','seclabel','AI Coach \u2014 quiz me on cholesterol'));
+  var log=el('div','chatlog'); log.id='chatlog';
+  if(!CHAT.length){ log.appendChild(el('div','msg a','Hi! I\u2019m your cholesterol tutor. Ask me anything on Module 11 \u2014 or tell me to quiz you. Want to start with the <b>two rate-limiting enzymes</b> or the <b>apoprotein map</b>?')); }
+  else CHAT.forEach(function(m){ log.appendChild(el('div','msg '+(m.role==='user'?'u':'a'), m.role==='user'?stripHTML(m.content):m.content)); });
+  root.appendChild(log);
+  var qq=el('div','quickq');
+  ['Quiz me (10 rapid Qs)','HMG-CoA reductase vs CYP7A1','Conjugated vs unconjugated bile acids','Map the apolipoproteins','Why do we like HDL?'].forEach(function(t){ var b=el('button',null,t); b.onclick=function(){ sendMsg(t); }; qq.appendChild(b); });
+  root.appendChild(qq);
+  var row=el('div','chatrow');
+  var inp=el('input'); inp.id='chatinp'; inp.placeholder='Ask about cholesterol\u2026'; inp.onkeydown=function(e){ if(e.key==='Enter'){ sendMsg(inp.value); } };
+  var btn=el('button','sendbtn','Send'); btn.id='sendbtn'; btn.onclick=function(){ sendMsg(inp.value); };
+  row.appendChild(inp); row.appendChild(btn); root.appendChild(row);
+}
+function extractText(data){
+  try{ if(typeof data==='string') return data;
+    if(data.content&&Array.isArray(data.content)) return data.content.filter(function(b){return b.type==='text';}).map(function(b){return b.text;}).join('\n');
+    if(data.completion) return data.completion;
+    if(data.choices&&data.choices[0]) return data.choices[0].message?data.choices[0].message.content:data.choices[0].text;
+    if(data.message&&data.message.content) return data.message.content;
+    if(data.response) return data.response;
+  }catch(e){}
+  return null;
+}
+function sendMsg(text){
+  text=(text||'').trim(); if(!text) return;
+  var inp=document.getElementById('chatinp'); if(inp) inp.value='';
+  CHAT.push({role:'user',content:text});
+  renderCoach();
+  var log=document.getElementById('chatlog');
+  var typing=el('div','msg a','\u2026'); typing.id='typing'; log.appendChild(typing); log.scrollTop=log.scrollHeight;
+  var btn=document.getElementById('sendbtn'); if(btn) btn.disabled=true;
+  fetch(WORKER,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({system:COACH_SYS,messages:CHAT,class_name:'BN0213'})})
+  .then(function(r){ return r.json(); })
+  .then(function(data){ var t=extractText(data)||"Sorry, I couldn't parse a reply. Try again."; CHAT.push({role:'assistant',content:t.replace(/\n/g,'<br>')}); renderCoach(); })
+  .catch(function(){ CHAT.push({role:'assistant',content:"I couldn't reach the coach service just now \u2014 check the connection and try again. (You can still use the Cram, Prof-Flags, and Drill tabs offline.)"}); renderCoach(); });
+}
+
+/* ================= tabs ================= */
+document.querySelectorAll('.tab').forEach(function(t){
+  t.onclick=function(){
+    document.querySelectorAll('.tab').forEach(function(x){ x.classList.toggle('active',x===t); });
+    var tab=t.getAttribute('data-tab');
+    ['cram','flags','drill','coach'].forEach(function(id){ document.getElementById(id).style.display=(id===tab)?'block':'none'; });
+    if(tab!=='cram' && 'speechSynthesis' in window) speechSynthesis.cancel();
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+});
+document.getElementById('foot').innerHTML='Source: Dr. Basso\u2019s Module-11 cholesterol lecture (all instructor). Every Cram point and drill answer is grounded there. Per Basso, the detailed mevalonate/synthesis steps and structures are NOT tested \u2014 no question here touches them. The 41 drill questions are freshly written for this coach.';
+renderCram(); renderFlags(); renderDrill(); renderCoach();
+</script>
+</body>
+</html>
