@@ -1,0 +1,172 @@
+<!doctype html><html lang=en><head><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>BN0213 Lecture Quiz 9 &mdash; Cholesterol Frame Viewer</title><style>
+*{box-sizing:border-box}
+:root{--bg:#0f1419;--card:#1a2230;--card2:#232d3f;--ink:#e8eef6;--mut:#93a2b8;--acc:#4aa3ff;--good:#31c26d;--bad:#ff6b6b;--hy:#ffb454;--line:#2b3648}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 -apple-system,Segoe UI,Roboto,system-ui,sans-serif}
+a{color:var(--acc)}
+.wrap{max-width:900px;margin:0 auto;padding:16px 16px 120px}
+h1{font-size:1.5rem;margin:.2em 0}
+.sub{color:var(--mut);font-size:.92rem}
+.card{background:var(--card);border:1px solid #2b3648;border-radius:12px;padding:16px;margin:12px 0}
+.btn{background:var(--card2);color:var(--ink);border:1px solid #33415a;border-radius:9px;padding:8px 12px;cursor:pointer;font-size:.9rem}
+.btn:hover{border-color:var(--acc)}
+.btn.sel{background:var(--acc);color:#06121f;border-color:var(--acc);font-weight:600}
+.opt{display:block;width:100%;text-align:left;background:var(--card2);border:1px solid #33415a;border-radius:9px;padding:11px 13px;margin:7px 0;cursor:pointer}
+.opt:hover{border-color:var(--acc)}
+.opt.correct{background:rgba(49,194,109,.18);border-color:var(--good)}
+.opt.wrong{background:rgba(255,107,107,.16);border-color:var(--bad)}
+.pill{display:inline-block;font-size:.72rem;padding:2px 8px;border-radius:20px;background:#26324a;color:var(--mut);margin-right:6px}
+.pill.hy{background:rgba(255,180,84,.2);color:var(--hy)}
+.pill.c15{background:#3a2a2a;color:#ff9d9d}.pill.c16{background:#3a3326;color:#ffd29d}
+.pill.c17{background:#26323a;color:#9dd7ff}.pill.c18{background:#2c2640;color:#c9b3ff}
+.ab{display:inline-flex;align-items:center;gap:5px;font-size:.8rem;padding:5px 9px;border-radius:8px;border:1px solid #33415a;background:var(--card2);color:var(--ink);cursor:pointer;margin:3px 5px 0 0}
+.ab.aud:hover{border-color:var(--good)} .ab.vid:hover{border-color:var(--acc)} .ab.slide:hover{border-color:var(--hy)}
+.dc-wm{position:fixed;bottom:6px;right:10px;font-size:10px;color:rgba(255,255,255,.28);pointer-events:none;z-index:2147483647}
+/* video pop-out */
+#pip{position:fixed;right:14px;bottom:14px;width:min(440px,92vw);background:#0b0f16;border:1px solid #33415a;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,.6);z-index:9999;display:none}
+#pip.min .pipbody{display:none}
+#pipbar{display:flex;align-items:center;gap:8px;padding:7px 10px;cursor:move;background:#141c28;border-radius:12px 12px 0 0;user-select:none}
+#piptitle{font-size:.78rem;color:var(--mut);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#pip video{width:100%;display:block;background:#000;border-radius:0 0 12px 12px}
+.pipctl{display:flex;flex-wrap:wrap;gap:5px;padding:8px 10px;align-items:center}
+.pipctl button{background:#1d2735;color:var(--ink);border:1px solid #33415a;border-radius:7px;padding:5px 8px;font-size:.78rem;cursor:pointer}
+.pipctl button:hover{border-color:var(--acc)}
+#pipspd{min-width:52px;text-align:center;color:var(--acc);font-weight:600}
+#abar{position:fixed;left:14px;bottom:14px;background:#141c28;border:1px solid #33415a;border-radius:10px;padding:8px 10px;z-index:9998;display:none;align-items:center;gap:8px;max-width:92vw}
+#abar button{background:#1d2735;color:var(--ink);border:1px solid #33415a;border-radius:7px;padding:4px 8px;cursor:pointer;font-size:.78rem}
+.topnav{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.slidebox{margin-top:10px}
+.slidebox img{max-width:100%;border-radius:8px;border:1px solid #33415a}
+
+.fvbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0}
+.fvbar strong{color:var(--mut);font-weight:600;font-size:.9rem}
+.btn:disabled{opacity:.4;cursor:default;border-color:#33415a}
+.counter{font-variant-numeric:tabular-nums;color:var(--ink);min-width:64px;text-align:center;font-weight:600}
+.stage{position:relative;max-width:1280px;width:100%;margin:14px auto;line-height:0}
+.stage img{width:100%;display:block;border-radius:8px;border:1px solid #33415a;background:#0b0f16;pointer-events:none;-webkit-user-drag:none;user-select:none}
+.stage canvas{position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;touch-action:none;cursor:crosshair}
+.sw{width:26px;height:26px;border-radius:50%;border:2px solid #33415a;cursor:pointer;padding:0}
+.sw.sel{border-color:#fff;box-shadow:0 0 0 2px var(--acc)}
+.rng{vertical-align:middle;margin-left:4px}
+.dl{background:var(--good);color:#06121f;border-color:var(--good);font-weight:700}
+.dl:hover{border-color:var(--good);filter:brightness(1.08)}
+.spacer{flex:1 1 12px}
+</style></head><body>
+<div class=dc-wm>David Gramling · BN0213 Lecture Quiz 9 study</div><div class=topnav><a class=btn href="index.html">← Hub</a><span class=sub>BN0213 Lecture Quiz 9 · Cholesterol · Dr. Basso · Module 11 · due Mon 7/20</span></div>
+<div class=wrap>
+<h1>BN0213 Lecture Quiz 9 &mdash; Cholesterol Frame Viewer</h1>
+<div class=sub>Dr. Basso &middot; Module 11. The cholesterol deck as big slides you can draw on and save. Move with Prev and Next or the arrow keys, mark it up with the pens, then Download PNG.</div>
+
+<div class=card>
+  <div class=fvbar>
+    <button class=btn id=prevBtn>Prev</button>
+    <span class=counter id=counter>0 / 0</span>
+    <button class=btn id=nextBtn>Next</button>
+    <span class=spacer></span>
+    <strong>Pens</strong><span id=swatches></span>
+    <button class=btn id=eraseBtn>Eraser</button>
+    <label class=sub>Size<input id=penSize class=rng type=range min=2 max=30 value=6></label>
+    <button class=btn id=clearBtn>Clear</button>
+    <button class="btn dl" id=dlBtn>Download PNG</button>
+  </div>
+  <div class=stage>
+    <img id=slideImg alt="cholesterol slide">
+    <canvas id=annot></canvas>
+  </div>
+  <div class=sub id=hint style="margin-top:8px">Tip: switching slide starts a clean canvas. Your drawing is kept only in the PNG you download.</div>
+</div>
+</div>
+<script>
+const SLIDES=["slide_01.png", "slide_02.png", "slide_03.png", "slide_04.png", "slide_05.png", "slide_06.png", "slide_07.png", "slide_08.png", "slide_09.png", "slide_10.png", "slide_11.png", "slide_12.png", "slide_13.png", "slide_14.png", "slide_15.png", "slide_16.png", "slide_17.png", "slide_18.png", "slide_19.png", "slide_20.png", "slide_21.png", "slide_22.png", "slide_23.png", "slide_24.png", "slide_25.png", "slide_26.png", "slide_27.png", "slide_28.png", "slide_29.png", "slide_30.png", "slide_31.png", "slide_32.png", "slide_33.png", "slide_34.png", "slide_35.png", "slide_36.png", "slide_37.png", "slide_38.png", "slide_39.png", "slide_40.png", "slide_41.png", "slide_42.png", "slide_43.png"];
+</script><script>
+const COLORS=['#ff3b30','#0a84ff','#ffd60a','#30d158','#ffffff','#111111'];
+let idx=0;
+let color='#ff3b30', eraser=false, penW=6;
+
+const img=document.getElementById('slideImg');
+const annot=document.getElementById('annot');
+const ctx=annot.getContext('2d');
+
+// canvas buffer tracks the image's natural resolution so exports are full-res
+img.onload=()=>{ annot.width=img.naturalWidth; annot.height=img.naturalHeight; clearAnnot(); };
+
+function clearAnnot(){ ctx.clearRect(0,0,annot.width,annot.height); }
+
+// ---- build controls ----
+const swWrap=document.getElementById('swatches');
+COLORS.forEach(col=>{ const b=document.createElement('button'); b.className='sw'; b.style.background=col; b.dataset.col=col; b.title=col; b.onclick=()=>setColor(col,b); swWrap.appendChild(b); });
+
+// ---- state ----
+function prev(){ if(idx>0){ idx--; render(); } }
+function next(){ if(idx<SLIDES.length-1){ idx++; render(); } }
+
+function setColor(col,btn){ color=col; eraser=false;
+  document.querySelectorAll('#swatches .sw').forEach(s=>s.classList.toggle('sel',s.dataset.col===col));
+  document.getElementById('eraseBtn').classList.remove('sel');
+}
+function toggleErase(){ eraser=!eraser;
+  document.getElementById('eraseBtn').classList.toggle('sel',eraser);
+  document.querySelectorAll('#swatches .sw').forEach(s=>s.classList.toggle('sel',!eraser&&s.dataset.col===color));
+}
+
+function render(){
+  idx=Math.max(0,Math.min(idx,SLIDES.length-1));
+  img.src='slides/'+SLIDES[idx];
+  document.getElementById('counter').textContent=(idx+1)+' / '+SLIDES.length;
+  document.getElementById('prevBtn').disabled=idx<=0;
+  document.getElementById('nextBtn').disabled=idx>=SLIDES.length-1;
+}
+
+// ---- drawing ----
+function pos(e){ const r=annot.getBoundingClientRect();
+  return {x:(e.clientX-r.left)*(annot.width/r.width), y:(e.clientY-r.top)*(annot.height/r.height)}; }
+function stroke(a,b){
+  ctx.lineCap='round'; ctx.lineJoin='round';
+  if(eraser){ ctx.globalCompositeOperation='destination-out'; ctx.lineWidth=penW*2.5; }
+  else{ ctx.globalCompositeOperation='source-over'; ctx.strokeStyle=color; ctx.lineWidth=penW; }
+  ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+}
+function dot(p){
+  if(eraser){ ctx.globalCompositeOperation='destination-out'; ctx.beginPath(); ctx.arc(p.x,p.y,penW*1.25,0,7); ctx.fill(); }
+  else{ ctx.globalCompositeOperation='source-over'; ctx.fillStyle=color; ctx.beginPath(); ctx.arc(p.x,p.y,penW/2,0,7); ctx.fill(); }
+}
+let drawing=false, last=null;
+annot.addEventListener('pointerdown',e=>{ drawing=true; try{annot.setPointerCapture(e.pointerId);}catch(_){} last=pos(e); dot(last); e.preventDefault(); });
+annot.addEventListener('pointermove',e=>{ if(!drawing)return; const p=pos(e); stroke(last,p); last=p; e.preventDefault(); });
+function endDraw(){ drawing=false; last=null; }
+annot.addEventListener('pointerup',endDraw);
+annot.addEventListener('pointercancel',endDraw);
+
+// ---- export: merge slide + annotation at full resolution ----
+function download(){
+  const off=document.createElement('canvas');
+  off.width=img.naturalWidth; off.height=img.naturalHeight;
+  const o=off.getContext('2d');
+  o.drawImage(img,0,0,off.width,off.height);
+  o.drawImage(annot,0,0,off.width,off.height);
+  let url;
+  try{ url=off.toDataURL('image/png'); }
+  catch(err){ alert('Could not export this slide. Open the page through the study site (http) rather than a local file, then try again.'); return; }
+  const a=document.createElement('a');
+  a.download='cholesterol_'+String(idx+1).padStart(2,'0')+'_annotated.png';
+  a.href=url; document.body.appendChild(a); a.click(); a.remove();
+}
+
+// ---- wire ----
+document.getElementById('prevBtn').onclick=prev;
+document.getElementById('nextBtn').onclick=next;
+document.getElementById('eraseBtn').onclick=toggleErase;
+document.getElementById('clearBtn').onclick=clearAnnot;
+document.getElementById('dlBtn').onclick=download;
+document.getElementById('penSize').addEventListener('input',e=>penW=+e.target.value);
+document.addEventListener('keydown',e=>{
+  if(e.target && (e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')) return;
+  if(e.key==='ArrowLeft'){ prev(); e.preventDefault(); }
+  else if(e.key==='ArrowRight'){ next(); e.preventDefault(); }
+});
+
+// ---- init ----
+setColor(COLORS[0],document.querySelector('#swatches .sw'));
+render();
+</script></body></html>
