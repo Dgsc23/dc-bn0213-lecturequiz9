@@ -716,9 +716,37 @@ setColor(COLORS[0]); render();
       v.setAttribute('src', VID_URL);
       try { v.load(); } catch(e){}
     }
+    try { var _s=(typeof lecSlideSec==='function')?lecSlideSec():null; if(_s!=null){ if(v.readyState>=1){ v.currentTime=_s; } else { v.addEventListener('loadedmetadata',function(){ try{v.currentTime=_s;}catch(e){} },{once:true}); } } } catch(e){}
     var p = v.play();
     if (p && p.catch) p.catch(function(){ /* autoplay blocked: pop stays open, user taps play */ });
   };
+/* __SEEK_WIRE_BEGIN__ */
+  window.LEC_SLIDE_SEEK = {"slide_03.png":557,"slide_04.png":659,"slide_05.png":1175,"slide_06.png":1514,"slide_12.png":3386,"slide_10.png":498,"slide_07.png":1833,"slide_08.png":2000,"slide_11.png":3283,"slide_13.png":3546,"slide_14.png":3761,"slide_15.png":3954,"slide_20.png":343,"slide_22.png":420,"slide_21.png":4808,"slide_23.png":5012,"slide_24.png":5197,"slide_28.png":6232,"slide_25.png":6642,"slide_01.png":0,"slide_02.png":228,"slide_09.png":2036,"slide_16.png":4088,"slide_17.png":4197,"slide_18.png":4531,"slide_19.png":4561,"slide_26.png":7378};
+  function lecSlideSec(){
+    var im=document.getElementById('slideImg'); if(!im) return null;
+    var mm=(im.getAttribute('src')||'').match(/([^\/?#]+\.png)/);
+    if(!mm) return null;
+    var v=(window.LEC_SLIDE_SEEK||{})[mm[1]];
+    return (v!=null)?v:null;
+  }
+  function lecSeekVideo(v, sec, play){
+    if(!v||sec==null) return;
+    var go=function(){ try{ v.currentTime=sec; }catch(e){} if(play){ var p=v.play(); if(p&&p.catch)p.catch(function(){}); } };
+    if(v.readyState>=1) go(); else v.addEventListener('loadedmetadata', go, {once:true});
+  }
+  window.lecSeekToCurrentSlide = function(){
+    var pop=document.getElementById('bn-vid-pop'); if(!pop||!pop.classList.contains('show')) return;
+    var v=document.getElementById('bn-vid-el'); if(!v) return;
+    lecSeekVideo(v, lecSlideSec(), false);
+  };
+  (function(){
+    var im=document.getElementById('slideImg');
+    if(im && window.MutationObserver){
+      new MutationObserver(function(){ window.lecSeekToCurrentSlide(); })
+        .observe(im, {attributes:true, attributeFilter:['src']});
+    }
+  })();
+  /* __SEEK_WIRE_END__ */
 })();
 </script>
 </body></html>
