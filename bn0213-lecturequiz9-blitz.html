@@ -1,0 +1,621 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>BN0213 Lecture Quiz 9 (Cholesterol) &mdash; Night-Before Blitz</title>
+<style>
+:root{--bg:#070b16;--card:#0e1626;--line:#1e2b45;--ink:#e8eefc;--mut:#9fb0d0;--ac:#a855f7;--go:#10b981}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;padding:16px 12px 90px}
+.wrap{max-width:900px;margin:0 auto}
+h1{font-size:1.3rem;text-align:center;margin:6px 0 2px}
+.sub{text-align:center;color:var(--mut);font-size:.84rem;margin-bottom:12px}
+.player{position:sticky;top:6px;z-index:30;background:#0b1120;border:1px solid var(--line);border-radius:12px;padding:9px 11px;margin-bottom:12px}
+audio,video{width:100%;display:block;border-radius:8px;background:#000}
+video{max-height:42vh;margin-top:8px}
+#ccvidwrap{display:none;margin-top:6px}
+.spdrow{display:flex;gap:5px;align-items:center;flex-wrap:wrap;margin-top:7px}
+.spdrow b{color:var(--mut);font-size:.73rem;margin-right:2px}
+.spd{background:#0e1626;color:#c4b5fd;border:1px solid var(--line);border-radius:7px;padding:3px 9px;font:700 .72rem inherit;cursor:pointer}
+.spd.on{background:var(--ac);color:#1a0533;border-color:var(--ac)}
+.tabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.tab{flex:1;min-width:110px;background:var(--card);border:1px solid var(--line);color:var(--mut);border-radius:10px;padding:9px 6px;font:800 .82rem inherit;cursor:pointer}
+.tab.on{background:var(--ac);color:#1a0533;border-color:var(--ac)}
+.pane{display:none}.pane.on{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px}
+.bt{font-weight:800;color:#7dd3fc;font-size:.86rem;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.bd{color:#cbd5e1;font-size:.86rem;line-height:1.55;margin-top:4px}
+.bd b{color:#fff}
+.ab{border-radius:999px;padding:2px 9px;font:700 .68rem inherit;cursor:pointer;background:#052e2b;color:#5eead4;border:1px solid #14b8a6;margin-left:auto}
+.ab.v{background:#3b0764;color:#e9d5ff;border-color:#a855f7;margin-left:5px}
+.cue{border-left:3px solid #ef4444}
+.cue.med{border-left-color:#eab308}
+.cueq{color:#fecaca;font-style:italic;font-size:.85rem;line-height:1.5}
+.cuet{color:var(--mut);font-size:.75rem;margin-top:3px}
+.nope{border-left:3px solid #475569;opacity:.85}
+.nopeq{color:#94a3b8;font-style:italic;font-size:.84rem}
+.qbox{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.qcat{color:#c4b5fd;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+.qq{font-size:.98rem;font-weight:700;margin:8px 0 12px;line-height:1.45}
+.opt{display:block;width:100%;text-align:left;background:#111a30;border:1px solid #24365c;color:var(--ink);border-radius:9px;padding:10px 12px;margin:6px 0;font:500 .88rem inherit;cursor:pointer;line-height:1.4}
+.opt:hover{border-color:var(--ac)}
+.opt.right{background:#052e1a;border-color:var(--go)}
+.opt.wrong{background:#3b0a0a;border-color:#ef4444}
+.rat{margin-top:10px;display:none}
+.rat.show{display:block}
+.rat div{font-size:.83rem;color:#cbd5e1;margin:4px 0;line-height:1.5}
+.qfoot{display:flex;gap:8px;align-items:center;margin-top:12px;flex-wrap:wrap}
+.btn{background:#1e293b;border:1px solid #38bdf8;color:#e0f2fe;border-radius:9px;padding:8px 14px;font:800 .82rem inherit;cursor:pointer}
+.btn.p{background:var(--ac);border-color:var(--ac);color:#1a0533}
+.score{color:var(--mut);font-size:.8rem;margin-left:auto;font-variant-numeric:tabular-nums}
+.obj{background:#1a1030;border:1px solid #6d28d9;border-radius:12px;padding:12px 14px;margin-bottom:12px}
+.obj ol{margin:6px 0 0;padding-left:20px;color:#ddd6fe;font-size:.83rem;line-height:1.6}
+.obj h3{margin:0;font-size:.9rem;color:#f3e8ff}
+.dc-study-watermark{position:fixed;bottom:6px;right:10px;font-size:10px;color:rgba(255,255,255,.32);pointer-events:none;z-index:2147483647}
+</style><style id="fab-ai-companion-css">
+.fab-ai-btn {
+  position: fixed; bottom: 24px; right: 24px; z-index: 9998;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6); color: #fff;
+  border: none; border-radius: 50%; width: 56px; height: 56px;
+  font-size: 26px; cursor: pointer; box-shadow: 0 4px 16px rgba(99,102,241,0.45);
+  transition: all 0.2s; display: flex; align-items: center; justify-content: center;
+  padding: 0;
+}
+.fab-ai-btn:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 8px 24px rgba(99,102,241,0.6); }
+.fab-ai-btn:active { transform: scale(0.95); }
+
+.fab-ai-panel {
+  position: fixed; top: 0; right: 0; bottom: 0; width: min(480px, 94vw);
+  background: #0f172a; border-left: 2px solid #334155;
+  box-shadow: -8px 0 32px rgba(0,0,0,0.5);
+  z-index: 9999; display: flex; flex-direction: column;
+  transform: translateX(100%); transition: transform 0.28s ease-out;
+}
+.fab-ai-panel.open { transform: translateX(0); }
+
+.fab-ai-header {
+  padding: 12px 16px; background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: #fff; display: flex; align-items: center; gap: 8px;
+}
+.fab-ai-header h3 { font-size: 15px; font-weight: 700; margin: 0; flex: 1; }
+.fab-ai-hdr-btn {
+  background: rgba(255,255,255,0.15); color: #fff; border: none;
+  padding: 6px 10px; border-radius: 6px; cursor: pointer; font-size: 12px;
+  font-weight: 600;
+}
+.fab-ai-hdr-btn:hover { background: rgba(255,255,255,0.28); }
+.fab-ai-close {
+  background: rgba(255,255,255,0.15); color: #fff; border: none;
+  width: 30px; height: 30px; border-radius: 6px; cursor: pointer; font-size: 18px;
+  line-height: 1; padding: 0;
+}
+.fab-ai-close:hover { background: rgba(255,255,255,0.3); }
+
+.fab-ai-body {
+  flex: 1; overflow-y: auto; padding: 14px 16px;
+  color: #e2e8f0; font-size: 13px; line-height: 1.6;
+  display: flex; flex-direction: column; gap: 10px;
+}
+
+.fab-ai-qpreview {
+  padding: 8px 12px; background: rgba(129,140,248,0.08); border-left: 3px solid #818cf8;
+  border-radius: 6px; font-size: 12px; color: #94a3b8; max-height: 100px; overflow-y: auto;
+  flex-shrink: 0;
+}
+.fab-ai-qpreview b { color: #cbd5e1; }
+
+.fab-ai-suggestions {
+  display: flex; flex-wrap: wrap; gap: 6px; padding: 4px 0;
+}
+.fab-ai-sug {
+  background: rgba(99,102,241,0.12); color: #a5b4fc;
+  border: 1px solid rgba(99,102,241,0.35); border-radius: 14px;
+  padding: 6px 12px; font-size: 12px; cursor: pointer; font-weight: 500;
+  transition: all .15s;
+}
+.fab-ai-sug:hover { background: rgba(99,102,241,0.25); color: #dbeafe; transform: translateY(-1px); }
+
+.fab-ai-msg { display: flex; gap: 6px; max-width: 100%; }
+.fab-ai-msg.user { justify-content: flex-end; }
+.fab-ai-bubble {
+  padding: 10px 14px; border-radius: 12px; font-size: 13px; line-height: 1.55;
+  max-width: 92%; word-wrap: break-word;
+}
+.fab-ai-msg.user .fab-ai-bubble {
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  color: #fff; border-bottom-right-radius: 4px;
+}
+.fab-ai-msg.ai .fab-ai-bubble {
+  background: #1e293b; color: #e2e8f0; border-bottom-left-radius: 4px;
+  border: 1px solid #334155;
+}
+.fab-ai-msg.ai .fab-ai-bubble strong,
+.fab-ai-msg.ai .fab-ai-bubble b { color: #a5b4fc; }
+.fab-ai-msg.ai .fab-ai-bubble ul { margin: 6px 0; padding-left: 20px; }
+.fab-ai-msg.ai .fab-ai-bubble li { margin: 3px 0; }
+.fab-ai-msg.ai .fab-ai-bubble p { margin: 0 0 8px 0; }
+.fab-ai-msg.ai .fab-ai-bubble p:last-child { margin-bottom: 0; }
+.fab-ai-msg.ai .fab-ai-bubble h3 { font-size: 13px; margin: 8px 0 4px 0; color: #c4b5fd; }
+.fab-ai-msg.ai .fab-ai-bubble code { background: #0f172a; padding: 1px 5px; border-radius: 3px; font-size: 11px; }
+
+.fab-ai-tts-row { display: flex; align-items: center; gap: 6px; margin-top: 6px; padding-top: 6px; border-top: 1px solid #334155; }
+.fab-ai-tts-btn {
+  background: rgba(129,140,248,0.15); color: #c4b5fd;
+  border: 1px solid rgba(129,140,248,0.35); border-radius: 14px;
+  padding: 3px 10px; font-size: 11px; cursor: pointer; font-weight: 500;
+  display: inline-flex; align-items: center; gap: 4px;
+}
+.fab-ai-tts-btn:hover { background: rgba(129,140,248,0.3); color: #ddd6fe; }
+.fab-ai-tts-btn.playing { background: rgba(239,68,68,0.18); color: #fca5a5; border-color: rgba(239,68,68,0.4); }
+.fab-ai-tts-rate {
+  background: #0f172a; color: #cbd5e1; border: 1px solid #334155;
+  border-radius: 6px; padding: 2px 6px; font-size: 11px; cursor: pointer;
+}
+
+.fab-ai-status {
+  padding: 10px 14px; background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.3);
+  border-radius: 8px; color: #a5b4fc; font-size: 12px;
+}
+.fab-ai-status.err { background: rgba(239,68,68,0.12); border-color: rgba(239,68,68,0.4); color: #fca5a5; }
+.fab-ai-loading { display: flex; align-items: center; gap: 8px; color: #94a3b8; padding: 4px 6px; font-size: 12px; }
+.fab-ai-spinner {
+  width: 12px; height: 12px; border: 2px solid #334155; border-top-color: #818cf8;
+  border-radius: 50%; animation: fab-ai-spin 0.8s linear infinite;
+}
+@keyframes fab-ai-spin { to { transform: rotate(360deg); } }
+
+.fab-ai-followup {
+  padding: 12px; background: #1e293b; border-top: 1px solid #334155;
+  display: flex; gap: 8px; align-items: flex-end;
+}
+.fab-ai-mini-close {
+  background: #334155; color: #94a3b8; border: 1px solid #475569;
+  width: 32px; height: 36px; border-radius: 8px; cursor: pointer;
+  font-size: 16px; line-height: 1; padding: 0; font-weight: 600;
+  flex-shrink: 0;
+}
+.fab-ai-mini-close:hover { background: #475569; color: #f87171; border-color: #ef4444; }
+.fab-ai-followup textarea {
+  flex: 1; background: #0f172a; color: #e2e8f0;
+  border: 1px solid #334155; border-radius: 8px;
+  padding: 8px 10px; font-size: 13px; font-family: inherit;
+  resize: none; min-height: 36px; max-height: 120px;
+}
+.fab-ai-followup textarea:focus { outline: none; border-color: #818cf8; }
+.fab-ai-followup button {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6); color: #fff;
+  border: none; padding: 0 14px; border-radius: 8px; font-weight: 600;
+  cursor: pointer; font-size: 13px; white-space: nowrap;
+}
+.fab-ai-followup button:hover { transform: translateY(-1px); }
+.fab-ai-followup button:disabled { opacity: 0.5; cursor: not-allowed; }
+</style></head><body>
+<div class="wrap">
+<h1>&#9889; BN0213 Lecture Quiz 9 &mdash; Night-Before Blitz</h1>
+<div class="sub">Dr. Basso &middot; Module 11: Cholesterol &middot; blitz facts, his own words &amp; a rapid drill &middot; due Mon 7/20</div>
+
+<div class="player">
+  <audio id="ccaud" controls preload="metadata" src="https://pub-7fb2bb3e5a0b4096a57fc578b5a16078.r2.dev/bn0213/labquiz8/lecture-lipid-metabolism-e0e83c55.mp3"></audio>
+  <div id="ccvidwrap"><video id="ccvid" controls playsinline preload="none" src="https://pub-7fb2bb3e5a0b4096a57fc578b5a16078.r2.dev/bn0213/labquiz8/lecture-lipid-metabolism-2f1f8ff5.mp4"></video></div>
+  <div class="spdrow"><b>Speed</b>
+    <button class="spd" onclick="ccRate(0.75,this)">0.75x</button>
+    <button class="spd on" onclick="ccRate(1,this)">1x</button>
+    <button class="spd" onclick="ccRate(1.5,this)">1.5x</button>
+    <button class="spd" onclick="ccRate(2,this)">2x</button>
+    <button class="spd" onclick="ccRate(2.5,this)">2.5x</button>
+    <button class="spd" onclick="ccRate(3,this)">3x</button>
+    <button class="spd" style="margin-left:auto" onclick="ccHideVid()">&#10005; hide video</button>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab on" data-p="blitz" onclick="ccTab('blitz',this)">&#9889; Blitz</button>
+  <button class="tab" data-p="cues" onclick="ccTab('cues',this)">&#128172; His words</button>
+  <button class="tab" data-p="rapid" onclick="ccTab('rapid',this)">&#127919; Rapid drill</button>
+</div>
+
+<div class="pane on" id="p-blitz">
+  <div class="obj"><h3>&#128203; His lecture objectives</h3><ol id="objlist"></ol></div>
+  <div id="blitzlist"></div>
+</div>
+<div class="pane" id="p-cues"><div id="cuelist"></div><div id="nopelist"></div></div>
+<div class="pane" id="p-rapid"><div class="qbox" id="qbox"></div></div>
+</div>
+
+<script>
+var D={"video": "https://pub-7fb2bb3e5a0b4096a57fc578b5a16078.r2.dev/bn0213/labquiz8/lecture-lipid-metabolism-2f1f8ff5.mp4", "mp3": "https://pub-7fb2bb3e5a0b4096a57fc578b5a16078.r2.dev/bn0213/labquiz8/lecture-lipid-metabolism-e0e83c55.mp3", "objectives": ["<b>Structure of the steroid nucleus<\/b> &mdash; the four-ring skeleton you need in order to build cholesterol.", "<b>How cholesterol is obtained and discarded<\/b> in humans (diet + de novo in; bile out).", "<b>Function and role of cholesterol<\/b> &mdash; a membrane component and precursor for bile acids, steroid hormones, and vitamin D.", "<b>Pathway of bile acid production<\/b> &mdash; and remember, bile has cholesterol in it.", "<b>Conjugated vs unconjugated bile acids<\/b> &mdash; this one is your microbiome's doing.", "<b>Major classes of lipoproteins<\/b> &mdash; chylomicron, VLDL, IDL, LDL, HDL (the lipid Ubers): where they're made, what they carry, and their apoproteins.", "<b>De novo cholesterol synthesis<\/b> and its regulatory enzyme, <b>HMG-CoA reductase<\/b> (statins target it).", "<b>Atherosclerosis<\/b> vs an acute plaque rupture / thrombotic event, plus lipid meds and inherited hyperlipidemias."], "blitz": [["Structure &amp; Function <span style=\"color:#9fb0d0;font-weight:600\">&middot; Steroid nucleus<\/span>", "The steroid nucleus is <b>four fused rings, A, B, C, and D<\/b>, plus two methyl groups. You do <b>not<\/b> need to draw it or number carbons &mdash; just know that four-ring skeleton is what you build cholesterol on.", 557], ["Structure &amp; Function <span style=\"color:#9fb0d0;font-weight:600\">&middot; Cholesterol = skeleton + 3 add-ons<\/span>", "Cholesterol is the steroid skeleton with three additions: a <b>hydroxyl (OH)<\/b> on ring A, a <b>double bond<\/b> on ring B, and a <b>branched hydrocarbon tail<\/b> off ring D.", 782], ["Structure &amp; Function <span style=\"color:#9fb0d0;font-weight:600\">&middot; Two forms<\/span>", "About <b>30% free<\/b> cholesterol (poorly water-soluble, sits in membranes) and <b>70% esterified<\/b> (even less soluble, so it's the transport form carried in blood as serum cholesterol; <b>ACAT<\/b> esterifies it).", 1514], ["Structure &amp; Function <span style=\"color:#9fb0d0;font-weight:600\">&middot; Job 1: membrane fluidity<\/span>", "Cholesterol wedges between phospholipids so they sit <b>not too far, not too close<\/b> &mdash; the membrane stays stable yet flexible. Basso: it <b>modulates fluidity<\/b>, and that's really important.", 1175], ["Structure &amp; Function <span style=\"color:#9fb0d0;font-weight:600\">&middot; Job 2: precursor<\/span>", "Cholesterol is the precursor for <b>bile acids, steroid hormones (testosterone, estrogen), and vitamin D<\/b>. Vitamin D synthesis needs <b>UVB<\/b> sunlight to start it (red light won't do it).", 1288], ["Structure &amp; Function <span style=\"color:#9fb0d0;font-weight:600\">&middot; Elimination<\/span>", "The <b>steroid ring is not broken down<\/b> in humans. Cholesterol is eliminated only by converting it to <b>bile acids/salts<\/b> and secreting free cholesterol into bile.", 3386], ["Synthesis &amp; Regulation <span style=\"color:#9fb0d0;font-weight:600\">&middot; De novo start<\/span>", "Synthesis begins with <b>acetyl-CoA<\/b> (his refrain: the way to many things) + acetoacetyl-CoA &rarr; <b>HMG-CoA<\/b>. We make ~<b>2x<\/b> as much de novo (~1 g/day) as we eat (~0.5 g/day), which is why vegans are usually fine.", 2471], ["Synthesis &amp; Regulation <span style=\"color:#9fb0d0;font-weight:600\">&middot; Rate-limiting enzyme<\/span>", "<b>HMG-CoA reductase<\/b> is the rate-limiting enzyme of cholesterol synthesis; it makes <b>mevalonate<\/b> (know the name, not the structure). HMG-CoA <i>synthase<\/i> is needed but is <b>not<\/b> rate-limiting.", 2505], ["Synthesis &amp; Regulation <span style=\"color:#9fb0d0;font-weight:600\">&middot; Feedback control<\/span>", "Negative feedback: when cholesterol is plentiful it <b>inhibits HMG-CoA reductase<\/b> and shuts down de novo synthesis &mdash; homeostasis, so you never make too much.", 2543], ["Synthesis &amp; Regulation <span style=\"color:#9fb0d0;font-weight:600\">&middot; Statins<\/span>", "<b>Statins (Lipitor) inhibit HMG-CoA reductase<\/b> &mdash; the very same enzyme cholesterol feedback-inhibits. Red yeast rice does the same thing naturally.", 3283], ["Synthesis &amp; Regulation <span style=\"color:#9fb0d0;font-weight:600\">&middot; Statin &rarr; LDL receptors<\/span>", "Lowering intracellular <b>free<\/b> cholesterol <b>stimulates LDL-receptor<\/b> expression &rarr; more LDL pulled back to the liver &rarr; LDL clearance up, plasma LDL down. Too much intracellular cholesterol <b>inhibits<\/b> LDL-receptor genes.", 3313], ["Bile Acids <span style=\"color:#9fb0d0;font-weight:600\">&middot; Made from cholesterol<\/span>", "Bile acids are made <b>in the liver from cholesterol<\/b>. Rate-limiting enzyme = <b>7-alpha-hydroxylase (CYP7A1)<\/b>, which laces a hydroxyl onto carbon 7. Bile acids feed back to <b>inhibit<\/b> it.", 3554], ["Bile Acids <span style=\"color:#9fb0d0;font-weight:600\">&middot; Primary bile acids<\/span>", "The two primary bile acids made straight from cholesterol are <b>cholic acid<\/b> and <b>chenodeoxycholic acid<\/b>.", 3587], ["Bile Acids <span style=\"color:#9fb0d0;font-weight:600\">&middot; Conjugation<\/span>", "Conjugation adds an amino acid &mdash; <b>glycine or taurine<\/b> &mdash; giving <b>conjugated bile salts<\/b> that are more <b>ionized (charged)<\/b>, hence better detergents.", 3641], ["Bile Acids <span style=\"color:#9fb0d0;font-weight:600\">&middot; Bile salts = detergents<\/span>", "Bile salts are amphipathic (a fatty side + a salt side). They <b>emulsify dietary fat<\/b> into micelles. Made in the <b>liver<\/b>, stored in the <b>gallbladder<\/b>, released by <b>CCK<\/b> after a meal.", 3769], ["Bile Acids <span style=\"color:#9fb0d0;font-weight:600\">&middot; Enterohepatic circulation<\/span>", "<b>Under 5%<\/b> of bile salts are lost in feces; the majority are <b>reabsorbed at the ileum<\/b> and returned to the liver &mdash; the body recycles them (and conserves cholesterol).", 3442], ["Bile Acids <span style=\"color:#9fb0d0;font-weight:600\">&middot; Secondary salts + fiber<\/span>", "Gut bacteria <b>deconjugate + dehydroxylate<\/b> primary salts &rarr; secondary salts (deoxycholic, lithocholic) that get excreted more. <b>Fiber<\/b> (and the drug cholestyramine) bind bile salts &rarr; excreted &rarr; the liver burns cholesterol to replace them &rarr; cholesterol drops.", 3954], ["Lipoproteins &amp; Apolipoproteins <span style=\"color:#9fb0d0;font-weight:600\">&middot; Lipid Ubers + structure<\/span>", "Lipoproteins are the body's <b>lipid Ubers<\/b>, hauling hydrophobic lipids through watery blood. Core = <b>TAGs + cholesterol esters<\/b>; surface = a phospholipid monolayer + free cholesterol + <b>apoproteins<\/b>.", 4807], ["Lipoproteins &amp; Apolipoproteins <span style=\"color:#9fb0d0;font-weight:600\">&middot; Density order<\/span>", "<b>Chylomicron = lowest density<\/b> (most fat, least protein); <b>HDL = highest density<\/b> (least fat, most protein). Order: CM &rarr; VLDL &rarr; IDL &rarr; LDL &rarr; HDL.", 5289], ["Lipoproteins &amp; Apolipoproteins <span style=\"color:#9fb0d0;font-weight:600\">&middot; Chylomicron<\/span>", "Made in the <b>intestine (enterocytes)<\/b>, it carries <b>dietary fat<\/b> (mostly TAGs). Its unique apo is <b>apoB-48<\/b> (B-52 bomber = big plane, big particle).", 4897], ["Lipoproteins &amp; Apolipoproteins <span style=\"color:#9fb0d0;font-weight:600\">&middot; VLDL &rarr; IDL &rarr; LDL<\/span>", "<b>VLDL is made in the liver<\/b>, carries <b>apoB-100<\/b>, drops off TAGs &rarr; becomes <b>IDL (the VLDL remnant)<\/b> &rarr; <b>LDL<\/b>. LDL has the <b>highest cholesterol concentration<\/b> and delivers cholesterol to tissues via apoB-100.", 5012], ["Lipoproteins &amp; Apolipoproteins <span style=\"color:#9fb0d0;font-weight:600\">&middot; HDL = good<\/span>", "HDL does <b>reverse cholesterol transport<\/b> &mdash; it mops up excess cholesterol from the periphery and returns it to the liver (&rarr; bile salts). <b>apoA-1<\/b> recovers cholesterol from fatty streaks and activates LCAT.", 5196], ["Lipoproteins &amp; Apolipoproteins <span style=\"color:#9fb0d0;font-weight:600\">&middot; Apo cheat-sheet<\/span>", "<b>apoB-48<\/b> = chylomicron only. <b>apoC-II<\/b> = activates <b>lipoprotein lipase (LPL)<\/b> &mdash; C-II looks like two L's; LPL sits on peripheral endothelium (the liver uses hepatic lipase). <b>apoE<\/b> = the key to the liver (remnant uptake). CETP shuttles cholesterol esters HDL&rarr;LDL; SR-B1 delivers to adrenals/gonads.", 5855], ["Related Diseases <span style=\"color:#9fb0d0;font-weight:600\">&middot; Atherosclerosis<\/span>", "LDL is <b>not inherently bad<\/b> &mdash; the problem is <b>excess or oxidized<\/b> LDL. Oxidized LDL triggers inflammation &rarr; <b>foam cells<\/b> form and die &rarr; the debris builds up as <b>plaque<\/b>.", 6232], ["Related Diseases <span style=\"color:#9fb0d0;font-weight:600\">&middot; The bad profile<\/span>", "The unfavorable profile is <b>high LDL + low HDL<\/b> &mdash; lots of cholesterol delivered to tissues with too little HDL to mop it up. You'd rather have <b>high HDL + low LDL<\/b>.", 6641], ["Related Diseases <span style=\"color:#9fb0d0;font-weight:600\">&middot; Meds &amp; inherited<\/span>", "<b>Statins<\/b> are the main lipid drug (over-prescribed, per Basso). Distinguish slow <b>atherosclerosis<\/b> from an acute <b>plaque rupture / thrombotic<\/b> (clot) event. <b>Genetically inherited hyperlipidemias<\/b> also raise lipids (covered in lab).", 3283]], "cues": [{"topic": "Four rings (steroid nucleus)", "quote": "You should know that there's four rings, the A, B, C, and D rings.", "sec": 557, "t": "9:17", "emp": "high"}, {"topic": "Acetyl-CoA", "quote": "Acetyl-CoA is the way to many things, including the citric acid cycle.", "sec": 2440, "t": "40:40", "emp": "med"}, {"topic": "Rate-limiting enzymes", "quote": "Do I like rate-limiting enzymes? Yes, and you should too, because you're going to get asked about these.", "sec": 2500, "t": "41:40", "emp": "high"}, {"topic": "HMG-CoA reductase", "quote": "So rate-limiting enzyme for cholesterol synthesis is right there, HMG-CoA reductase.", "sec": 2505, "t": "41:45", "emp": "high"}, {"topic": "Negative feedback", "quote": "Then the cholesterol will negatively inhibit HMG-CoA reductase and you'll shut down de novo cholesterol synthesis.", "sec": 2543, "t": "42:23", "emp": "med"}, {"topic": "Statins", "quote": "So statin drugs inhibit HMG-CoA reductase.", "sec": 3283, "t": "54:43", "emp": "high"}, {"topic": "7-alpha-hydroxylase", "quote": "So do I like rate-limiting enzymes? Yes. 7-alpha-hydroxylase.", "sec": 3554, "t": "59:14", "emp": "high"}, {"topic": "Hydroxylase mnemonic", "quote": "When you see the word hydroxylase, think of it like you're going to lace this molecule with a hydroxyl.", "sec": 3560, "t": "59:20", "emp": "med"}, {"topic": "Conjugation", "quote": "It means we basically add amino acids, taurine or glycine.", "sec": 3641, "t": "60:41", "emp": "med"}, {"topic": "Enterohepatic recycling", "quote": "The majority is reabsorbed at the ileum and returns back to the liver again.", "sec": 3442, "t": "57:22", "emp": "med"}, {"topic": "Fiber lowers cholesterol", "quote": "Fiber binds bile salts and helps pull them out of your body.", "sec": 1905, "t": "31:45", "emp": "med"}, {"topic": "Desmolase (steroid hormones)", "quote": "Do I like rate-limiting steps? Yes. Desmolase.", "sec": 4240, "t": "70:40", "emp": "high"}, {"topic": "Lipid Ubers", "quote": "Collectively, all of these lipoproteins are basically lipid ubers in your body.", "sec": 342, "t": "5:42", "emp": "med"}, {"topic": "apoB-48 = chylomicron only", "quote": "Because chylomicrons are the only one that have the B48.", "sec": 4897, "t": "81:37", "emp": "high"}, {"topic": "B-52 bomber", "quote": "If you hear of B48, think of B52, the big bomber. Chylomicrons are big.", "sec": 4930, "t": "82:10", "emp": "high"}, {"topic": "apoC-II activates LPL", "quote": "APOC2 activates lipoprotein lipase, LPL.", "sec": 5855, "t": "97:35", "emp": "high"}, {"topic": "apoE = key to the liver", "quote": "Apo-E is the key to the liver. I made it rhyme purposely so that you can remember.", "sec": 5994, "t": "99:54", "emp": "high"}, {"topic": "LDL = highest cholesterol", "quote": "So if you're ever asked, which of the lipoproteins has the highest concentration of cholesterol?", "sec": 5169, "t": "86:09", "emp": "high"}, {"topic": "LDL is not all bad", "quote": "It's not all bad. It's bad if you have too much. It's bad if it gets oxidized.", "sec": 6235, "t": "103:55", "emp": "med"}, {"topic": "High LDL, low HDL", "quote": "If you have high levels of LDL and low levels of HDL, that's not a good situation to be in.", "sec": 6641, "t": "110:41", "emp": "high"}], "nope": [{"topic": "Numbering the carbons", "quote": "You don't really need to memorize how to number the carbons.", "sec": 572, "t": "9:32"}, {"topic": "The cholesterol-absorption diagram", "quote": "Diagram is not tested.", "sec": 2036, "t": "33:56"}, {"topic": "Mevalonate's structure &amp; the squalene / lanosterol steps", "quote": "You don't need to know like the structure of it or anything.", "sec": 2719, "t": "45:19"}, {"topic": "Every conjugated bile-acid name", "quote": "Do you have to memorize all the steps? No. Don't worry about that.", "sec": 3682, "t": "61:22"}, {"topic": "The full steroid-hormone pathway (that's human phys)", "quote": "Don't worry about deoxycorticosterone and deoxycortisol and all that.", "sec": 4382, "t": "73:02"}], "drill": [{"cat": "Structure &amp; Function", "q": "Dr. Basso said the one thing you should know about the steroid nucleus is that it is built from how many fused rings?", "o": ["Three fused rings labeled A, B, and C", "Two fused rings joined by a methyl bridge", "Four fused rings labeled A, B, C, and D", "Five fused rings labeled A through E"], "c": 2, "r": ["✗ Not the best answer. The correct choice is C: Four fused rings labeled A, B, C, and D.", "✗ Not the best answer. The correct choice is C: Four fused rings labeled A, B, C, and D.", "✓ Basso said you do not need to draw it or memorize everything, but you should know the steroid nucleus is four fused rings, the A, B, C, and D rings. This steroid skeleton is what you need in order to build the cholesterol molecule.", "✗ Not the best answer. The correct choice is C: Four fused rings labeled A, B, C, and D."], "src": "Dr. Basso &middot; slide 3 &middot; 9:17", "ts": 557}, {"cat": "Structure &amp; Function", "q": "What role did Basso emphasize for cholesterol sitting between the phospholipids of the plasma membrane?", "o": ["It forms the hydrophilic phosphate heads of the membrane", "It modulates (helps stabilize) membrane fluidity", "It pumps ions across the membrane", "It digests membrane phospholipids"], "c": 1, "r": ["✗ Not the best answer. The correct choice is B: It modulates (helps stabilize) membrane fluidity.", "✓ Cholesterol wedges between phospholipids so they are neither too far apart nor too close together, keeping the membrane stable yet flexible and dynamic. Basso summarized this as modulating fluidity and said it is really important.", "✗ Not the best answer. The correct choice is B: It modulates (helps stabilize) membrane fluidity.", "✗ Not the best answer. The correct choice is B: It modulates (helps stabilize) membrane fluidity."], "src": "Dr. Basso &middot; slide 5 &middot; 19:35", "ts": 1175}, {"cat": "Structure &amp; Function", "q": "Beyond being a membrane component, Basso listed cholesterol as the precursor for which group of products?", "o": ["Glucose, glycogen, and lactate", "Purines, pyrimidines, and nucleotides", "Essential amino acids", "Bile acids, steroid hormones, and vitamin D"], "c": 3, "r": ["✗ Not the best answer. The correct choice is D: Bile acids, steroid hormones, and vitamin D.", "✗ Not the best answer. The correct choice is D: Bile acids, steroid hormones, and vitamin D.", "✗ Not the best answer. The correct choice is D: Bile acids, steroid hormones, and vitamin D.", "✓ Basso said cholesterol does a few really important things: it is a component of cell membranes and a precursor for bile acids, steroid hormones, and vitamin D."], "src": "Dr. Basso &middot; slide 5 &middot; 21:28", "ts": 1288}, {"cat": "Synthesis &amp; Regulation", "q": "In de novo cholesterol synthesis, which molecule is the starting building block that Basso repeatedly called the way to many things?", "o": ["Acetyl-CoA", "Pyruvate", "Glucose 6 phosphate", "Glycerol"], "c": 0, "r": ["✓ Cholesterol synthesis begins from acetyl-CoA, which combines with acetoacetyl-CoA to form HMG-CoA, the start of the pathway. Basso repeats that acetyl-CoA is the way to many things, including the citric acid cycle and, here, cholesterol synthesis.", "✗ Not the best answer. The correct choice is A: Acetyl-CoA.", "✗ Not the best answer. The correct choice is A: Acetyl-CoA.", "✗ Not the best answer. The correct choice is A: Acetyl-CoA."], "src": "Dr. Basso &middot; slide 10 &middot; 41:11", "ts": 2471}, {"cat": "Synthesis &amp; Regulation", "q": "What is the rate-limiting (regulatory) enzyme of cholesterol synthesis, according to Basso?", "o": ["Squalene cyclase", "Acetyl-CoA carboxylase", "HMG-CoA synthase", "HMG-CoA reductase"], "c": 3, "r": ["✗ Not the best answer. The correct choice is D: HMG-CoA reductase.", "✗ Not the best answer. The correct choice is D: HMG-CoA reductase.", "✗ Not the best answer. The correct choice is D: HMG-CoA reductase.", "✓ HMG-CoA reductase is the rate-limiting enzyme of cholesterol synthesis. Basso flagged it as the key regulatory enzyme and said you are going to get asked about these rate-limiting enzymes."], "src": "Dr. Basso &middot; slide 10 &middot; 41:45", "ts": 2505}, {"cat": "Synthesis &amp; Regulation", "q": "How is HMG-CoA reductase regulated by the end product cholesterol?", "o": ["Cholesterol negatively feedback inhibits HMG-CoA reductase, shutting down de novo synthesis", "Cholesterol activates HMG-CoA reductase to make even more", "Cholesterol has no effect on the enzyme", "Cholesterol only speeds up the enzyme when ATP is low"], "c": 0, "r": ["✓ This is a negative feedback loop for homeostasis: when cholesterol is plentiful, it negatively inhibits HMG-CoA reductase and shuts down de novo cholesterol synthesis so the body does not make too much.", "✗ Not the best answer. The correct choice is A: Cholesterol negatively feedback inhibits HMG-CoA reductase, shutting down de novo synthesis.", "✗ Not the best answer. The correct choice is A: Cholesterol negatively feedback inhibits HMG-CoA reductase, shutting down de novo synthesis.", "✗ Not the best answer. The correct choice is A: Cholesterol negatively feedback inhibits HMG-CoA reductase, shutting down de novo synthesis."], "src": "Dr. Basso &middot; slide 10 &middot; 42:23", "ts": 2543}, {"cat": "Synthesis &amp; Regulation", "q": "Basso said you should know the name of the product that HMG-CoA reductase forms, even though you do not need its structure. What is it?", "o": ["Squalene", "Lanosterol", "Pyruvate", "Mevalonate"], "c": 3, "r": ["✗ Not the best answer. The correct choice is D: Mevalonate.", "✗ Not the best answer. The correct choice is D: Mevalonate.", "✗ Not the best answer. The correct choice is D: Mevalonate.", "✓ HMG-CoA reductase converts HMG-CoA to mevalonate. Basso said you should probably know mevalonate by name but explicitly said you do not need to know its structure or the fine isoprenoid steps that follow."], "src": "Dr. Basso &middot; slide 10 &middot; 45:19", "ts": 2719}, {"cat": "Synthesis &amp; Regulation", "q": "Statin drugs such as Lipitor lower cholesterol by inhibiting which enzyme?", "o": ["Cholesterol ester transfer protein", "HMG-CoA reductase", "ACAT", "HMG-CoA synthase"], "c": 1, "r": ["✗ Not the best answer. The correct choice is B: HMG-CoA reductase.", "✓ Statins inhibit HMG-CoA reductase, the same rate-limiting enzyme cholesterol itself feedback inhibits. Basso used this as a hint when introducing the enzyme, since statin drugs target it.", "✗ Not the best answer. The correct choice is B: HMG-CoA reductase.", "✗ Not the best answer. The correct choice is B: HMG-CoA reductase."], "src": "Dr. Basso &middot; slide 11 &middot; 54:43", "ts": 3283}, {"cat": "Bile Acids", "q": "In enterohepatic circulation, what happens to most of the bile salts after they have emulsified fat?", "o": ["About 95 percent are excreted in the feces", "The majority are reabsorbed in the ileum and returned to the liver", "They are broken down into cholesterol and excreted in the urine", "They are all destroyed by intestinal bacteria"], "c": 1, "r": ["✗ Not the best answer. The correct choice is B: The majority are reabsorbed in the ileum and returned to the liver.", "✓ Less than 5 percent of bile salts are lost in the feces. The majority are reabsorbed in the ileum and returned to the liver via the portal vein (enterohepatic circulation), so the body recycles them and conserves cholesterol.", "✗ Not the best answer. The correct choice is B: The majority are reabsorbed in the ileum and returned to the liver.", "✗ Not the best answer. The correct choice is B: The majority are reabsorbed in the ileum and returned to the liver."], "src": "Dr. Basso &middot; slide 12 &middot; 57:23", "ts": 3443}, {"cat": "Bile Acids", "q": "Which enzyme is the rate-limiting (regulatory) enzyme of bile acid synthesis?", "o": ["HMG-CoA reductase", "Desmolase", "ACAT (acyl-CoA cholesterol acyltransferase)", "7-alpha-hydroxylase"], "c": 3, "r": ["✗ Not the best answer. The correct choice is D: 7-alpha-hydroxylase.", "✗ Not the best answer. The correct choice is D: 7-alpha-hydroxylase.", "✗ Not the best answer. The correct choice is D: 7-alpha-hydroxylase.", "✓ 7-alpha-hydroxylase (CYP7A1) catalyzes the first, rate-limiting step of bile acid synthesis by adding a hydroxyl to carbon 7 of cholesterol to form 7-hydroxycholesterol. Do not confuse it with HMG-CoA reductase (rate-limiting for cholesterol synthesis) or desmolase (rate-limiting for steroid hormone synthesis)."], "src": "Dr. Basso &middot; slide 13 &middot; 59:14", "ts": 3554}, {"cat": "Bile Acids", "q": "Conjugated bile acids (bile salts) are formed when bile acids are joined to which molecules?", "o": ["The amino acids glycine or taurine", "Glucose or galactose", "Glycine or glucuronic acid", "Sodium or potassium ions"], "c": 0, "r": ["✓ Conjugation attaches an amino acid, either glycine or taurine, to a bile acid (for example cholic acid joined to glycine forms glycocholic acid). Knowing the difference between conjugated and unconjugated bile acids is an explicit lecture objective.", "✗ Not the best answer. The correct choice is A: The amino acids glycine or taurine.", "✗ Not the best answer. The correct choice is A: The amino acids glycine or taurine.", "✗ Not the best answer. The correct choice is A: The amino acids glycine or taurine."], "src": "Dr. Basso &middot; slide 13 &middot; 60:41", "ts": 3641}, {"cat": "Bile Acids", "q": "Where are bile salts produced and where are they stored before release into the intestine?", "o": ["Produced in the gallbladder, stored in the liver", "Produced in the liver, stored in the gallbladder", "Produced in the pancreas, stored in the duodenum", "Produced in the intestine, stored in the liver"], "c": 1, "r": ["✗ Not the best answer. The correct choice is B: Produced in the liver, stored in the gallbladder.", "✓ Bile salts are produced by the liver and secreted into bile, then stored in the gallbladder and released into the intestine during a meal. Basso noted this is why a person can still survive without a gallbladder, because the liver still makes bile.", "✗ Not the best answer. The correct choice is B: Produced in the liver, stored in the gallbladder.", "✗ Not the best answer. The correct choice is B: Produced in the liver, stored in the gallbladder."], "src": "Dr. Basso &middot; slide 14 &middot; 62:41", "ts": 3761}, {"cat": "Bile Acids", "q": "What is the main function of bile salts in the small intestine?", "o": ["To act as detergents that emulsify dietary lipids", "To break down proteins into amino acids", "To absorb water from the stool", "To neutralize stomach acid"], "c": 0, "r": ["✓ Bile salts act as detergents that emulsify dietary lipids, chopping large fat globules into tiny droplets (micelles) so the fat can be absorbed across the intestinal lining. Emulsify means to break something into smaller pieces.", "✗ Not the best answer. The correct choice is A: To act as detergents that emulsify dietary lipids.", "✗ Not the best answer. The correct choice is A: To act as detergents that emulsify dietary lipids.", "✗ Not the best answer. The correct choice is A: To act as detergents that emulsify dietary lipids."], "src": "Dr. Basso &middot; slide 14 &middot; 62:50", "ts": 3770}, {"cat": "Lipoproteins &amp; Apolipoproteins", "q": "Collectively, what is the main job of the lipoproteins (chylomicrons, VLDL, IDL, LDL, and HDL) in the body?", "o": ["To transport lipids through the blood", "To synthesize cholesterol from acetyl-CoA", "To emulsify dietary fat inside the intestinal lumen", "To store triglycerides inside adipose cells"], "c": 0, "r": ["✓ Basso repeatedly called the lipoproteins the body's lipid Ubers. Because triglycerides and cholesterol are hydrophobic, they cannot travel freely in watery blood, so the lipoproteins package and carry them around the body.", "✗ Not the best answer. The correct choice is A: To transport lipids through the blood.", "✗ Not the best answer. The correct choice is A: To transport lipids through the blood.", "✗ Not the best answer. The correct choice is A: To transport lipids through the blood."], "src": "Dr. Basso &middot; slide 20 &middot; 5:43", "ts": 343}, {"cat": "Lipoproteins &amp; Apolipoproteins", "q": "Where are chylomicrons assembled, in contrast to the other lipoproteins that are made mainly in the liver?", "o": ["In the pancreatic acinar cells", "In the epithelial cells (enterocytes) of the intestine", "In the endothelium of peripheral capillaries", "In the gallbladder"], "c": 1, "r": ["✗ Not the best answer. The correct choice is B: In the epithelial cells (enterocytes) of the intestine.", "✓ Basso stressed that chylomicrons are special because they are made in the intestine, specifically the enterocytes, from dietary lipids. The liver produces most of the other lipoproteins such as VLDL and HDL.", "✗ Not the best answer. The correct choice is B: In the epithelial cells (enterocytes) of the intestine.", "✗ Not the best answer. The correct choice is B: In the epithelial cells (enterocytes) of the intestine."], "src": "Dr. Basso &middot; slide 22 &middot; 7:00", "ts": 420}, {"cat": "Lipoproteins &amp; Apolipoproteins", "q": "Which apolipoprotein is found only on chylomicrons and on no other lipoprotein?", "o": ["ApoB-100", "ApoE", "ApoC-II", "ApoB-48"], "c": 3, "r": ["✗ Not the best answer. The correct choice is D: ApoB-48.", "✗ Not the best answer. The correct choice is D: ApoB-48.", "✗ Not the best answer. The correct choice is D: ApoB-48.", "✓ Basso told students to remember that apoB-48 is unique to chylomicrons and comes from the intestinal enterocyte. He used the B-52 bomber mnemonic (big plane, big particle). VLDL, IDL, and LDL instead carry apoB-100."], "src": "Dr. Basso &middot; slide 22 &middot; 81:37", "ts": 4897}, {"cat": "Lipoproteins &amp; Apolipoproteins", "q": "Where is VLDL made, and which B apolipoprotein does it carry?", "o": ["Made in the liver, carries apoB-100", "Made in the intestine, carries apoB-48", "Made in adipose tissue, carries apoA-1", "Made in the gallbladder, carries apoC-II"], "c": 0, "r": ["✓ Basso said it is important to know that VLDL is made in the liver. It works like a chylomicron, carrying mostly triglycerides out to the tissues, but it carries apoB-100 rather than apoB-48.", "✗ Not the best answer. The correct choice is A: Made in the liver, carries apoB-100.", "✗ Not the best answer. The correct choice is A: Made in the liver, carries apoB-100.", "✗ Not the best answer. The correct choice is A: Made in the liver, carries apoB-100."], "src": "Dr. Basso &middot; slide 23 &middot; 83:32", "ts": 5012}, {"cat": "Lipoproteins &amp; Apolipoproteins", "q": "Of all the lipoproteins, which one has the highest concentration of cholesterol?", "o": ["Chylomicron", "LDL", "VLDL", "HDL"], "c": 1, "r": ["✗ Not the best answer. The correct choice is B: LDL.", "✓ Basso flagged this as a likely exam question. LDL has the highest cholesterol concentration because the earlier particles (chylomicron, VLDL, IDL) have already dropped off most of their triglycerides, leaving LDL relatively cholesterol rich.", "✗ Not the best answer. The correct choice is B: LDL.", "✗ Not the best answer. The correct choice is B: LDL."], "src": "Dr. Basso &middot; slide 23 &middot; 86:09", "ts": 5169}, {"cat": "Lipoproteins &amp; Apolipoproteins", "q": "Why did Basso call HDL the good cholesterol?", "o": ["Because it delivers the most cholesterol to peripheral tissues", "Because it returns excess cholesterol from the periphery back to the liver", "Because it is the only particle that carries apoB-100", "Because it emulsifies dietary fat in the intestine"], "c": 1, "r": ["✗ Not the best answer. The correct choice is B: Because it returns excess cholesterol from the periphery back to the liver.", "✓ HDL carries out reverse cholesterol transport. Basso said it mops up excess cholesterol from the periphery and returns it to the liver, where it can be turned into bile salts. That is why higher HDL levels are considered good.", "✗ Not the best answer. The correct choice is B: Because it returns excess cholesterol from the periphery back to the liver.", "✗ Not the best answer. The correct choice is B: Because it returns excess cholesterol from the periphery back to the liver."], "src": "Dr. Basso &middot; slide 24 &middot; 86:37", "ts": 5197}, {"cat": "Lipoproteins &amp; Apolipoproteins", "q": "Which apolipoprotein activates lipoprotein lipase (LPL) so that a chylomicron or VLDL can unload its triglycerides?", "o": ["ApoB-48", "ApoA-1", "ApoC-II", "ApoE"], "c": 2, "r": ["✗ Not the best answer. The correct choice is C: ApoC-II.", "✗ Not the best answer. The correct choice is C: ApoC-II.", "✓ Basso told students to memorize that apoC-II activates lipoprotein lipase. His memory aid was that C-II looks like two Ls for Lipoprotein Lipase. Once C-II docks with LPL, the particle unloads its triglycerides.", "✗ Not the best answer. The correct choice is C: ApoC-II."], "src": "Dr. Basso &middot; slide 22 &middot; 97:35", "ts": 5855}, {"cat": "Lipoproteins &amp; Apolipoproteins", "q": "Which apolipoprotein lets a chylomicron remnant (and IDL) be taken back up by the liver?", "o": ["ApoB-48", "ApoC-II", "ApoA-1", "ApoE"], "c": 3, "r": ["✗ Not the best answer. The correct choice is D: ApoE.", "✗ Not the best answer. The correct choice is D: ApoE.", "✗ Not the best answer. The correct choice is D: ApoE.", "✓ Basso used the rhyme apoE is the key to the liver. HDL donates apoE to the particle so the remnant can be recognized and endocytosed by liver hepatocytes. Without apoE the remnant would keep floating in circulation."], "src": "Dr. Basso &middot; slide 22 &middot; 99:55", "ts": 5995}, {"cat": "Lipoproteins &amp; Apolipoproteins", "q": "What is the main job of LDL, and which apolipoprotein does it use?", "o": ["To deliver cholesterol to peripheral tissues using apoB-100", "To deliver triglycerides to muscle using apoC-II", "To carry excess cholesterol back to the liver using apoE", "To emulsify dietary fat using apoA-1"], "c": 0, "r": ["✓ Unlike the earlier particles that mostly drop off triglycerides, LDL delivers cholesterol to peripheral tissues, and it does so through apoB-100. This cholesterol-delivering role, plus its high cholesterol content, is why excess LDL is linked to disease.", "✗ Not the best answer. The correct choice is A: To deliver cholesterol to peripheral tissues using apoB-100.", "✗ Not the best answer. The correct choice is A: To deliver cholesterol to peripheral tissues using apoB-100.", "✗ Not the best answer. The correct choice is A: To deliver cholesterol to peripheral tissues using apoB-100."], "src": "Dr. Basso &middot; slide 23 &middot; 109:54", "ts": 6594}, {"cat": "Related Diseases", "q": "According to Basso, how does LDL contribute to atherosclerosis?", "o": ["LDL directly dissolves the artery wall on contact", "LDL is inherently toxic and always causes plaques even at low levels", "Oxidized LDL triggers an inflammatory response, turning cells into foam cells that die and build up as plaque", "LDL blocks HDL from ever reaching the liver"], "c": 2, "r": ["✗ Not the best answer. The correct choice is C: Oxidized LDL triggers an inflammatory response, turning cells into foam cells that die and build up as plaque.", "✗ Not the best answer. The correct choice is C: Oxidized LDL triggers an inflammatory response, turning cells into foam cells that die and build up as plaque.", "✓ Basso said LDL is not inherently bad, but it becomes a problem in excess or when oxidized. Oxidized LDL sets off an inflammatory response and is taken up to form foam cells that die, and this debris accumulates as atherosclerotic plaque.", "✗ Not the best answer. The correct choice is C: Oxidized LDL triggers an inflammatory response, turning cells into foam cells that die and build up as plaque."], "src": "Dr. Basso &middot; slide 28 &middot; 103:52", "ts": 6232}]};
+function mmss(s){return Math.floor(s/60)+':'+(s%60<10?'0':'')+(s%60);}
+function ccPlayAt(el,sec){var go=function(){try{el.currentTime=sec;}catch(e){}var p=el.play();if(p&&p.catch)p.catch(function(){});};
+ if(el.readyState>=1)go(); else {el.addEventListener('loadedmetadata',go,{once:true});el.addEventListener('canplay',go,{once:true});try{el.load();}catch(e){}}}
+function ccAud(sec){var v=document.getElementById('ccvid');try{v.pause();}catch(e){}
+ ccPlayAt(document.getElementById('ccaud'),sec);document.querySelector('.player').scrollIntoView({behavior:'smooth',block:'start'});}
+function ccVid(sec){var a=document.getElementById('ccaud');try{a.pause();}catch(e){}
+ document.getElementById('ccvidwrap').style.display='block';
+ ccPlayAt(document.getElementById('ccvid'),sec);document.querySelector('.player').scrollIntoView({behavior:'smooth',block:'start'});}
+function ccHideVid(){var v=document.getElementById('ccvid');try{v.pause();}catch(e){}document.getElementById('ccvidwrap').style.display='none';}
+function ccRate(r,btn){r=Math.max(0.5,Math.min(3,r));
+ document.getElementById('ccaud').playbackRate=r;document.getElementById('ccvid').playbackRate=r;
+ var bs=document.querySelectorAll('.spd');for(var i=0;i<bs.length;i++){if(bs[i].textContent.indexOf('x')>-1)bs[i].classList.remove('on');}
+ if(btn)btn.classList.add('on');}
+function ccTab(p,btn){var ps=document.querySelectorAll('.pane');for(var i=0;i<ps.length;i++)ps[i].classList.remove('on');
+ document.getElementById('p-'+p).classList.add('on');
+ var ts=document.querySelectorAll('.tab');for(var i=0;i<ts.length;i++)ts[i].classList.remove('on');btn.classList.add('on');}
+
+document.getElementById('objlist').innerHTML=D.objectives.map(function(o){return '<li>'+o+'</li>';}).join('');
+
+document.getElementById('blitzlist').innerHTML=D.blitz.map(function(b){
+  return '<div class="card"><div class="bt">'+b[0]+
+    '<button class="ab" onclick="ccAud('+b[2]+')">&#127911; '+mmss(b[2])+'</button>'+
+    '<button class="ab v" onclick="ccVid('+b[2]+')">&#127916;</button></div>'+
+    '<div class="bd">'+b[1]+'</div></div>';}).join('');
+
+document.getElementById('cuelist').innerHTML=D.cues.map(function(c){
+  return '<div class="card cue '+(c.emp==='med'?'med':'')+'"><div class="bt">'+c.topic+
+    '<button class="ab" onclick="ccAud('+c.sec+')">&#127911; '+c.t+'</button>'+
+    '<button class="ab v" onclick="ccVid('+c.sec+')">&#127916;</button></div>'+
+    '<div class="cueq">"'+c.quote+'"</div></div>';}).join('');
+
+document.getElementById('nopelist').innerHTML='<div class="card nope"><div class="bt">&#9940; He told you to SKIP these</div>'+
+  D.nope.map(function(n){return '<div class="bd"><b>'+n.topic+'</b><br><span class="nopeq">"'+n.quote+'"</span> '+
+    '<button class="ab" onclick="ccAud('+n.sec+')">&#127911; '+n.t+'</button></div>';}).join('')+'</div>';
+
+var order=[],qi=0,score=0,answered=false;
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function newRun(){order=shuffle(D.drill.map(function(_,i){return i;}));qi=0;score=0;drawQ();}
+function drawQ(){
+  if(qi>=order.length){document.getElementById('qbox').innerHTML='<div class="qq">Done. '+score+' / '+order.length+'</div>'+
+    '<div class="qfoot"><button class="btn p" onclick="newRun()">Go again</button></div>';return;}
+  answered=false;var q=D.drill[order[qi]];
+  document.getElementById('qbox').innerHTML='<div class="qcat">'+q.cat+'</div><div class="qq">'+q.q+'</div>'+
+    q.o.map(function(o,j){return '<button class="opt" data-j="'+j+'" onclick="pick('+j+')">'+String.fromCharCode(65+j)+'. '+o+'</button>';}).join('')+
+    '<div class="rat" id="rat">'+q.r.map(function(r){return '<div>'+r+'</div>';}).join('')+
+    '<div style="color:#94a3b8;font-size:.76rem;margin-top:8px">'+q.src+'</div></div>'+
+    '<div class="qfoot"><button class="btn" onclick="ccAud('+q.ts+')">&#127911; Play from here</button>'+
+    '<button class="btn" onclick="ccVid('+q.ts+')">&#127916; Watch</button>'+
+    '<button class="btn p" onclick="nextQ()">Next &#9197;</button>'+
+    '<span class="score">'+(qi+1)+' / '+order.length+' &middot; '+score+' right</span></div>';}
+function pick(j){
+  if(answered)return; answered=true;
+  var q=D.drill[order[qi]];var os=document.querySelectorAll('#qbox .opt');
+  for(var n=0;n<os.length;n++){var bj=+os[n].getAttribute('data-j');
+    if(bj===q.c)os[n].classList.add('right'); else if(bj===j)os[n].classList.add('wrong');}
+  if(j===q.c)score++;
+  document.getElementById('rat').classList.add('show');
+  var s=document.querySelector('.score');if(s)s.textContent=(qi+1)+' / '+order.length+' \u00b7 '+score+' right';}
+function nextQ(){qi++;drawQ();}
+newRun();
+</script>
+<div class="dc-study-watermark">DC Study Supply &mdash; Dr. David Gramling, PHD</div>
+<script id="fab-ai-companion-js">
+(function(){
+  const ENDPOINT = "https://fab-ai.dgync1.workers.dev";
+  const CLASS_NAME = "BN0213"; // e.g., "CP1" / "FAB101" / "GA0102" — empty = generic chiropractic tutor
+  let panel = null;
+  let history = []; // [{role:'user'|'model', content}]
+  let currentQKey = null; // to detect Q navigation
+
+  function readCurrentQ() {
+    const qText = (document.querySelector('.q-text')?.innerText || '').replace(/^Q\d+(\s+of\s+\d+)?:\s*/, '');
+    const optBtns = Array.from(document.querySelectorAll('.opt-btn'));
+    const options = optBtns.map(b => {
+      const clone = b.cloneNode(true);
+      clone.querySelectorAll('.rationale').forEach(r => r.remove());
+      clone.querySelectorAll('.letter').forEach(r => r.remove());
+      return clone.innerText.trim();
+    });
+    let picked = null, correct = null;
+    optBtns.forEach((b, i) => {
+      if (b.classList.contains('picked-correct') || b.classList.contains('picked-wrong')) picked = i;
+      if (b.classList.contains('picked-correct') || b.classList.contains('show-correct')) correct = i;
+    });
+    const profTip = document.querySelector('.prof-tip')?.innerText?.replace(/^Professor:\s*/i, '').trim() || '';
+    const source = document.querySelector('.source-line')?.innerText?.replace(/^Source:\s*/i, '').trim() || '';
+    const quote = document.querySelector('.quote-line')?.innerText?.trim() || '';
+    return { question: qText, options, picked, correct, profTip, source, quote };
+  }
+
+  function qKey(ctx){ return (ctx.question || '') + '|' + (ctx.options || []).join('|'); }
+
+  function mdToHtml(md){
+    let html = md
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+      .replace(/(^|\n)### (.+)/g, '$1<h3>$2</h3>')
+      .replace(/`([^`]+)`/g, '<code>$1</code>')
+      .replace(/^\s*[-*]\s+(.+)$/gm, '<li>$1</li>')
+      .replace(/(<li>.*?<\/li>(\s*<li>.*?<\/li>)*)/gs, '<ul>$1</ul>');
+    html = html.split(/\n{2,}/).map(p => {
+      if (p.trim().startsWith('<ul') || p.trim().startsWith('<h3')) return p;
+      if (p.trim() === '') return '';
+      return '<p>' + p.replace(/\n/g, '<br>') + '</p>';
+    }).join('');
+    return html;
+  }
+
+  function stripForTts(text){
+    // Remove markdown markers so TTS doesn't read them aloud
+    return text
+      .replace(/\*\*/g, '')
+      .replace(/`([^`]+)`/g, '$1')
+      .replace(/^\s*[-*]\s+/gm, '')
+      .replace(/^#+\s+/gm, '')
+      .replace(/\n{2,}/g, '. ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  let currentUtter = null;
+  function speakToggle(btn, rawText){
+    if (!window.speechSynthesis) {
+      alert('Your browser does not support text-to-speech.');
+      return;
+    }
+    if (window.speechSynthesis.speaking && currentUtter && btn.classList.contains('playing')) {
+      window.speechSynthesis.cancel();
+      document.querySelectorAll('.fab-ai-tts-btn.playing').forEach(b => {
+        b.classList.remove('playing');
+        b.innerHTML = '🔊 Read';
+      });
+      currentUtter = null;
+      return;
+    }
+    window.speechSynthesis.cancel();
+    document.querySelectorAll('.fab-ai-tts-btn.playing').forEach(b => {
+      b.classList.remove('playing');
+      b.innerHTML = '🔊 Read';
+    });
+    const u = new SpeechSynthesisUtterance(stripForTts(rawText));
+    const rateSel = btn.parentElement.querySelector('.fab-ai-tts-rate');
+    u.rate = parseFloat(rateSel && rateSel.value || '1.0');
+    /*ava-tts*/try{var _vs=(window.speechSynthesis&&window.speechSynthesis.getVoices())||[];var _av=_vs.find(function(v){return /microsoft.*ava.*natural/i.test(v.name);})||_vs.find(function(v){return /microsoft.*emma.*natural/i.test(v.name);})||_vs.find(function(v){return /google us english female/i.test(v.name);});if(_av){u.voice=_av;u.lang=_av.lang||'en-US';}}catch(e){}
+    u.onend = () => {
+      btn.classList.remove('playing');
+      btn.innerHTML = '🔊 Read';
+      currentUtter = null;
+    };
+    u.onerror = () => {
+      btn.classList.remove('playing');
+      btn.innerHTML = '🔊 Read';
+      currentUtter = null;
+    };
+    currentUtter = u;
+    btn.classList.add('playing');
+    btn.innerHTML = '⏹ Stop';
+    window.speechSynthesis.speak(u);
+  }
+
+  function appendMsg(role, text) {
+    const body = document.getElementById('fabAiBody');
+    if (!body) return null;
+    const wrap = document.createElement('div');
+    wrap.className = 'fab-ai-msg ' + role;
+    const bub = document.createElement('div');
+    bub.className = 'fab-ai-bubble';
+    if (role === 'ai') {
+      bub.innerHTML = mdToHtml(text);
+      // Add TTS row
+      const row = document.createElement('div');
+      row.className = 'fab-ai-tts-row';
+      const btn = document.createElement('button');
+      btn.className = 'fab-ai-tts-btn';
+      btn.innerHTML = '🔊 Read';
+      btn.onclick = function(){ speakToggle(btn, text); };
+      const rate = document.createElement('select');
+      rate.className = 'fab-ai-tts-rate';
+      rate.title = 'Reading speed';
+      ['0.8','1.0','1.2','1.5','2.0'].forEach(function(r){
+        const o = document.createElement('option');
+        o.value = r; o.textContent = r + 'x';
+        if (r === '1.0') o.selected = true;
+        rate.appendChild(o);
+      });
+      row.appendChild(btn);
+      row.appendChild(rate);
+      bub.appendChild(row);
+    } else {
+      bub.textContent = text;
+    }
+    wrap.appendChild(bub);
+    body.appendChild(wrap);
+    body.scrollTop = body.scrollHeight;
+    return bub;
+  }
+
+  function appendLoading(){
+    const body = document.getElementById('fabAiBody');
+    if (!body) return null;
+    const wrap = document.createElement('div');
+    wrap.className = 'fab-ai-msg ai';
+    wrap.id = 'fabAiLoading';
+    const bub = document.createElement('div');
+    bub.className = 'fab-ai-bubble';
+    bub.innerHTML = '<div class="fab-ai-loading"><div class="fab-ai-spinner"></div> Thinking...</div>';
+    wrap.appendChild(bub);
+    body.appendChild(wrap);
+    body.scrollTop = body.scrollHeight;
+    return wrap;
+  }
+
+  function removeLoading(){
+    const el = document.getElementById('fabAiLoading');
+    if (el) el.remove();
+  }
+
+  function appendStatus(text, isErr){
+    const body = document.getElementById('fabAiBody');
+    if (!body) return;
+    const div = document.createElement('div');
+    div.className = 'fab-ai-status' + (isErr ? ' err' : '');
+    div.innerHTML = text;
+    body.appendChild(div);
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function renderSuggestions(ctx){
+    const body = document.getElementById('fabAiBody');
+    if (!body) return;
+    // Q preview at top
+    if (ctx.question) {
+      const qp = document.createElement('div');
+      qp.className = 'fab-ai-qpreview';
+      qp.innerHTML = '<b>Q:</b> ' + ctx.question.substring(0, 240) + (ctx.question.length > 240 ? '...' : '');
+      body.appendChild(qp);
+    }
+    // Suggestion chips
+    const sug = document.createElement('div');
+    sug.className = 'fab-ai-suggestions';
+    const chips = [];
+    if (ctx.picked === null || ctx.picked === undefined) {
+      chips.push({ label: '💡 Give me a hint', q: 'Give me a hint for this question without revealing the answer.' });
+      chips.push({ label: '🧠 Explain the concept', q: 'Explain the core concept this question is testing.' });
+    } else if (ctx.picked !== ctx.correct && ctx.picked !== null) {
+      chips.push({ label: '❌ Why did I miss this?', q: 'I picked the wrong answer. Walk me through why my pick is wrong and why the correct answer is right.' });
+      chips.push({ label: '🧠 Explain the concept', q: 'Explain the concept this question is testing in simpler terms.' });
+      chips.push({ label: '🎯 Give me a mnemonic', q: 'Give me a memorable mnemonic for this topic.' });
+    } else if (ctx.picked === ctx.correct) {
+      chips.push({ label: '✅ Why is this right?', q: 'Confirm why the correct answer is right and flag any trap distractors to watch for.' });
+      chips.push({ label: '🎯 Give me a mnemonic', q: 'Give me a memorable mnemonic for this topic.' });
+    }
+    chips.push({ label: '🌟 Use an analogy', q: 'Explain this with a dumbed-down analogy.' });
+    chips.forEach(c => {
+      const btn = document.createElement('button');
+      btn.className = 'fab-ai-sug';
+      btn.textContent = c.label;
+      btn.onclick = () => sendMessage(c.q);
+      sug.appendChild(btn);
+    });
+    body.appendChild(sug);
+  }
+
+  function clearChat(preserveCtx){
+    const body = document.getElementById('fabAiBody');
+    if (body) body.innerHTML = '';
+    history = [];
+    if (preserveCtx) {
+      const ctx = readCurrentQ();
+      renderSuggestions(ctx);
+    }
+  }
+
+  function openPanel() {
+    if (!panel) panel = buildPanel();
+    panel.classList.add('open');
+    const ctx = readCurrentQ();
+    const key = qKey(ctx);
+    if (key !== currentQKey) {
+      // Q changed — reset chat and show suggestions for new Q
+      currentQKey = key;
+      clearChat(true);
+    }
+  }
+
+  function buildPanel() {
+    const el = document.createElement('div');
+    el.className = 'fab-ai-panel';
+    el.innerHTML = '<div class="fab-ai-header">'
+      + '<h3>🩺 Study Tutor</h3>'
+      + '<button class="fab-ai-hdr-btn" onclick="fabAiClear()">Clear</button>'
+      + '<button class="fab-ai-close" onclick="fabAiClose()">×</button>'
+      + '</div>'
+      + '<div class="fab-ai-body" id="fabAiBody"></div>'
+      + '<div class="fab-ai-followup">'
+      + '<button class="fab-ai-mini-close" title="Close panel" onclick="fabAiClose()">×</button>'
+      + '<textarea id="fabAiFollowup" placeholder="Ask a question about this Q..." rows="1" onkeydown="if(event.keyCode===13&&!event.shiftKey){event.preventDefault();fabAiFollowupSend();}"></textarea>'
+      + '<button onclick="fabAiFollowupSend()">Send</button>'
+      + '</div>';
+    document.body.appendChild(el);
+    return el;
+  }
+
+  window.fabAiClose = function(){ if(panel) panel.classList.remove('open'); };
+  window.fabAiClear = function(){ clearChat(true); };
+
+  async function callWorker(payload) {
+    if (!ENDPOINT) return { clipboardFallback: true };
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || ('HTTP ' + res.status));
+      return { reply: data.reply };
+    } catch (e) {
+      return { error: String(e.message || e) };
+    }
+  }
+
+  function clipboardFallback(ctx, userQ) {
+    const letter = (i) => String.fromCharCode(65 + i);
+    let prompt = "I'm studying FAB 101 with Dr. Bui at SCUHS. Drill question:\n\n";
+    prompt += 'Q: ' + ctx.question + '\n\n';
+    if (ctx.options && ctx.options.length) {
+      ctx.options.forEach((o, i) => {
+        const m = [];
+        if (i === ctx.picked) m.push('PICKED');
+        if (i === ctx.correct) m.push('CORRECT');
+        prompt += letter(i) + '. ' + o + (m.length ? ' ('+m.join(', ')+')' : '') + '\n';
+      });
+      prompt += '\n';
+    }
+    if (ctx.profTip) prompt += 'DRILL TIP: ' + ctx.profTip + '\n\n';
+    if (userQ) prompt += 'MY QUESTION: ' + userQ + '\n\n';
+    prompt += 'Explain using a dumbed-down analogy + mnemonic.';
+    navigator.clipboard.writeText(prompt).then(() => {
+      appendStatus('✓ Prompt copied to clipboard. Ask the Study Tutor (the 🩺 button).');
+    }).catch(() => {
+      appendStatus('Could not copy. Please select manually.', true);
+    });
+  }
+
+  async function sendMessage(userText) {
+    const ctx = readCurrentQ();
+    currentQKey = qKey(ctx);
+    appendMsg('user', userText);
+    history.push({ role: 'user', content: userText });
+    appendLoading();
+
+    const payload = Object.assign({}, ctx, {
+      userQuestion: userText,
+      history: history.slice(-10), // last 10 turns for context
+      className: CLASS_NAME, // worker uses this to load class-specific knowledge
+    });
+    const result = await callWorker(payload);
+    removeLoading();
+    if (result.clipboardFallback) {
+      clipboardFallback(ctx, userText);
+      return;
+    }
+    if (result.error) {
+      appendStatus('Error: ' + result.error, true);
+      return;
+    }
+    appendMsg('ai', result.reply);
+    history.push({ role: 'model', content: result.reply });
+  }
+
+  window.fabAiFollowupSend = function() {
+    const ta = document.getElementById('fabAiFollowup');
+    const q = (ta && ta.value || '').trim();
+    if (!q) return;
+    ta.value = '';
+    sendMessage(q);
+  };
+
+  // Button install — opens panel, does NOT auto-call AI
+  function install() {
+    if (document.getElementById('fabAiBtn')) return;
+    const btn = document.createElement('button');
+    btn.className = 'fab-ai-btn';
+    btn.id = 'fabAiBtn';
+    btn.textContent = '🩺';
+    btn.title = 'Open AI Study Tutor';
+    btn.onclick = () => openPanel();
+    document.body.appendChild(btn);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', install);
+  } else {
+    install();
+  }
+})();
+</script><a href="index.html" id="dc-hub-btn" style="position:fixed;top:12px;left:12px;z-index:2147483000;background:#0b3d2e;border:1.5px solid #10b981;color:#fff;text-decoration:none;padding:8px 13px;border-radius:10px;font:700 13px -apple-system,system-ui,sans-serif;box-shadow:0 4px 14px rgba(0,0,0,.4)">&larr; Hub</a></body></html>

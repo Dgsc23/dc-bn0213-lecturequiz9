@@ -1,0 +1,917 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BN0213 Lecture Quiz 9 — Cascade Maps</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;height:100%;background:#0c0a0e;font-family:'Outfit',system-ui,sans-serif}
+  *{box-sizing:border-box}
+  @keyframes flow{to{stroke-dashoffset:-22}}
+  @keyframes fadeup{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  ::-webkit-scrollbar{width:0;height:0}
+</style>
+<style>.dc-back-to-hub{position:fixed;top:12px;left:12px;z-index:99999;background:rgba(22,16,27,.85);color:#f0abfc;text-decoration:none;border:1px solid #86198f;border-radius:9px;padding:7px 13px;font:700 12.5px Outfit,system-ui;box-shadow:0 2px 10px rgba(0,0,0,.4)}.dc-back-to-hub:hover{background:rgba(232,121,249,.2)}@media print{.dc-back-to-hub{display:none}}</style>
+<style id="fab-ai-companion-css">
+.fab-ai-btn {
+  position: fixed; bottom: 24px; right: 24px; z-index: 9998;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6); color: #fff;
+  border: none; border-radius: 50%; width: 56px; height: 56px;
+  font-size: 26px; cursor: pointer; box-shadow: 0 4px 16px rgba(99,102,241,0.45);
+  transition: all 0.2s; display: flex; align-items: center; justify-content: center;
+  padding: 0;
+}
+.fab-ai-btn:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 8px 24px rgba(99,102,241,0.6); }
+.fab-ai-btn:active { transform: scale(0.95); }
+
+.fab-ai-panel {
+  position: fixed; top: 0; right: 0; bottom: 0; width: min(480px, 94vw);
+  background: #0f172a; border-left: 2px solid #334155;
+  box-shadow: -8px 0 32px rgba(0,0,0,0.5);
+  z-index: 9999; display: flex; flex-direction: column;
+  transform: translateX(100%); transition: transform 0.28s ease-out;
+}
+.fab-ai-panel.open { transform: translateX(0); }
+
+.fab-ai-header {
+  padding: 12px 16px; background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: #fff; display: flex; align-items: center; gap: 8px;
+}
+.fab-ai-header h3 { font-size: 15px; font-weight: 700; margin: 0; flex: 1; }
+.fab-ai-hdr-btn {
+  background: rgba(255,255,255,0.15); color: #fff; border: none;
+  padding: 6px 10px; border-radius: 6px; cursor: pointer; font-size: 12px;
+  font-weight: 600;
+}
+.fab-ai-hdr-btn:hover { background: rgba(255,255,255,0.28); }
+.fab-ai-close {
+  background: rgba(255,255,255,0.15); color: #fff; border: none;
+  width: 30px; height: 30px; border-radius: 6px; cursor: pointer; font-size: 18px;
+  line-height: 1; padding: 0;
+}
+.fab-ai-close:hover { background: rgba(255,255,255,0.3); }
+
+.fab-ai-body {
+  flex: 1; overflow-y: auto; padding: 14px 16px;
+  color: #e2e8f0; font-size: 13px; line-height: 1.6;
+  display: flex; flex-direction: column; gap: 10px;
+}
+
+.fab-ai-qpreview {
+  padding: 8px 12px; background: rgba(129,140,248,0.08); border-left: 3px solid #818cf8;
+  border-radius: 6px; font-size: 12px; color: #94a3b8; max-height: 100px; overflow-y: auto;
+  flex-shrink: 0;
+}
+.fab-ai-qpreview b { color: #cbd5e1; }
+
+.fab-ai-suggestions {
+  display: flex; flex-wrap: wrap; gap: 6px; padding: 4px 0;
+}
+.fab-ai-sug {
+  background: rgba(99,102,241,0.12); color: #a5b4fc;
+  border: 1px solid rgba(99,102,241,0.35); border-radius: 14px;
+  padding: 6px 12px; font-size: 12px; cursor: pointer; font-weight: 500;
+  transition: all .15s;
+}
+.fab-ai-sug:hover { background: rgba(99,102,241,0.25); color: #dbeafe; transform: translateY(-1px); }
+
+.fab-ai-msg { display: flex; gap: 6px; max-width: 100%; }
+.fab-ai-msg.user { justify-content: flex-end; }
+.fab-ai-bubble {
+  padding: 10px 14px; border-radius: 12px; font-size: 13px; line-height: 1.55;
+  max-width: 92%; word-wrap: break-word;
+}
+.fab-ai-msg.user .fab-ai-bubble {
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  color: #fff; border-bottom-right-radius: 4px;
+}
+.fab-ai-msg.ai .fab-ai-bubble {
+  background: #1e293b; color: #e2e8f0; border-bottom-left-radius: 4px;
+  border: 1px solid #334155;
+}
+.fab-ai-msg.ai .fab-ai-bubble strong,
+.fab-ai-msg.ai .fab-ai-bubble b { color: #a5b4fc; }
+.fab-ai-msg.ai .fab-ai-bubble ul { margin: 6px 0; padding-left: 20px; }
+.fab-ai-msg.ai .fab-ai-bubble li { margin: 3px 0; }
+.fab-ai-msg.ai .fab-ai-bubble p { margin: 0 0 8px 0; }
+.fab-ai-msg.ai .fab-ai-bubble p:last-child { margin-bottom: 0; }
+.fab-ai-msg.ai .fab-ai-bubble h3 { font-size: 13px; margin: 8px 0 4px 0; color: #c4b5fd; }
+.fab-ai-msg.ai .fab-ai-bubble code { background: #0f172a; padding: 1px 5px; border-radius: 3px; font-size: 11px; }
+
+.fab-ai-tts-row { display: flex; align-items: center; gap: 6px; margin-top: 6px; padding-top: 6px; border-top: 1px solid #334155; }
+.fab-ai-tts-btn {
+  background: rgba(129,140,248,0.15); color: #c4b5fd;
+  border: 1px solid rgba(129,140,248,0.35); border-radius: 14px;
+  padding: 3px 10px; font-size: 11px; cursor: pointer; font-weight: 500;
+  display: inline-flex; align-items: center; gap: 4px;
+}
+.fab-ai-tts-btn:hover { background: rgba(129,140,248,0.3); color: #ddd6fe; }
+.fab-ai-tts-btn.playing { background: rgba(239,68,68,0.18); color: #fca5a5; border-color: rgba(239,68,68,0.4); }
+.fab-ai-tts-rate {
+  background: #0f172a; color: #cbd5e1; border: 1px solid #334155;
+  border-radius: 6px; padding: 2px 6px; font-size: 11px; cursor: pointer;
+}
+
+.fab-ai-status {
+  padding: 10px 14px; background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.3);
+  border-radius: 8px; color: #a5b4fc; font-size: 12px;
+}
+.fab-ai-status.err { background: rgba(239,68,68,0.12); border-color: rgba(239,68,68,0.4); color: #fca5a5; }
+.fab-ai-loading { display: flex; align-items: center; gap: 8px; color: #94a3b8; padding: 4px 6px; font-size: 12px; }
+.fab-ai-spinner {
+  width: 12px; height: 12px; border: 2px solid #334155; border-top-color: #818cf8;
+  border-radius: 50%; animation: fab-ai-spin 0.8s linear infinite;
+}
+@keyframes fab-ai-spin { to { transform: rotate(360deg); } }
+
+.fab-ai-followup {
+  padding: 12px; background: #1e293b; border-top: 1px solid #334155;
+  display: flex; gap: 8px; align-items: flex-end;
+}
+.fab-ai-mini-close {
+  background: #334155; color: #94a3b8; border: 1px solid #475569;
+  width: 32px; height: 36px; border-radius: 8px; cursor: pointer;
+  font-size: 16px; line-height: 1; padding: 0; font-weight: 600;
+  flex-shrink: 0;
+}
+.fab-ai-mini-close:hover { background: #475569; color: #f87171; border-color: #ef4444; }
+.fab-ai-followup textarea {
+  flex: 1; background: #0f172a; color: #e2e8f0;
+  border: 1px solid #334155; border-radius: 8px;
+  padding: 8px 10px; font-size: 13px; font-family: inherit;
+  resize: none; min-height: 36px; max-height: 120px;
+}
+.fab-ai-followup textarea:focus { outline: none; border-color: #818cf8; }
+.fab-ai-followup button {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6); color: #fff;
+  border: none; padding: 0 14px; border-radius: 8px; font-weight: 600;
+  cursor: pointer; font-size: 13px; white-space: nowrap;
+}
+.fab-ai-followup button:hover { transform: translateY(-1px); }
+.fab-ai-followup button:disabled { opacity: 0.5; cursor: not-allowed; }
+</style><style id="cascade-fab-fix">@media(max-width:760px){.fab-ai-btn{bottom:104px!important;right:14px!important}}</style></head><body>
+<a class="dc-back-to-hub" href="index.html" title="Back to the Quiz 9 hub">← Hub</a>
+<div id="cascade-root" style="position:fixed;inset:0;overflow:hidden;background:radial-gradient(1100px 600px at 88% -12%, rgba(232,121,249,.10), transparent 60%),radial-gradient(900px 520px at 4% 112%, rgba(251,113,133,.07), transparent 55%),#0c0a0e;color:#f3ecf6;font-family:'Outfit',sans-serif">
+  <div data-el="viewport" style="position:absolute;inset:0;overflow:hidden;cursor:grab;touch-action:none">
+    <div data-el="world" style="position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform"></div>
+  </div>
+  <div style="position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 260px 70px rgba(0,0,0,.62)"></div>
+
+  <div style="position:absolute;top:0;left:0;right:0;display:flex;align-items:flex-start;justify-content:space-between;padding:18px 20px;pointer-events:none;z-index:15">
+    <div style="pointer-events:auto">
+      <div style="display:flex;align-items:center;gap:9px">
+        <span style="width:9px;height:9px;border-radius:50%;background:#e879f9;box-shadow:0 0 0 4px rgba(232,121,249,.18)"></span>
+        <span style="font:700 11px/1 Outfit;letter-spacing:.16em;text-transform:uppercase;color:#f0abfc">DC Study Supply · BN0213 Lecture Quiz 9</span>
+      </div>
+      <div style="font-family:'Fraunces',serif;font-weight:600;font-size:27px;letter-spacing:-.01em;margin-top:8px">Cascade <span style="font-style:italic;color:#e879f9">Maps</span></div>
+      <div style="display:flex;gap:7px;margin-top:12px"><button data-case="syn" style="border:1px solid #38bdf8;background:#38bdf81f;color:#38bdf8;font:600 12.5px Outfit;padding:7px 13px;border-radius:9px;cursor:pointer;transition:.15s">Cholesterol synthesis</button><button data-case="bile" style="border:1px solid #34d399;background:#34d3991f;color:#34d399;font:600 12.5px Outfit;padding:7px 13px;border-radius:9px;cursor:pointer;transition:.15s">Bile acids + enterohepatic</button><button data-case="lp" style="border:1px solid #a78bfa;background:#a78bfa1f;color:#a78bfa;font:600 12.5px Outfit;padding:7px 13px;border-radius:9px;cursor:pointer;transition:.15s">Lipoprotein metabolism</button></div>
+    </div>
+    <div style="pointer-events:auto;display:flex;gap:7px">
+      <button data-act="overview" style="border:1px solid #2b1f33;background:rgba(22,16,27,.82);color:#d8cadf;font:600 12.5px Outfit;padding:8px 13px;border-radius:10px;cursor:pointer;transition:.15s" style-hover="border-color:#86198f;color:#f0abfc">⤢ Overview</button>
+      <button data-act="zout" style="border:1px solid #2b1f33;background:rgba(22,16,27,.82);color:#d8cadf;font:600 17px/1 Outfit;width:38px;height:38px;border-radius:10px;cursor:pointer;transition:.15s" style-hover="border-color:#86198f;color:#f0abfc">−</button>
+      <button data-act="zin" style="border:1px solid #2b1f33;background:rgba(22,16,27,.82);color:#d8cadf;font:600 17px/1 Outfit;width:38px;height:38px;border-radius:10px;cursor:pointer;transition:.15s" style-hover="border-color:#86198f;color:#f0abfc">+</button>
+    </div>
+  </div>
+
+  <div data-el="hint" style="position:absolute;left:20px;bottom:22px;font:500 12px/1.5 Outfit;color:#8a7b94;pointer-events:none;z-index:15;transition:opacity .5s">drag to pan · scroll to zoom · click any node</div>
+
+  <div data-el="detail" style="position:absolute;top:50%;right:22px;width:344px;max-width:84vw;background:rgba(15,10,19,.93);border:1px solid #2b1f33;border-radius:18px;overflow:hidden;backdrop-filter:blur(8px);box-shadow:0 30px 80px rgba(0,0,0,.6);transform:translateX(calc(100% + 70px)) translateY(-50%);transition:transform .55s cubic-bezier(.2,.85,.25,1);z-index:20">
+    <div data-el="dbar" style="height:4px;background:#e879f9"></div>
+    <div style="padding:17px 19px 19px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px">
+        <div data-el="dkick" style="font:700 10px/1.4 Outfit;letter-spacing:.13em;text-transform:uppercase;color:#b3a3bd">&nbsp;</div>
+        <button data-act="dclose" style="border:1px solid #2b1f33;background:none;color:#b3a3bd;font:600 12px Outfit;width:26px;height:26px;border-radius:7px;cursor:pointer;flex:0 0 auto" style-hover="color:#f0abfc;border-color:#86198f">✕</button>
+      </div>
+      <div data-el="dtitle" style="font-family:'Fraunces',serif;font-weight:600;font-size:21px;line-height:1.18;margin:7px 0 9px">&nbsp;</div>
+      <div data-el="dbody" style="font-size:14px;line-height:1.56;color:#d8cadf">&nbsp;</div>
+      <div style="margin-top:14px;display:flex;gap:7px;flex-wrap:wrap"><span data-el="dsrc" style="display:inline-block;font:700 10px Outfit;letter-spacing:.02em;color:#f0abfc;background:rgba(232,121,249,.12);border:1px solid #86198f;padding:3px 9px;border-radius:7px">&nbsp;</span><span data-el="dvid" style="display:none;font:700 10px Outfit;letter-spacing:.02em;padding:3px 9px;border-radius:7px;border:1px solid #86198f;cursor:pointer">&nbsp;</span><span data-el="dframe" style="display:none;font:700 10px Outfit;letter-spacing:.02em;padding:3px 9px;border-radius:7px;border:1px solid #a16207;cursor:pointer">&nbsp;</span></div>
+    </div>
+  </div>
+
+  <div data-el="tourbar" style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:14px;background:rgba(15,10,19,.92);border:1px solid #2b1f33;border-radius:999px;padding:8px 9px 8px 17px;backdrop-filter:blur(8px);box-shadow:0 18px 50px rgba(0,0,0,.5);z-index:20;max-width:92vw">
+    <div style="min-width:0">
+      <div data-el="tlabel" style="font:700 9.5px/1.3 Outfit;letter-spacing:.11em;text-transform:uppercase;color:#b3a3bd">Guided tour</div>
+      <div data-el="ttitle" style="font:600 13.5px/1.25 Outfit;color:#f3ecf6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:240px">Press play to fly the cascades</div>
+    </div>
+    <div style="display:flex;gap:6px">
+      <button data-act="tprev" style="border:1px solid #2b1f33;background:rgba(22,16,27,.7);color:#d8cadf;font:600 12px Outfit;width:36px;height:36px;border-radius:999px;cursor:pointer;transition:.15s" style-hover="border-color:#86198f;color:#f0abfc">⏮</button>
+      <button data-act="tplay" style="border:none;background:#e879f9;color:#1a0716;font:700 14px Outfit;width:40px;height:40px;border-radius:999px;cursor:pointer;transition:.15s" style-hover="background:#f0abfc">▶</button>
+      <button data-act="tnext" style="border:1px solid #2b1f33;background:rgba(22,16,27,.7);color:#d8cadf;font:600 12px Outfit;width:36px;height:36px;border-radius:999px;cursor:pointer;transition:.15s" style-hover="border-color:#86198f;color:#f0abfc">⏭</button>
+    </div>
+  </div>
+
+  <div data-el="intro" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(8,6,10,.6);backdrop-filter:blur(4px);z-index:30;transition:opacity .6s">
+    <div style="text-align:center;max-width:540px;padding:26px;animation:fadeup .6s both">
+      <div style="font:700 11px/1 Outfit;letter-spacing:.18em;text-transform:uppercase;color:#f0abfc;margin-bottom:16px">Lecture Quiz 9 · Cholesterol · concept cascades</div>
+      <div style="font-family:'Fraunces',serif;font-weight:600;font-size:40px;line-height:1.08;letter-spacing:-.015em">Fly through the <span style="font-style:italic;color:#e879f9">biochemistry</span>.</div>
+      <p style="color:#c9bbd1;font-size:15.5px;line-height:1.55;max-width:440px;margin:15px auto 24px">Three mechanism chains, mapped as living cascades — every step wired back to the exact lecture moment Dr. Basso taught it. Take the guided flight, or roam the map yourself.</p>
+      <div style="display:flex;gap:11px;justify-content:center;flex-wrap:wrap">
+        <button data-act="introtour" style="border:none;background:#e879f9;color:#1a0716;font:700 14.5px Outfit;padding:13px 24px;border-radius:11px;cursor:pointer;transition:.15s" style-hover="background:#f0abfc">▶ &nbsp;Guided flight</button>
+        <button data-act="introexplore" style="border:1px solid #2b1f33;background:rgba(22,16,27,.7);color:#e8dcef;font:600 14.5px Outfit;padding:13px 22px;border-radius:11px;cursor:pointer;transition:.15s" style-hover="border-color:#86198f;color:#f0abfc">Explore freely</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  function boot(){
+    var self={}; self.props={animateFlow:true, showGrid:true, tourSeconds:5};
+    self.root=document.getElementById('cascade-root');
+    self.applyProps=function(){
+    const flow=self.props.animateFlow??true;
+    const grid=self.props.showGrid??true;
+    self.tourMs=(self.props.tourSeconds??5)*1000;
+    if(self.links) self.links.forEach(L=>{ L.main.style.animationPlayState=flow?'running':'paused'; });
+    if(self.world){
+      if(grid){ self.world.style.backgroundImage='radial-gradient(rgba(232,121,249,.07) 1.2px, transparent 1.2px)'; self.world.style.backgroundSize='48px 48px'; }
+      else self.world.style.backgroundImage='none';
+    }
+
+    };
+    const esc=(s)=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    const root=self.root;
+    self.vp=root.querySelector('[data-el="viewport"]');
+    self.world=root.querySelector('[data-el="world"]');
+    self.elDetail=root.querySelector('[data-el="detail"]');
+    self.elIntro=root.querySelector('[data-el="intro"]');
+    self.elHint=root.querySelector('[data-el="hint"]');
+    const q=(s)=>root.querySelector(s);
+
+    /* ---------- data ---------- */
+    const CASES=[{"key": "syn", "color": "#38bdf8", "name": "Cholesterol synthesis", "ph": 0, "nodes": [{"id": "syn0", "k": "KEY", "t": "De novo synthesis begins with acetyl-CoA", "b": "Basso's mantra: acetyl-CoA is the way to many things. Here it is the way to cholesterol. The pathway runs de novo (from scratch) and costs a lot of ATP, because cholesterol is a big molecule to build.", "s": "Dr. Basso · Lecture · 41:11"}, {"id": "syn1", "k": "STEP", "t": "Two acetyl-CoA units merge into HMG-CoA", "b": "Acetoacetyl-CoA (basically two acetyl-CoAs joined) merges with another acetyl-CoA to form HMG-CoA, the real beginning of cholesterol synthesis. HMG-CoA synthase builds it, but Basso stressed the synthase is NOT the rate-limiting enzyme.", "s": "Dr. Basso · Lecture · 41:11"}, {"id": "syn2", "k": "KEY", "t": "HMG-CoA reductase = the rate-limiting enzyme", "b": "The regulatory step of cholesterol synthesis, and the one you get asked about. Basso's hint the moment he introduced it: statin drugs target this exact enzyme.", "s": "Dr. Basso · Lecture · 41:45"}, {"id": "syn3", "k": "STEP", "t": "HMG-CoA reductase makes mevalonate", "b": "Reductase converts HMG-CoA to mevalonate. Know mevalonate by name; Basso said you do NOT need its structure, and the fine isoprenoid steps that follow are not tested.", "s": "Dr. Basso · Lecture · 45:19"}, {"id": "syn4", "k": "KEY", "t": "Mevalonate leads on to cholesterol", "b": "Mevalonate is elongated (C5 to C10 to C15), two C15 units condense into C30 squalene, squalene cyclizes to lanosterol, and lanosterol finally becomes cholesterol. Basso: pick it back up at squalene, where the familiar steroid nucleus starts to appear. The intermediate diagram is not testable.", "s": "Dr. Basso · Lecture · 45:19"}, {"id": "syn5", "k": "MECHANISM", "t": "Cholesterol feedback-inhibits HMG-CoA reductase", "b": "Classic negative feedback for homeostasis: when cholesterol is plentiful it negatively inhibits HMG-CoA reductase and shuts down de novo synthesis, so the body never makes too much.", "s": "Dr. Basso · Lecture · 42:23"}, {"id": "syn6", "k": "PATIENT", "t": "Statins block the same enzyme (and pull LDL down)", "b": "Statins like Lipitor inhibit HMG-CoA reductase. Lower intracellular free cholesterol makes the liver express more LDL receptors, so LDL clearance rises and plasma LDL falls. Red yeast rice hits the same step naturally.", "s": "Dr. Basso · Lecture · 54:43"}]}, {"key": "bile", "color": "#34d399", "name": "Bile acids + enterohepatic", "ph": 1, "nodes": [{"id": "bile0", "k": "KEY", "t": "Bile acids are made in the liver from cholesterol", "b": "Bile literally contains cholesterol. Making bile acids is one of the body's main ways to get rid of cholesterol, since the steroid ring itself cannot be broken down in humans.", "s": "Dr. Basso · Lecture · 59:05"}, {"id": "bile1", "k": "KEY", "t": "7-alpha-hydroxylase (CYP7A1) = rate-limiting step", "b": "The first and rate-limiting enzyme. Hydroxylase tells you the job: it laces a hydroxyl onto carbon 7 of cholesterol to make 7-hydroxycholesterol. Negative feedback: bile acids inhibit 7-alpha-hydroxylase so you do not overmake them.", "s": "Dr. Basso · Lecture · 59:13"}, {"id": "bile2", "k": "STEP", "t": "Two primary bile acids form", "b": "From 7-hydroxycholesterol the liver builds the two primary (unconjugated) bile acids: cholic acid and chenodeoxycholic acid.", "s": "Dr. Basso · Lecture · 59:47"}, {"id": "bile3", "k": "STEP", "t": "Conjugation with glycine or taurine makes bile salts", "b": "Attach the amino acid glycine or taurine (for example cholic acid + glycine = glycocholic acid). Conjugated bile salts are more ionized (more charged), which makes them stronger detergents in the GI lumen.", "s": "Dr. Basso · Lecture · 60:41"}, {"id": "bile4", "k": "MECHANISM", "t": "Bile salts emulsify fat into micelles", "b": "A bile salt is amphipathic: a hydrophobic (cholesterol) side hugs the fat, a hydrophilic (salt) side faces the water. It surrounds fat globules and chops them into tiny micelles so they can cross the intestinal lining. Made in liver, stored in gallbladder, squeezed out by CCK after a meal.", "s": "Dr. Basso · Lecture · 62:49"}, {"id": "bile5", "k": "STEP", "t": "Enterohepatic circulation: reabsorbed at the ileum", "b": "Less than 5% of bile salts are lost in the feces. The majority are reabsorbed at the ileum and returned to the liver via the portal vein, so the body recycles them and keeps conserving cholesterol.", "s": "Dr. Basso · Lecture · 57:22"}, {"id": "bile6", "k": "KEY", "t": "Excreting bile is how cholesterol is eliminated", "b": "Because the ring cannot be degraded, converting cholesterol to bile acids and secreting free cholesterol into bile is the only exit. Fiber (and the drug cholestyramine) binds bile salts so more is excreted, forcing the liver to spend cholesterol making new bile, which lowers cholesterol.", "s": "Dr. Basso · Lecture · 56:25"}]}, {"key": "lp", "color": "#a78bfa", "name": "Lipoprotein metabolism", "ph": 2, "nodes": [{"id": "lp0", "k": "KEY", "t": "Lipoproteins = the body's lipid Ubers", "b": "Triglycerides and cholesterol are hydrophobic and cannot ride in watery blood alone. A lipoprotein is a hydrophobic core (TAGs + cholesterol esters) wrapped in a shell of phospholipids, free cholesterol, and apoproteins that ferries fat around the body.", "s": "Dr. Basso · Lecture · 80:07"}, {"id": "lp1", "k": "STEP", "t": "Dietary fat becomes a chylomicron in the gut", "b": "Basso's big ball of dietary lipids. Whatever fat you just ate is packaged by the enterocytes of the intestine into a chylomicron, which then travels through the lymph (not the portal vein) before reaching the blood.", "s": "Dr. Basso · Lecture · 65:10"}, {"id": "lp2", "k": "KEY", "t": "Chylomicron signature apoprotein: apoB-48", "b": "apoB-48 is unique to chylomicrons and comes from the enterocyte. Basso's hook: B-48 like the B-52 bomber, because bombers are big and so are chylomicrons.", "s": "Dr. Basso · Lecture · 81:37"}, {"id": "lp3", "k": "MECHANISM", "t": "apoC-II activates LPL to unload triglycerides", "b": "Lipoprotein lipase sits on the endothelium of peripheral tissues (not the liver). apoC-II switches it on (C-II looks like two Ls for Lipoprotein Lipase), and the particle drops fatty acids for muscle to burn or adipose to store.", "s": "Dr. Basso · Lecture · 97:35"}, {"id": "lp4", "k": "STEP", "t": "The remnant returns to the liver via apoE", "b": "Once it has dropped its fat the chylomicron becomes a remnant. apoE is the key to the liver: HDL donates apoE so hepatocytes can recognize and take up the remnant.", "s": "Dr. Basso · Lecture · 99:54"}, {"id": "lp5", "k": "KEY", "t": "The liver ships its own fat out as VLDL (apoB-100)", "b": "VLDL is made in the liver and works like a chylomicron, but it carries apoB-100 instead of apoB-48. VLDL, IDL, and LDL all carry apoB-100.", "s": "Dr. Basso · Lecture · 83:32"}, {"id": "lp6", "k": "STEP", "t": "VLDL becomes IDL, then LDL", "b": "As VLDL unloads triglycerides it shrinks and densifies into IDL (the VLDL remnant), which can then become LDL. Each hand-off drops more fat, so cholesterol becomes the dominant cargo.", "s": "Dr. Basso · Lecture · 84:25"}, {"id": "lp7", "k": "KEY", "t": "LDL delivers cholesterol (highest cholesterol content)", "b": "LDL carries the highest concentration of cholesterol of any particle and delivers it to peripheral tissues through apoB-100. A likely exam question. In excess or when oxidized, LDL sets off inflammation, forms foam cells that die, and builds atherosclerotic plaque.", "s": "Dr. Basso · Lecture · 86:09"}, {"id": "lp8", "k": "KEY", "t": "HDL = reverse cholesterol transport (the good one)", "b": "HDL is the counter-flow: apoA-1 recovers cholesterol from fatty streaks, and HDL mops up excess cholesterol from the periphery and returns it to the liver to become bile salts. High HDL with low LDL is the profile you want.", "s": "Dr. Basso · Lecture · 86:36"}]}];
+    const LINKS=[["syn0", "syn1"], ["syn1", "syn2"], ["syn2", "syn3"], ["syn3", "syn4"], ["syn4", "syn5"], ["syn5", "syn6"], ["bile0", "bile1"], ["bile1", "bile2"], ["bile2", "bile3"], ["bile3", "bile4"], ["bile4", "bile5"], ["bile5", "bile6"], ["lp0", "lp1"], ["lp1", "lp2"], ["lp2", "lp3"], ["lp3", "lp4"], ["lp4", "lp5"], ["lp5", "lp6"], ["lp6", "lp7"], ["lp7", "lp8"]];
+    const CN={"syn": "Cholesterol synthesis", "bile": "Bile acids + enterohepatic", "lp": "Lipoprotein metabolism"};
+    const CX={"syn": 700, "bile": 2100, "lp": 3500};
+    /* ---------- layout ---------- */
+    self.byId={}; self.all=[];
+    CASES.forEach((c)=>{ c.nodes.forEach((n,i)=>{
+      n.case=c.key; n.col=c.color; n.cn=CN[c.key];
+      n.x=CX[c.key]+Math.round(255*Math.sin(i*0.8+c.ph));
+      n.y=420+i*252;
+      self.byId[n.id]=n; self.all.push(n);
+    }); });
+    self.tour=self.all.slice();
+    let maxX=0,maxY=0; self.all.forEach(n=>{maxX=Math.max(maxX,n.x);maxY=Math.max(maxY,n.y);});
+    const WW=maxX+420, WH=maxY+360;
+    self.world.style.width=WW+'px'; self.world.style.height=WH+'px';
+
+    /* ---------- connectors ---------- */
+    const NS='http://www.w3.org/2000/svg';
+    const svg=document.createElementNS(NS,'svg');
+    svg.setAttribute('width',WW); svg.setAttribute('height',WH);
+    svg.style.cssText='position:absolute;left:0;top:0;overflow:visible;pointer-events:none;z-index:1';
+    self.svg=svg; self.world.appendChild(svg);
+    self.links=[];
+    LINKS.forEach(([a,b])=>{
+      const A=self.byId[a],B=self.byId[b]; if(!A||!B) return;
+      const mx=(A.x+B.x)/2,my=(A.y+B.y)/2,dx=B.x-A.x,dy=B.y-A.y;
+      const len=Math.hypot(dx,dy)||1,nx=-dy/len,ny=dx/len,cv=Math.min(len*0.16,64);
+      const d='M '+A.x+' '+A.y+' Q '+(mx+nx*cv)+' '+(my+ny*cv)+' '+B.x+' '+B.y;
+      const glow=document.createElementNS(NS,'path');
+      glow.setAttribute('d',d); glow.setAttribute('fill','none'); glow.setAttribute('stroke',A.col);
+      glow.setAttribute('stroke-width','9'); glow.setAttribute('stroke-linecap','round'); glow.style.opacity='.12';
+      const main=document.createElementNS(NS,'path');
+      main.setAttribute('d',d); main.setAttribute('fill','none'); main.setAttribute('stroke',A.col);
+      main.setAttribute('stroke-width','2.3'); main.setAttribute('stroke-linecap','round');
+      main.setAttribute('stroke-dasharray','5 13'); main.style.opacity='.5';
+      main.style.animation='flow 1.05s linear infinite';
+      svg.appendChild(glow); svg.appendChild(main);
+      self.links.push({a,b,main,glow});
+    });
+
+    /* ---------- territory titles ---------- */
+    CASES.forEach(c=>{
+      const t=document.createElement('div');
+      t.textContent=c.name.split(' · ')[0]==='the cascade'?'the cascade':c.name.split(' · ')[0];
+      t.style.cssText='position:absolute;left:'+CX[c.key]+'px;top:170px;transform:translate(-50%,-50%);font-family:Fraunces,serif;font-weight:600;font-size:58px;letter-spacing:-.02em;white-space:nowrap;color:'+c.color+';text-shadow:0 0 50px '+c.color+'66;opacity:.92;pointer-events:none;z-index:1';
+      self.world.appendChild(t);
+    });
+
+    /* ---------- nodes ---------- */
+    self.nodeEls={};
+    self.all.forEach(n=>{
+      const big=n.k==='PATIENT'||n.k==='KEY';
+      const el=document.createElement('div');
+      el.dataset.node=n.id;
+      const base='0 11px 34px rgba(0,0,0,.5), 0 0 '+(big?'30px -6px ':'22px -8px ')+n.col;
+      el.style.cssText='position:absolute;left:'+n.x+'px;top:'+n.y+'px;transform:translate(-50%,-50%);max-width:'+(n.k==='PATIENT'?'212':'188')+'px;padding:11px 14px;border-radius:15px;background:rgba(17,11,21,.88);border:'+(big?'2px':'1.5px')+' solid '+n.col+';box-shadow:'+base+';color:#f3ecf6;font:600 '+(n.k==='PATIENT'?'15.5':'14.5')+'px/1.32 Outfit;text-align:center;cursor:pointer;user-select:none;z-index:2;transition:box-shadow .22s, border-color .2s, opacity .28s, scale .2s';
+      el.innerHTML='<div style="font:700 9px/1 Outfit;letter-spacing:.14em;color:'+n.col+';opacity:.85;margin-bottom:5px">'+n.k+'</div>'+esc(n.t);
+      el.addEventListener('pointerenter',()=>{ if(self.activeId!==n.id) el.style.scale='1.05'; });
+      el.addEventListener('pointerleave',()=>{ if(self.activeId!==n.id) el.style.scale='1'; });
+      self.world.appendChild(el);
+      self.nodeEls[n.id]={el,col:n.col,base};
+    });
+
+    /* ---------- camera ---------- */
+    self.cam={x:WW/2,y:WH/2,s:0.4};
+    self.vw=self.vp.clientWidth; self.vh=self.vp.clientHeight;
+    self.render=()=>{
+      const px=self.vw/2-self.cam.x*self.cam.s, py=self.vh/2-self.cam.y*self.cam.s;
+      self.world.style.transform='translate('+px+'px,'+py+'px) scale('+self.cam.s+')';
+    };
+    self.cancelFly=()=>{ if(self.raf){cancelAnimationFrame(self.raf);self.raf=0;} };
+    self.flyTo=(x,y,s,dur)=>{
+      self.cancelFly(); s=Math.max(.12,Math.min(2.4,s)); dur=dur||850;
+      const a={x:self.cam.x,y:self.cam.y,s:self.cam.s}, t0=performance.now();
+      const step=(now)=>{ let p=Math.min(1,(now-t0)/dur); const e=p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;
+        self.cam.x=a.x+(x-a.x)*e; self.cam.y=a.y+(y-a.y)*e; self.cam.s=a.s+(s-a.s)*e; self.render();
+        if(p<1) self.raf=requestAnimationFrame(step); else self.raf=0; };
+      self.raf=requestAnimationFrame(step);
+    };
+    self.computeFit=(nodes,pad,maxS)=>{
+      let m1=1e9,m2=1e9,M1=-1e9,M2=-1e9;
+      nodes.forEach(n=>{m1=Math.min(m1,n.x);M1=Math.max(M1,n.x);m2=Math.min(m2,n.y);M2=Math.max(M2,n.y);});
+      m2=Math.min(m2,170);
+      const w=(M1-m1)+pad*2, h=(M2-m2)+pad*2;
+      return {x:(m1+M1)/2,y:(m2+M2)/2,s:Math.min(self.vw/w,self.vh/h,maxS)};
+    };
+    self.overview=(anim)=>{ self.deselect(); const f=self.computeFit(self.all,320,1.05);
+      if(anim===false){ self.cam=f; self.render(); } else self.flyTo(f.x,f.y,f.s,900); };
+    self.fitCase=(key)=>{ self.stopPlay(); const ns=self.all.filter(n=>n.case===key); const f=self.computeFit(ns,230,1.0); self.deselect(); self.flyTo(f.x,f.y,f.s,850); };
+
+    /* ---------- highlight + detail ---------- */
+    self.setActive=(id)=>{
+      self.activeId=id;
+      for(const k in self.nodeEls){ const o=self.nodeEls[k]; const on=k===id, dim=id&&!on;
+        o.el.style.opacity=dim?'.62':'1'; o.el.style.scale=on?'1.06':'1';
+        o.el.style.boxShadow=on?('0 14px 44px rgba(0,0,0,.55), 0 0 0 3px '+o.col+'55, 0 0 46px -4px '+o.col):o.base;
+        o.el.style.zIndex=on?'6':'2';
+      }
+      self.links.forEach(L=>{ const on=id&&(L.a===id||L.b===id);
+        L.main.style.opacity=id?(on?'.95':'.09'):'.5';
+        L.main.style.strokeWidth=on?'3.6':'2.3';
+        L.glow.style.opacity=id?(on?'.22':'.035'):'.12';
+      });
+    };
+    self.fillPanel=(n)=>{
+      q('[data-el="dbar"]').style.background=n.col;
+      q('[data-el="dkick"]').textContent=n.cn+' · '+n.k;
+      q('[data-el="dtitle"]').textContent=n.t;
+      q('[data-el="dbody"]').textContent=n.b;
+      const sp=q('[data-el="dsrc"]'), vd=q('[data-el="dvid"]');
+      const isec=(window.CM_INSTR||{})[n.id];
+      if(typeof isec==='number'){
+        const mm=Math.floor(isec/60), ssx=isec%60, t=mm+':'+(ssx<10?'0':'')+ssx;
+        sp.innerHTML='&#9654; Dr. Basso &middot; '+t;
+        sp.style.cursor='pointer'; sp.style.color='#6ee7b7'; sp.style.background='rgba(16,185,129,.13)'; sp.style.borderColor='#10b981';
+        sp.title="Play Dr. Basso's audio from here"; sp.onclick=function(){ if(window.cmAud) window.cmAud(isec); };
+        vd.style.display='inline-block'; vd.innerHTML='&#127909; Watch &middot; '+t;
+        vd.style.cursor='pointer'; vd.style.color='#f0abfc'; vd.style.background='rgba(232,121,249,.13)'; vd.style.borderColor='#86198f';
+        vd.title="Watch Dr. Basso's video from here"; vd.onclick=function(){ if(window.cmVid) window.cmVid(isec); };
+        if(window.cmSync) window.cmSync(isec);
+      } else {
+        const prior=n.s.indexOf('Prior')===0;
+        sp.textContent='No instructor timestamp for this node';
+        sp.style.cursor='default'; sp.onclick=null;
+        sp.style.color=prior?'#fcd34d':'#9a8aa3'; sp.style.background='rgba(140,130,150,.10)'; sp.style.borderColor=prior?'#92590b':'#3a2f44';
+        sp.title="No instructor timestamp mapped for this node";
+        vd.style.display='none'; vd.onclick=null;
+      }
+      var fr=q('[data-el="dframe"]'); var fpath=window.cmFrameFor?window.cmFrameFor(n.id):null;
+      if(fpath){ fr.style.display='inline-block'; fr.innerHTML='&#9999;&#65039; Frame'; fr.style.cursor='pointer'; fr.style.color='#fcd34d'; fr.style.background='rgba(251,191,36,.14)'; fr.style.borderColor='#a16207'; fr.title='Open the slide / cascade canvas and annotate it'; fr.onclick=function(){ if(window.cmFrame) window.cmFrame(fpath, n.cn+' · '+n.t); }; }
+      else { fr.style.display='none'; fr.onclick=null; }
+      self.elDetail.style.transform='translateX(0) translateY(-50%)';
+    };
+    self.focusNode=(n,scale,dur)=>{
+      self.setActive(n.id); self.fillPanel(n);
+      self.ti=self.tour.indexOf(n); self.updateTour();
+      self.flyTo(n.x+165,n.y,scale||1.0,dur||850);
+    };
+    self.deselect=()=>{ self.setActive(null); self.elDetail.style.transform='translateX(calc(100% + 70px)) translateY(-50%)'; };
+
+    /* ---------- tour ---------- */
+    self.ti=0; self.playing=false; self.tourMs=(self.props.tourSeconds??5)*1000;
+    self.updateTour=()=>{
+      const n=self.tour[self.ti]||null;
+      q('[data-el="tlabel"]').textContent='Step '+(self.ti+1)+' / '+self.tour.length+(n?' · '+n.cn.split(' · ')[0]:'');
+      q('[data-el="ttitle"]').textContent=n?n.t:'Press play to fly the cascades';
+    };
+    self.tourGo=(i)=>{ i=(i+self.tour.length)%self.tour.length; self.ti=i; self.focusNode(self.tour[i],1.0,900); };
+    self.setPlayIcon=()=>{ q('[data-act="tplay"]').textContent=self.playing?'⏸':'▶'; };
+    self.tick=()=>{ clearTimeout(self.pt); self.pt=setTimeout(()=>{ if(!self.playing)return;
+      const nx=self.ti+1; if(nx>=self.tour.length){ self.stopPlay(); self.overview(); return; }
+      self.tourGo(nx); self.tick(); }, self.tourMs); };
+    self.startPlay=()=>{ self.playing=true; self.setPlayIcon(); if(self.activeId==null) self.tourGo(0); self.tick(); };
+    self.stopPlay=()=>{ self.playing=false; clearTimeout(self.pt); self.setPlayIcon(); };
+    self.togglePlay=()=>{ self.playing?self.stopPlay():self.startPlay(); };
+
+    /* ---------- interactions ---------- */
+    const hideHint=()=>{ if(self.elHint) self.elHint.style.opacity='0'; };
+    self.hideIntro=()=>{ if(self.introGone)return; self.introGone=true; self.elIntro.style.opacity='0'; self.elIntro.style.pointerEvents='none'; };
+    const vp=self.vp;
+    vp.addEventListener('pointerdown',(e)=>{ self.cancelFly(); self.down=true; self.moved=0;
+      self.lx=e.clientX; self.ly=e.clientY; self.startNode=e.target.closest('[data-node]');
+      try{vp.setPointerCapture(e.pointerId);}catch(_){}
+      vp.style.cursor='grabbing'; self.hideIntro(); hideHint();
+    });
+    vp.addEventListener('pointermove',(e)=>{ if(!self.down)return;
+      const dx=e.clientX-self.lx, dy=e.clientY-self.ly; self.lx=e.clientX; self.ly=e.clientY;
+      self.moved+=Math.abs(dx)+Math.abs(dy);
+      self.cam.x-=dx/self.cam.s; self.cam.y-=dy/self.cam.s; self.render();
+    });
+    const endPan=()=>{ if(!self.down)return; self.down=false; vp.style.cursor='grab';
+      if(self.moved<6){ if(self.startNode){ const n=self.byId[self.startNode.dataset.node];
+        if(n){ self.stopPlay(); self.focusNode(n,1.0); } } else self.deselect(); } };
+    vp.addEventListener('pointerup',endPan);
+    vp.addEventListener('pointercancel',endPan);
+    vp.addEventListener('wheel',(e)=>{ e.preventDefault(); self.cancelFly(); hideHint();
+      const r=vp.getBoundingClientRect(), mx=e.clientX-r.left, my=e.clientY-r.top;
+      const wx=self.cam.x+(mx-self.vw/2)/self.cam.s, wy=self.cam.y+(my-self.vh/2)/self.cam.s;
+      const f=Math.exp(-e.deltaY*0.0014);
+      self.cam.s=Math.max(.12,Math.min(2.4,self.cam.s*f));
+      self.cam.x=wx-(mx-self.vw/2)/self.cam.s; self.cam.y=wy-(my-self.vh/2)/self.cam.s; self.render();
+    },{passive:false});
+
+    root.querySelectorAll('[data-case]').forEach(b=>b.addEventListener('click',()=>{ self.hideIntro(); self.fitCase(b.dataset.case); }));
+    const act=(name,fn)=>{ const b=q('[data-act="'+name+'"]'); if(b) b.addEventListener('click',fn); };
+    act('overview',()=>{ self.stopPlay(); self.overview(); });
+    act('zin',()=>{ self.cancelFly(); self.flyTo(self.cam.x,self.cam.y,self.cam.s*1.4,420); });
+    act('zout',()=>{ self.cancelFly(); self.flyTo(self.cam.x,self.cam.y,self.cam.s*0.7,420); });
+    act('tprev',()=>{ self.tourGo(self.ti-1); if(self.playing)self.tick(); });
+    act('tnext',()=>{ self.tourGo(self.ti+1); if(self.playing)self.tick(); });
+    act('tplay',()=>{ self.hideIntro(); self.togglePlay(); });
+    act('dclose',()=>self.deselect());
+    act('introtour',()=>{ self.hideIntro(); self.startPlay(); });
+    act('introexplore',()=>{ self.hideIntro(); self.overview(); });
+
+    self.onKey=(e)=>{
+      if(e.key===' '){ e.preventDefault(); self.hideIntro(); self.togglePlay(); }
+      else if(e.key==='ArrowRight'){ self.tourGo(self.ti+1); if(self.playing)self.tick(); }
+      else if(e.key==='ArrowLeft'){ self.tourGo(self.ti-1); if(self.playing)self.tick(); }
+      else if(e.key==='Escape'){ self.stopPlay(); self.overview(); }
+      else if(e.key==='+'||e.key==='='){ self.flyTo(self.cam.x,self.cam.y,self.cam.s*1.4,360); }
+      else if(e.key==='-'){ self.flyTo(self.cam.x,self.cam.y,self.cam.s*0.7,360); }
+    };
+    window.addEventListener('keydown',self.onKey);
+    self.onResize=()=>{ self.vw=self.vp.clientWidth; self.vh=self.vp.clientHeight; self.render(); };
+    window.addEventListener('resize',self.onResize);
+
+    self.applyProps();
+    /* intro: start slightly zoomed out, then ease to overview */
+    const f=self.computeFit(self.all,320,1.05);
+    self.cam={x:f.x,y:f.y,s:f.s*0.8}; self.render();
+    self.updateTour();
+    setTimeout(()=>self.flyTo(f.x,f.y,f.s,1200),120);
+
+    // style-hover (the design runtime applied these; standalone handler):
+    self.root.querySelectorAll('[style-hover]').forEach(function(el){
+      var hv=el.getAttribute('style-hover'), og=el.getAttribute('style')||'';
+      el.addEventListener('pointerenter',function(){ el.setAttribute('style', og+';'+hv); });
+      el.addEventListener('pointerleave',function(){ el.setAttribute('style', og); });
+    });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot); else boot();
+})();
+</script>
+<style>.dc-study-watermark{position:fixed;bottom:6px;right:10px;font-family:-apple-system,"Segoe UI",sans-serif;font-size:10px;color:rgba(255,255,255,.28);letter-spacing:.3px;pointer-events:none;z-index:2147483647;user-select:none}</style>
+<div class="dc-study-watermark">DC Study Supply &mdash; Dr. David Gramling, PHD</div>
+<!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "103b8d06e81040579d04d08fc593468f"}'></script>
+<script id="cm-instr-audio">
+/* Node -> Dr. Basso timestamp on the single cholesterol-lecture clock (same clock as the
+   mp3 and the mp4). Every node in all three cascades is anchored to a real moment in that
+   one recording, so clicking the badge seeks the audio/video straight to where he teaches it. */
+window.CM_INSTR={"syn0": 2471, "syn1": 2471, "syn2": 2505, "syn3": 2719, "syn4": 2719, "syn5": 2543, "syn6": 3283, "bile0": 3545, "bile1": 3553, "bile2": 3587, "bile3": 3641, "bile4": 3769, "bile5": 3442, "bile6": 3385, "lp0": 4807, "lp1": 3910, "lp2": 4897, "lp3": 5855, "lp4": 5994, "lp5": 5012, "lp6": 5065, "lp7": 5169, "lp8": 5196};
+window.cmAud=function(sec){
+  var p=document.getElementById('cm-audpop');
+  if(!p){
+    p=document.createElement('div'); p.id='cm-audpop';
+    p.style.cssText='position:fixed;left:14px;bottom:84px;width:min(380px,90vw);z-index:60000;background:#0b1220;border:2px solid #10b981;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,.6);padding:9px;font-family:Outfit,system-ui,sans-serif';
+    var bs='background:#065f46;color:#d1fae5;border:1px solid #10b981;border-radius:6px;padding:4px 9px;cursor:pointer;font:700 12px Outfit;line-height:1';
+    p.innerHTML='<div style="display:flex;align-items:center;gap:5px;flex-wrap:wrap;color:#6ee7b7;font:700 12px Outfit">'
+      +'<span style="flex:1 1 100%;margin-bottom:3px">&#127911; Dr. Basso &mdash; cholesterol lecture (instructor)</span>'
+      +'<button id="cm-bk" style="'+bs+'">&laquo; 10</button>'
+      +'<button id="cm-fw" style="'+bs+'">10 &raquo;</button>'
+      +'<button id="cm-sl" style="'+bs+'">&minus; speed</button>'
+      +'<span id="cm-rt" style="min-width:34px;text-align:center;color:#6ee7b7;font:700 12px Outfit">1&times;</span>'
+      +'<button id="cm-fa" style="'+bs+'">speed +</button>'
+      +'<button id="cm-seek" onclick="window.cmToggleFollow()" title="Seek = jump to each node as you fly · Continue = keep playing through" style="'+bs+'">&#127919; Seek</button>'
+      +'<button id="cm-cl" style="'+bs+';background:#7f1d1d;color:#fecaca;border-color:#b91c1c;margin-left:auto">&times;</button>'
+      +'</div><audio id="cm-aud" controls preload="none" style="width:100%;margin-top:7px" src="https://pub-7fb2bb3e5a0b4096a57fc578b5a16078.r2.dev/bn0213/labquiz8/lecture-lipid-metabolism-e0e83c55.mp3"></audio>';
+    document.body.appendChild(p);
+    var a=p.querySelector('#cm-aud'), rt=p.querySelector('#cm-rt');
+    p.querySelector('#cm-bk').onclick=function(){a.currentTime=Math.max(0,(a.currentTime||0)-10);};
+    p.querySelector('#cm-fw').onclick=function(){a.currentTime=(a.currentTime||0)+10;};
+    p.querySelector('#cm-sl').onclick=function(){a.playbackRate=Math.max(0.5,Math.round((a.playbackRate-0.25)*100)/100);rt.innerHTML=a.playbackRate+'&times;';};
+    p.querySelector('#cm-fa').onclick=function(){a.playbackRate=Math.min(3,Math.round((a.playbackRate+0.25)*100)/100);rt.innerHTML=a.playbackRate+'&times;';};
+    p.querySelector('#cm-cl').onclick=function(){try{a.pause();}catch(e){}p.style.display='none';};
+  }
+  if(window.cmCloseVid)window.cmCloseVid();
+  p.style.display='block';
+  var a=p.querySelector('#cm-aud');
+  function go(){try{a.currentTime=Math.max(0,sec);}catch(e){}var pr=a.play();if(pr&&pr.catch)pr.catch(function(){});}
+  if(a.readyState>=1)go();else{a.addEventListener('loadedmetadata',go,{once:true});a.load();}
+};
+window.cmCloseVid=function(){var vp=document.getElementById('cm-vidpop');if(vp){var v=vp.querySelector('#cm-vid');if(v){try{v.pause();}catch(e){}}vp.style.display='none';}};
+window.cmVid=function(sec){
+  var p=document.getElementById('cm-vidpop');
+  if(!p){
+    p=document.createElement('div'); p.id='cm-vidpop';
+    p.style.cssText='position:fixed;left:14px;bottom:84px;width:min(440px,92vw);z-index:60000;background:#000;border:2px solid #f0abfc;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,.6);overflow:hidden;font-family:Outfit,system-ui,sans-serif';
+    var bs='background:#4a1d52;color:#f5d0fe;border:1px solid #86198f;border-radius:6px;padding:4px 9px;cursor:pointer;font:700 12px Outfit;line-height:1';
+    p.innerHTML='<div style="display:flex;align-items:center;gap:5px;flex-wrap:wrap;color:#f0abfc;font:700 12px Outfit;padding:7px 9px 0">'
+      +'<span style="flex:1 1 100%;margin-bottom:3px">&#127909; Dr. Basso &mdash; cholesterol lecture video</span>'
+      +'<button id="cmv-bk" style="'+bs+'">&laquo; 10</button><button id="cmv-fw" style="'+bs+'">10 &raquo;</button>'
+      +'<button id="cmv-sl" style="'+bs+'">&minus; speed</button><span id="cmv-rt" style="min-width:34px;text-align:center;color:#f0abfc">1&times;</span><button id="cmv-fa" style="'+bs+'">speed +</button>'
+      +'<button id="cmv-seek" onclick="window.cmToggleFollow()" title="Seek = jump to each node as you fly · Continue = keep playing through" style="'+bs+'">&#127919; Seek</button>'
+      +'<button id="cmv-cl" style="'+bs+';background:#7f1d1d;color:#fecaca;border-color:#b91c1c;margin-left:auto">&times;</button>'
+      +'</div><video id="cm-vid" controls playsinline preload="none" style="width:100%;display:block;background:#000;margin-top:7px" src="https://pub-7fb2bb3e5a0b4096a57fc578b5a16078.r2.dev/bn0213/labquiz8/lecture-lipid-metabolism-2f1f8ff5.mp4"></video>';
+    document.body.appendChild(p);
+    var v=p.querySelector('#cm-vid'), rt=p.querySelector('#cmv-rt');
+    p.querySelector('#cmv-bk').onclick=function(){v.currentTime=Math.max(0,(v.currentTime||0)-10);};
+    p.querySelector('#cmv-fw').onclick=function(){v.currentTime=(v.currentTime||0)+10;};
+    p.querySelector('#cmv-sl').onclick=function(){v.playbackRate=Math.max(0.5,Math.round((v.playbackRate-0.25)*100)/100);rt.innerHTML=v.playbackRate+'&times;';};
+    p.querySelector('#cmv-fa').onclick=function(){v.playbackRate=Math.min(3,Math.round((v.playbackRate+0.25)*100)/100);rt.innerHTML=v.playbackRate+'&times;';};
+    p.querySelector('#cmv-cl').onclick=function(){try{v.pause();}catch(e){}p.style.display='none';};
+  }
+  var ap=document.getElementById('cm-audpop'); if(ap){var aa=ap.querySelector('#cm-aud');if(aa){try{aa.pause();}catch(e){}}ap.style.display='none';}
+  p.style.display='block';
+  var v=p.querySelector('#cm-vid');
+  function go(){try{v.currentTime=Math.max(0,sec);}catch(e){}var pr=v.play();if(pr&&pr.catch)pr.catch(function(){});}
+  if(v.readyState>=1)go();else{v.addEventListener('loadedmetadata',go,{once:true});v.load();}
+};
+window.cmFollow=true;  // Seek mode (default): the open pop-out follows each node. false = Continue (keep playing).
+window.cmToggleFollow=function(){window.cmFollow=!window.cmFollow;['cm-seek','cmv-seek'].forEach(function(id){var b=document.getElementById(id);if(b){b.innerHTML=window.cmFollow?'&#127919; Seek':'&#9199; Continue';b.style.opacity=window.cmFollow?'1':'.7';}});};
+/* AUTO-SEEK (toggle): Seek = the OPEN pop-out jumps to each node as you fly; Continue = let it keep playing */
+window.cmSync=function(sec){
+  if(window.cmFollow===false)return;
+  var ap=document.getElementById('cm-audpop');
+  if(ap&&ap.style.display!=='none'){var a=ap.querySelector('#cm-aud');if(a){try{a.currentTime=Math.max(0,sec);var p1=a.play();if(p1&&p1.catch)p1.catch(function(){});}catch(e){}}}
+  var vp=document.getElementById('cm-vidpop');
+  if(vp&&vp.style.display!=='none'){var v=vp.querySelector('#cm-vid');if(v){try{v.currentTime=Math.max(0,sec);var p2=v.play();if(p2&&p2.catch)p2.catch(function(){});}catch(e){}}}
+};
+/* FRAME: every cascade node maps to the exact cholesterol deck slide Basso taught it on. */
+window.cmFrameFor=function(id){
+  var SL={"syn0": "slide_10.png", "syn1": "slide_10.png", "syn2": "slide_10.png", "syn3": "slide_10.png", "syn4": "slide_10.png", "syn5": "slide_10.png", "syn6": "slide_11.png", "bile0": "slide_13.png", "bile1": "slide_13.png", "bile2": "slide_13.png", "bile3": "slide_13.png", "bile4": "slide_14.png", "bile5": "slide_12.png", "bile6": "slide_12.png", "lp0": "slide_21.png", "lp1": "slide_22.png", "lp2": "slide_22.png", "lp3": "slide_22.png", "lp4": "slide_22.png", "lp5": "slide_23.png", "lp6": "slide_23.png", "lp7": "slide_23.png", "lp8": "slide_24.png"};
+  if(SL[id]) return 'slides/'+SL[id];
+  return null;
+};
+window.cmFrame=function(src,label){
+  var lb=document.getElementById('cm-frame');
+  if(!lb){
+    lb=document.createElement('div'); lb.id='cm-frame';
+    lb.style.cssText='position:fixed;inset:0;z-index:70000;background:rgba(8,5,12,.96);display:none;align-items:center;justify-content:center;gap:12px;padding:14px;flex-wrap:wrap;font-family:Outfit,system-ui,sans-serif';
+    var fbs='background:#1f1530;color:#e9d5ff;border:1px solid #6d28d9;border-radius:6px;padding:7px 11px;cursor:pointer;font:700 12px Outfit;text-align:center';
+    lb.innerHTML='<div style="position:relative;line-height:0;max-width:80vw;max-height:90vh"><img id="cmf-img" style="max-width:80vw;max-height:90vh;border-radius:8px;display:block" alt=""><canvas id="cmf-cv" style="position:absolute;top:0;left:0;width:100%;height:100%;touch-action:none;cursor:crosshair"></canvas></div>'
+      +'<div style="display:flex;flex-direction:column;gap:7px;min-width:150px;max-height:90vh;overflow:auto">'
+      +'<div id="cmf-cap" style="color:#c7b3d6;font:600 11px Outfit;max-width:170px;line-height:1.4"></div>'
+      +'<div style="color:#6d5a7d;font:700 9px Outfit;letter-spacing:.5px">COLOR</div><div id="cmf-cols" style="display:flex;gap:5px;flex-wrap:wrap"></div>'
+      +'<button id="cmf-undo" style="'+fbs+'">&#8630; Undo</button><button id="cmf-clear" style="'+fbs+'">Clear</button>'
+      +'<button id="cmf-save" style="'+fbs+';background:#15803d;border-color:#22c55e;color:#dcfce7">&#8595; Save PNG</button>'
+      +'<button id="cmf-close" style="'+fbs+';background:#7f1d1d;border-color:#b91c1c;color:#fecaca">&times; Close</button></div>';
+    document.body.appendChild(lb);
+    var img=lb.querySelector('#cmf-img'), cv=lb.querySelector('#cmf-cv'), ctx=cv.getContext('2d');
+    var col='#fbbf24', drawing=false, lx=0, ly=0, undo=[];
+    ['#fbbf24','#ef4444','#22c55e','#3b82f6','#a78bfa','#ffffff'].forEach(function(c){var b=document.createElement('button');b.style.cssText='width:24px;height:24px;border-radius:5px;border:1px solid #555;background:'+c+';cursor:pointer;padding:0';b.onclick=function(){col=c;};lb.querySelector('#cmf-cols').appendChild(b);});
+    img.onload=function(){cv.width=img.naturalWidth||1280;cv.height=img.naturalHeight||720;ctx.clearRect(0,0,cv.width,cv.height);undo=[];};
+    function pos(e){var r=cv.getBoundingClientRect();var t=(e.touches&&e.touches[0])||e;return [(t.clientX-r.left)*(cv.width/(r.width||1)),(t.clientY-r.top)*(cv.height/(r.height||1))];}
+    function dn(e){e.preventDefault();try{undo.push(cv.toDataURL());if(undo.length>20)undo.shift();}catch(_){}drawing=true;var p=pos(e);lx=p[0];ly=p[1];}
+    function mv(e){if(!drawing)return;e.preventDefault();var p=pos(e);ctx.strokeStyle=col;ctx.lineWidth=4;ctx.lineCap='round';ctx.lineJoin='round';ctx.beginPath();ctx.moveTo(lx,ly);ctx.lineTo(p[0],p[1]);ctx.stroke();lx=p[0];ly=p[1];}
+    function up(){drawing=false;}
+    cv.addEventListener('mousedown',dn);cv.addEventListener('mousemove',mv);window.addEventListener('mouseup',up);
+    cv.addEventListener('touchstart',dn,{passive:false});cv.addEventListener('touchmove',mv,{passive:false});cv.addEventListener('touchend',up);
+    lb.querySelector('#cmf-undo').onclick=function(){if(!undo.length)return;var d=undo.pop();var im=new Image();im.onload=function(){ctx.clearRect(0,0,cv.width,cv.height);ctx.drawImage(im,0,0);};im.src=d;};
+    lb.querySelector('#cmf-clear').onclick=function(){ctx.clearRect(0,0,cv.width,cv.height);};
+    lb.querySelector('#cmf-close').onclick=function(){lb.style.display='none';};
+    lb.querySelector('#cmf-save').onclick=function(){if(!img.naturalWidth){alert('Frame still loading — try again in a second.');return;}var out=document.createElement('canvas');out.width=cv.width;out.height=cv.height;var o=out.getContext('2d');o.drawImage(img,0,0,out.width,out.height);o.drawImage(cv,0,0);o.fillStyle='rgba(60,60,60,.65)';o.font='600 13px sans-serif';o.textBaseline='bottom';o.fillText('DC Study Supply — Dr. David Gramling, PHD',14,out.height-10);out.toBlob(function(b){if(!b)return;var fn='bn0213-cascade-frame.png';var iOS=/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);var f=null;try{f=new File([b],fn,{type:'image/png'});}catch(_){}function dl(){var u=URL.createObjectURL(b);var a=document.createElement('a');a.href=u;a.download=fn;document.body.appendChild(a);a.click();document.body.removeChild(a);if(iOS){try{window.open(u,'_blank');}catch(_){}}setTimeout(function(){URL.revokeObjectURL(u);},60000);}if((iOS||/Android/i.test(navigator.userAgent))&&f&&navigator.canShare&&navigator.canShare({files:[f]})){navigator.share({files:[f]}).catch(dl);}else dl();},'image/png');};
+  }
+  lb.querySelector('#cmf-img').src=src;
+  lb.querySelector('#cmf-cap').textContent=label||'Annotate';
+  lb.style.display='flex';
+};
+</script>
+<script id="fab-ai-companion-js">
+(function(){
+  const ENDPOINT = "https://fab-ai.dgync1.workers.dev";
+  const CLASS_NAME = "BN0213"; // e.g., "CP1" / "FAB101" / "GA0102" — empty = generic chiropractic tutor
+  let panel = null;
+  let history = []; // [{role:'user'|'model', content}]
+  let currentQKey = null; // to detect Q navigation
+
+  function readCurrentQ() {
+    const qText = (document.querySelector('.q-text')?.innerText || '').replace(/^Q\d+(\s+of\s+\d+)?:\s*/, '');
+    const optBtns = Array.from(document.querySelectorAll('.opt-btn'));
+    const options = optBtns.map(b => {
+      const clone = b.cloneNode(true);
+      clone.querySelectorAll('.rationale').forEach(r => r.remove());
+      clone.querySelectorAll('.letter').forEach(r => r.remove());
+      return clone.innerText.trim();
+    });
+    let picked = null, correct = null;
+    optBtns.forEach((b, i) => {
+      if (b.classList.contains('picked-correct') || b.classList.contains('picked-wrong')) picked = i;
+      if (b.classList.contains('picked-correct') || b.classList.contains('show-correct')) correct = i;
+    });
+    const profTip = document.querySelector('.prof-tip')?.innerText?.replace(/^Professor:\s*/i, '').trim() || '';
+    const source = document.querySelector('.source-line')?.innerText?.replace(/^Source:\s*/i, '').trim() || '';
+    const quote = document.querySelector('.quote-line')?.innerText?.trim() || '';
+    return { question: qText, options, picked, correct, profTip, source, quote };
+  }
+
+  function qKey(ctx){ return (ctx.question || '') + '|' + (ctx.options || []).join('|'); }
+
+  function mdToHtml(md){
+    let html = md
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+      .replace(/(^|\n)### (.+)/g, '$1<h3>$2</h3>')
+      .replace(/`([^`]+)`/g, '<code>$1</code>')
+      .replace(/^\s*[-*]\s+(.+)$/gm, '<li>$1</li>')
+      .replace(/(<li>.*?<\/li>(\s*<li>.*?<\/li>)*)/gs, '<ul>$1</ul>');
+    html = html.split(/\n{2,}/).map(p => {
+      if (p.trim().startsWith('<ul') || p.trim().startsWith('<h3')) return p;
+      if (p.trim() === '') return '';
+      return '<p>' + p.replace(/\n/g, '<br>') + '</p>';
+    }).join('');
+    return html;
+  }
+
+  function stripForTts(text){
+    // Remove markdown markers so TTS doesn't read them aloud
+    return text
+      .replace(/\*\*/g, '')
+      .replace(/`([^`]+)`/g, '$1')
+      .replace(/^\s*[-*]\s+/gm, '')
+      .replace(/^#+\s+/gm, '')
+      .replace(/\n{2,}/g, '. ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  let currentUtter = null;
+  function speakToggle(btn, rawText){
+    if (!window.speechSynthesis) {
+      alert('Your browser does not support text-to-speech.');
+      return;
+    }
+    if (window.speechSynthesis.speaking && currentUtter && btn.classList.contains('playing')) {
+      window.speechSynthesis.cancel();
+      document.querySelectorAll('.fab-ai-tts-btn.playing').forEach(b => {
+        b.classList.remove('playing');
+        b.innerHTML = '🔊 Read';
+      });
+      currentUtter = null;
+      return;
+    }
+    window.speechSynthesis.cancel();
+    document.querySelectorAll('.fab-ai-tts-btn.playing').forEach(b => {
+      b.classList.remove('playing');
+      b.innerHTML = '🔊 Read';
+    });
+    const u = new SpeechSynthesisUtterance(stripForTts(rawText));
+    const rateSel = btn.parentElement.querySelector('.fab-ai-tts-rate');
+    u.rate = parseFloat(rateSel && rateSel.value || '1.0');
+    /*ava-tts*/try{var _vs=(window.speechSynthesis&&window.speechSynthesis.getVoices())||[];var _av=_vs.find(function(v){return /microsoft.*ava.*natural/i.test(v.name);})||_vs.find(function(v){return /microsoft.*emma.*natural/i.test(v.name);})||_vs.find(function(v){return /google us english female/i.test(v.name);});if(_av){u.voice=_av;u.lang=_av.lang||'en-US';}}catch(e){}
+    u.onend = () => {
+      btn.classList.remove('playing');
+      btn.innerHTML = '🔊 Read';
+      currentUtter = null;
+    };
+    u.onerror = () => {
+      btn.classList.remove('playing');
+      btn.innerHTML = '🔊 Read';
+      currentUtter = null;
+    };
+    currentUtter = u;
+    btn.classList.add('playing');
+    btn.innerHTML = '⏹ Stop';
+    window.speechSynthesis.speak(u);
+  }
+
+  function appendMsg(role, text) {
+    const body = document.getElementById('fabAiBody');
+    if (!body) return null;
+    const wrap = document.createElement('div');
+    wrap.className = 'fab-ai-msg ' + role;
+    const bub = document.createElement('div');
+    bub.className = 'fab-ai-bubble';
+    if (role === 'ai') {
+      bub.innerHTML = mdToHtml(text);
+      // Add TTS row
+      const row = document.createElement('div');
+      row.className = 'fab-ai-tts-row';
+      const btn = document.createElement('button');
+      btn.className = 'fab-ai-tts-btn';
+      btn.innerHTML = '🔊 Read';
+      btn.onclick = function(){ speakToggle(btn, text); };
+      const rate = document.createElement('select');
+      rate.className = 'fab-ai-tts-rate';
+      rate.title = 'Reading speed';
+      ['0.8','1.0','1.2','1.5','2.0'].forEach(function(r){
+        const o = document.createElement('option');
+        o.value = r; o.textContent = r + 'x';
+        if (r === '1.0') o.selected = true;
+        rate.appendChild(o);
+      });
+      row.appendChild(btn);
+      row.appendChild(rate);
+      bub.appendChild(row);
+    } else {
+      bub.textContent = text;
+    }
+    wrap.appendChild(bub);
+    body.appendChild(wrap);
+    body.scrollTop = body.scrollHeight;
+    return bub;
+  }
+
+  function appendLoading(){
+    const body = document.getElementById('fabAiBody');
+    if (!body) return null;
+    const wrap = document.createElement('div');
+    wrap.className = 'fab-ai-msg ai';
+    wrap.id = 'fabAiLoading';
+    const bub = document.createElement('div');
+    bub.className = 'fab-ai-bubble';
+    bub.innerHTML = '<div class="fab-ai-loading"><div class="fab-ai-spinner"></div> Thinking...</div>';
+    wrap.appendChild(bub);
+    body.appendChild(wrap);
+    body.scrollTop = body.scrollHeight;
+    return wrap;
+  }
+
+  function removeLoading(){
+    const el = document.getElementById('fabAiLoading');
+    if (el) el.remove();
+  }
+
+  function appendStatus(text, isErr){
+    const body = document.getElementById('fabAiBody');
+    if (!body) return;
+    const div = document.createElement('div');
+    div.className = 'fab-ai-status' + (isErr ? ' err' : '');
+    div.innerHTML = text;
+    body.appendChild(div);
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function renderSuggestions(ctx){
+    const body = document.getElementById('fabAiBody');
+    if (!body) return;
+    // Q preview at top
+    if (ctx.question) {
+      const qp = document.createElement('div');
+      qp.className = 'fab-ai-qpreview';
+      qp.innerHTML = '<b>Q:</b> ' + ctx.question.substring(0, 240) + (ctx.question.length > 240 ? '...' : '');
+      body.appendChild(qp);
+    }
+    // Suggestion chips
+    const sug = document.createElement('div');
+    sug.className = 'fab-ai-suggestions';
+    const chips = [];
+    if (ctx.picked === null || ctx.picked === undefined) {
+      chips.push({ label: '💡 Give me a hint', q: 'Give me a hint for this question without revealing the answer.' });
+      chips.push({ label: '🧠 Explain the concept', q: 'Explain the core concept this question is testing.' });
+    } else if (ctx.picked !== ctx.correct && ctx.picked !== null) {
+      chips.push({ label: '❌ Why did I miss this?', q: 'I picked the wrong answer. Walk me through why my pick is wrong and why the correct answer is right.' });
+      chips.push({ label: '🧠 Explain the concept', q: 'Explain the concept this question is testing in simpler terms.' });
+      chips.push({ label: '🎯 Give me a mnemonic', q: 'Give me a memorable mnemonic for this topic.' });
+    } else if (ctx.picked === ctx.correct) {
+      chips.push({ label: '✅ Why is this right?', q: 'Confirm why the correct answer is right and flag any trap distractors to watch for.' });
+      chips.push({ label: '🎯 Give me a mnemonic', q: 'Give me a memorable mnemonic for this topic.' });
+    }
+    chips.push({ label: '🌟 Use an analogy', q: 'Explain this with a dumbed-down analogy.' });
+    chips.forEach(c => {
+      const btn = document.createElement('button');
+      btn.className = 'fab-ai-sug';
+      btn.textContent = c.label;
+      btn.onclick = () => sendMessage(c.q);
+      sug.appendChild(btn);
+    });
+    body.appendChild(sug);
+  }
+
+  function clearChat(preserveCtx){
+    const body = document.getElementById('fabAiBody');
+    if (body) body.innerHTML = '';
+    history = [];
+    if (preserveCtx) {
+      const ctx = readCurrentQ();
+      renderSuggestions(ctx);
+    }
+  }
+
+  function openPanel() {
+    if (!panel) panel = buildPanel();
+    panel.classList.add('open');
+    const ctx = readCurrentQ();
+    const key = qKey(ctx);
+    if (key !== currentQKey) {
+      // Q changed — reset chat and show suggestions for new Q
+      currentQKey = key;
+      clearChat(true);
+    }
+  }
+
+  function buildPanel() {
+    const el = document.createElement('div');
+    el.className = 'fab-ai-panel';
+    el.innerHTML = '<div class="fab-ai-header">'
+      + '<h3>🩺 Study Tutor</h3>'
+      + '<button class="fab-ai-hdr-btn" onclick="fabAiClear()">Clear</button>'
+      + '<button class="fab-ai-close" onclick="fabAiClose()">×</button>'
+      + '</div>'
+      + '<div class="fab-ai-body" id="fabAiBody"></div>'
+      + '<div class="fab-ai-followup">'
+      + '<button class="fab-ai-mini-close" title="Close panel" onclick="fabAiClose()">×</button>'
+      + '<textarea id="fabAiFollowup" placeholder="Ask a question about this Q..." rows="1" onkeydown="if(event.keyCode===13&&!event.shiftKey){event.preventDefault();fabAiFollowupSend();}"></textarea>'
+      + '<button onclick="fabAiFollowupSend()">Send</button>'
+      + '</div>';
+    document.body.appendChild(el);
+    return el;
+  }
+
+  window.fabAiClose = function(){ if(panel) panel.classList.remove('open'); };
+  window.fabAiClear = function(){ clearChat(true); };
+
+  async function callWorker(payload) {
+    if (!ENDPOINT) return { clipboardFallback: true };
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || ('HTTP ' + res.status));
+      return { reply: data.reply };
+    } catch (e) {
+      return { error: String(e.message || e) };
+    }
+  }
+
+  function clipboardFallback(ctx, userQ) {
+    const letter = (i) => String.fromCharCode(65 + i);
+    let prompt = "I'm studying FAB 101 with Dr. Bui at SCUHS. Drill question:\n\n";
+    prompt += 'Q: ' + ctx.question + '\n\n';
+    if (ctx.options && ctx.options.length) {
+      ctx.options.forEach((o, i) => {
+        const m = [];
+        if (i === ctx.picked) m.push('PICKED');
+        if (i === ctx.correct) m.push('CORRECT');
+        prompt += letter(i) + '. ' + o + (m.length ? ' ('+m.join(', ')+')' : '') + '\n';
+      });
+      prompt += '\n';
+    }
+    if (ctx.profTip) prompt += 'DRILL TIP: ' + ctx.profTip + '\n\n';
+    if (userQ) prompt += 'MY QUESTION: ' + userQ + '\n\n';
+    prompt += 'Explain using a dumbed-down analogy + mnemonic.';
+    navigator.clipboard.writeText(prompt).then(() => {
+      appendStatus('✓ Prompt copied to clipboard. Ask the Study Tutor (the 🩺 button).');
+    }).catch(() => {
+      appendStatus('Could not copy. Please select manually.', true);
+    });
+  }
+
+  async function sendMessage(userText) {
+    const ctx = readCurrentQ();
+    currentQKey = qKey(ctx);
+    appendMsg('user', userText);
+    history.push({ role: 'user', content: userText });
+    appendLoading();
+
+    const payload = Object.assign({}, ctx, {
+      userQuestion: userText,
+      history: history.slice(-10), // last 10 turns for context
+      className: CLASS_NAME, // worker uses this to load class-specific knowledge
+    });
+    const result = await callWorker(payload);
+    removeLoading();
+    if (result.clipboardFallback) {
+      clipboardFallback(ctx, userText);
+      return;
+    }
+    if (result.error) {
+      appendStatus('Error: ' + result.error, true);
+      return;
+    }
+    appendMsg('ai', result.reply);
+    history.push({ role: 'model', content: result.reply });
+  }
+
+  window.fabAiFollowupSend = function() {
+    const ta = document.getElementById('fabAiFollowup');
+    const q = (ta && ta.value || '').trim();
+    if (!q) return;
+    ta.value = '';
+    sendMessage(q);
+  };
+
+  // Button install — opens panel, does NOT auto-call AI
+  function install() {
+    if (document.getElementById('fabAiBtn')) return;
+    const btn = document.createElement('button');
+    btn.className = 'fab-ai-btn';
+    btn.id = 'fabAiBtn';
+    btn.textContent = '🩺';
+    btn.title = 'Open AI Study Tutor';
+    btn.onclick = () => openPanel();
+    document.body.appendChild(btn);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', install);
+  } else {
+    install();
+  }
+})();
+</script><!-- DC Analytics Helper v1 --><script defer src="https://dc-study-analytics.dgync1.workers.dev/helper.js"></script><!-- /DC Analytics Helper -->
+</body></html>
