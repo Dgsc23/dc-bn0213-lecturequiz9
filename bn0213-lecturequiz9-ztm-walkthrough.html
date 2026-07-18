@@ -263,7 +263,7 @@ function render(){var L=LINES[i],it=ITEMS[L.it];
   if(curItem()!==lastItem){lastItem=curItem();if(testMode)revealed=false;}applyTest();
   if(document.getElementById('fs').classList.contains('open'))renderFs();
   var nw=document.querySelector('#narr .sent.now');if(nw)nw.scrollIntoView({behavior:'smooth',block:'center'});}
-function renderFs(){var L=LINES[i],it=ITEMS[L.it];if(it.img&&document.getElementById('fsim').getAttribute('src')!==it.img)document.getElementById('fsim').src=it.img;
+function renderFs(){var L=LINES[i],it=ITEMS[L.it];var _cur=(it.imgs&&it.imgs.length)?it.imgs[Math.min(galIdx,it.imgs.length-1)]:it.img;if(_cur&&document.getElementById('fsim').getAttribute('src')!==_cur)document.getElementById('fsim').src=_cur;
   document.getElementById('fstitle').textContent=it.title;document.getElementById('fsnarr').innerHTML=sentsHtml(it,L.si);
   var nw=document.querySelector('#fsnarr .sent.now');if(nw)nw.scrollIntoView({block:'center'});}
 function drawJump(){document.getElementById('jump').innerHTML=ITEMS.map(function(it,k){return '<button class="jb'+(k===curItem()?' on':'')+'" onclick="jump('+START[k]+')">'+(k+1)+'. '+it.title.replace(/</g,'')+'</button>';}).join('');}
