@@ -31,7 +31,6 @@ h1{font-size:1.15rem;text-align:center;margin:6px 0 4px}.sub{text-align:center;c
 @media(max-width:520px){.hubbtn,.gembtn{top:auto;bottom:10px;padding:7px 11px;font-size:12px}}
 </style></head><body>
 <a href="index.html" class="hubbtn">&larr; Hub</a>
-<a href="https://gemini.google.com/app" target="_blank" rel="noopener" class="gembtn">&#129658; Gemini</a>
 <div class="wrap">
 <h1>&#127916; BN0213 Lecture Quiz 9 &mdash; Cholesterol Frame Viewer</h1>
 <div class="sub">Dr. Basso &middot; Module 11 &middot; the cholesterol deck as big slides you can draw on and save</div>
@@ -577,6 +576,149 @@ setColor(COLORS[0]); render();
   } else {
     install();
   }
+})();
+</script>
+<!-- bn-vid-pop-frameviewer-v1 : floating "Watch Dr. Basso" lecture VIDEO pop-out for the cholesterol frame viewer.
+     Mirrors the drill's bn-vid-pop pop-out (draggable / minimize / close, 10-30s skip, fine +/-0.05x speed).
+     Single Dr. Basso cholesterol recording; opens at start as a companion for browsing the deck.
+     Self-contained + idempotent via window.__bnVidPopReady and stable style/script ids. -->
+<button type="button" id="bn-vid-launch" onclick="window.bnVidOpen&&window.bnVidOpen()" title="Watch the Dr. Basso cholesterol lecture in a floating pop-out">&#127916; Watch Dr. Basso</button>
+<style id="bn-vid-pop-css">
+#bn-vid-launch{position:fixed;left:20px;bottom:20px;z-index:9997;background:#7c3aed;border:1.5px solid #a78bfa;color:#fff;border-radius:24px;padding:11px 18px;font:700 14px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;cursor:pointer;box-shadow:0 4px 16px rgba(124,58,237,.45);display:inline-flex;align-items:center;gap:7px;transition:transform .18s,box-shadow .18s,background .18s}
+#bn-vid-launch:hover{background:#6d28d9;border-color:#c4b5fd;transform:translateY(-2px);box-shadow:0 8px 24px rgba(124,58,237,.6)}
+#bn-vid-launch:active{transform:translateY(0)}
+#bn-vid-pop{position:fixed;bottom:18px;right:18px;z-index:30002;width:360px;max-width:92vw;background:#0b1220;border:2px solid #7c3aed;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.7);padding:10px;display:none;flex-direction:column;gap:8px;font-family:inherit}
+#bn-vid-pop.show{display:flex}
+#bn-vid-pop .bn-vid-head{display:flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;color:#c4b5fd;letter-spacing:.4px;cursor:move;touch-action:none;user-select:none;-webkit-user-select:none}
+#bn-vid-pop .bn-vid-head .bn-vid-title{flex:1;color:#ede9fe;font-weight:600;font-size:.82rem;text-transform:none;letter-spacing:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#bn-vid-pop .bn-vid-min{background:#4c1d95;color:#ede9fe;border:1px solid #7c3aed;border-radius:7px;padding:4px 10px;cursor:pointer;font-weight:700;font-size:.82rem;line-height:1}
+#bn-vid-pop .bn-vid-min:hover{background:#5b21b6}
+#bn-vid-pop .bn-vid-close{background:#4c1d95;color:#ede9fe;border:1px solid #7c3aed;border-radius:7px;padding:4px 12px;cursor:pointer;font-weight:700;font-size:.78rem}
+#bn-vid-pop .bn-vid-close:hover{background:#5b21b6}
+#bn-vid-el{width:100%;max-height:48vh;background:#000;border-radius:8px;display:block}
+#bn-vid-pop .bn-vid-skip{display:flex;gap:8px;justify-content:center}
+#bn-vid-pop .bn-vid-skipbtn{background:#1e293b;color:#cbd5e1;border:1px solid #475569;border-radius:7px;padding:5px 16px;cursor:pointer;font-weight:700;font-size:.8rem;line-height:1}
+#bn-vid-pop .bn-vid-skipbtn:hover{background:#334155;color:#fff}
+#bn-vid-pop.minimized .bn-vid-skip{display:none}
+#bn-vid-pop .bn-vid-speed{display:flex;gap:8px;justify-content:center;align-items:center}
+#bn-vid-pop .bn-vid-rate{color:#cbd5e1;font-weight:700;font-size:.8rem;min-width:52px;text-align:center}
+#bn-vid-pop.minimized .bn-vid-speed{display:none}
+/* Minimized: video collapses (stays in DOM + KEEPS PLAYING) leaving only the small draggable header bar. */
+#bn-vid-pop.minimized{width:auto;max-width:88vw;gap:0}
+#bn-vid-pop.minimized #bn-vid-el{display:none}
+@media (max-width:600px){#bn-vid-pop{bottom:8px;right:8px;left:8px;width:auto;max-width:none}#bn-vid-pop.minimized{left:auto;width:auto;max-width:88vw}}
+@media (max-width:520px){#bn-vid-launch{bottom:56px;left:12px;padding:9px 14px;font-size:13px}}
+</style>
+<script id="bn-vid-pop-js">
+(function(){
+  if (window.__bnVidPopReady) return;
+  window.__bnVidPopReady = true;
+
+  var VID_URL = "https://pub-7fb2bb3e5a0b4096a57fc578b5a16078.r2.dev/bn0213/labquiz8/lecture-lipid-metabolism-2f1f8ff5.mp4";
+
+  function buildPop(){
+    var pop = document.getElementById('bn-vid-pop');
+    if (pop) return pop;
+    pop = document.createElement('div');
+    pop.id = 'bn-vid-pop';
+    pop.innerHTML =
+        '<div class="bn-vid-head"><span>&#127916; LECTURE VIDEO</span>'
+      + '<span class="bn-vid-title" id="bn-vid-title">Dr. Basso &mdash; Cholesterol</span>'
+      + '<button type="button" class="bn-vid-min" id="bn-vid-min" onclick="window.bnVidToggleMin()" title="Minimize (keeps playing)" aria-label="Minimize">&#128469;</button>'
+      + '<button type="button" class="bn-vid-close" onclick="window.bnVidClose()">&#10005; Close</button></div>'
+      + '<video id="bn-vid-el" controls preload="none" playsinline controlslist="nodownload"></video>'
+      + '<div class="bn-vid-skip"><button type="button" class="bn-vid-skipbtn" onclick="window.bnVidSkip(-30)" title="Back 30 seconds">&laquo; 30s</button><button type="button" class="bn-vid-skipbtn" onclick="window.bnVidSkip(-10)" title="Back 10 seconds">&laquo; 10s</button><button type="button" class="bn-vid-skipbtn" onclick="window.bnVidSkip(10)" title="Forward 10 seconds">10s &raquo;</button><button type="button" class="bn-vid-skipbtn" onclick="window.bnVidSkip(30)" title="Forward 30 seconds">30s &raquo;</button></div>'
+      + '<div class="bn-vid-speed"><button type="button" class="bn-vid-skipbtn" onclick="window.bnVidRate(-0.05)" title="Slow down 0.05x">&minus; 0.05</button><span class="bn-vid-rate" id="bn-vid-rate">1.00&times;</span><button type="button" class="bn-vid-skipbtn" onclick="window.bnVidRate(0.05)" title="Speed up 0.05x">+ 0.05</button></div>';
+    document.body.appendChild(pop);
+    initDrag(pop);
+    return pop;
+  }
+
+  // Minimize: collapse the <video> (display:none via .minimized) but KEEP IT IN THE DOM
+  // and KEEP IT PLAYING (never pause). The small header bar stays draggable so it tucks into a corner.
+  window.bnVidToggleMin = function(){
+    var pop = document.getElementById('bn-vid-pop');
+    if (!pop) return;
+    var min = pop.classList.toggle('minimized');
+    var btn = document.getElementById('bn-vid-min');
+    if (btn){
+      btn.innerHTML = min ? '&#128470;' : '&#128469;';
+      btn.setAttribute('title', min ? 'Restore' : 'Minimize (keeps playing)');
+      btn.setAttribute('aria-label', min ? 'Restore' : 'Minimize');
+    }
+  };
+
+  // 10/30-second rewind + fast-forward (handy on mobile where the native scrubber is fiddly).
+  window.bnVidSkip = function(s){ var v = document.getElementById('bn-vid-el'); if (v) v.currentTime = Math.max(0, (v.currentTime || 0) + s); };
+
+  // Fine +/- 0.05 playback-speed control.
+  window.bnVidRate = function(d){ var v = document.getElementById('bn-vid-el'); if (!v) return; var r = Math.min(3, Math.max(0.25, (v.playbackRate || 1) + d)); v.playbackRate = r; var el = document.getElementById('bn-vid-rate'); if (el) el.innerHTML = r.toFixed(2) + '&times;'; };
+
+  // Drag-to-move: make .bn-vid-head a drag handle (mouse + touch). On first drag we switch off the
+  // default bottom/right anchoring and pin to left/top, clamped within the viewport. A drag that
+  // starts ON the minimize/close button is ignored so the button click goes through.
+  function initDrag(pop){
+    if (!pop || pop.__bnVidDragWired) return;
+    pop.__bnVidDragWired = true;
+    var head = pop.querySelector('.bn-vid-head');
+    if (!head) return;
+    var dragging = false, startX = 0, startY = 0, startLeft = 0, startTop = 0;
+    function onDown(e){
+      if (e.target && e.target.closest && e.target.closest('button')) return;
+      var t = (e.touches && e.touches[0]) ? e.touches[0] : e;
+      dragging = true;
+      var rect = pop.getBoundingClientRect();
+      startX = t.clientX; startY = t.clientY;
+      startLeft = rect.left; startTop = rect.top;
+      pop.style.right = 'auto';
+      pop.style.bottom = 'auto';
+      pop.style.left = startLeft + 'px';
+      pop.style.top = startTop + 'px';
+      if (e.cancelable) e.preventDefault();
+    }
+    function onMove(e){
+      if (!dragging) return;
+      var t = (e.touches && e.touches[0]) ? e.touches[0] : e;
+      var dx = t.clientX - startX, dy = t.clientY - startY;
+      var nL = Math.max(0, Math.min(window.innerWidth  - pop.offsetWidth,  startLeft + dx));
+      var nT = Math.max(0, Math.min(window.innerHeight - pop.offsetHeight, startTop  + dy));
+      pop.style.left = nL + 'px';
+      pop.style.top  = nT + 'px';
+      if (e.cancelable) e.preventDefault();
+    }
+    function onUp(){ dragging = false; }
+    head.addEventListener('mousedown', onDown);
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup', onUp);
+    head.addEventListener('touchstart', onDown, {passive:false});
+    document.addEventListener('touchmove', onMove, {passive:false});
+    document.addEventListener('touchend', onUp);
+  }
+
+  window.bnVidClose = function(){
+    var pop = document.getElementById('bn-vid-pop');
+    if (!pop) return;
+    var v = document.getElementById('bn-vid-el');
+    if (v){ try { v.pause(); } catch(e){} }
+    pop.classList.remove('show');
+  };
+
+  // Launch: build (once) + show the pop-out and start the single Basso recording.
+  // Opens at the current position (0 on first open); close/reopen resumes where you left off.
+  window.bnVidOpen = function(){
+    var pop = buildPop();
+    var v = document.getElementById('bn-vid-el');
+    pop.classList.remove('minimized');
+    var minBtn = document.getElementById('bn-vid-min');
+    if (minBtn){ minBtn.innerHTML = '&#128469;'; minBtn.setAttribute('title','Minimize (keeps playing)'); minBtn.setAttribute('aria-label','Minimize'); }
+    pop.classList.add('show');
+    if (v.getAttribute('src') !== VID_URL){
+      v.setAttribute('src', VID_URL);
+      try { v.load(); } catch(e){}
+    }
+    var p = v.play();
+    if (p && p.catch) p.catch(function(){ /* autoplay blocked: pop stays open, user taps play */ });
+  };
 })();
 </script>
 </body></html>

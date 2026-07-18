@@ -84,6 +84,51 @@
   .speedbar{display:flex;align-items:center;gap:8px;margin-bottom:14px;font-family:var(--mono);font-size:11px;color:var(--textDim)}
   .speedbar input{flex:1;max-width:170px;accent-color:var(--acc)}
   footer{margin-top:32px;padding-top:16px;border-top:1px solid var(--lineSoft);font-family:var(--mono);font-size:10.5px;color:var(--textDim);line-height:1.6}
+  /* ---- media buttons (single Basso recording) ---- */
+  .mediarow{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:11px 0 1px}
+  .mediarow .mlead{font-family:var(--mono);font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:var(--textDim);margin-right:2px}
+  .mbtn{font-family:var(--body);font-weight:600;font-size:11.5px;color:var(--acc);border:1px solid var(--line);background:rgba(167,139,250,.06);border-radius:8px;padding:5px 10px;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:5px;transition:.13s}
+  .mbtn:hover{background:var(--acc);color:var(--bg);border-color:var(--acc)}
+  .mbtn .mts{font-family:var(--mono);font-size:9.5px;opacity:.72;font-weight:600}
+  .mbtn:hover .mts{opacity:.9}
+  .qcard .mediarow{border-top:1px solid var(--lineSoft);padding-top:12px;margin-top:14px}
+  /* ---- floating audio bar ---- */
+  #cram-audiobar{position:fixed;left:14px;bottom:14px;z-index:30001;display:none;flex-direction:column;gap:7px;width:300px;max-width:92vw;background:var(--card);border:1.5px solid var(--acc);border-radius:13px;box-shadow:0 12px 34px rgba(0,0,0,.6);padding:11px 12px}
+  #cram-audiobar .cab-top{display:flex;align-items:center;gap:8px}
+  #cram-audiobar .cab-title{flex:1;font-family:var(--body);font-weight:600;font-size:11.5px;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  #cram-audiobar .cab-ts{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--bg);background:var(--acc);border-radius:6px;padding:2px 8px;white-space:nowrap}
+  #cram-audiobar .cab-x{background:transparent;border:1px solid var(--line);color:var(--textMid);border-radius:6px;width:24px;height:24px;cursor:pointer;font-size:14px;line-height:1;padding:0}
+  #cram-audiobar .cab-x:hover{color:var(--crim);border-color:var(--crim)}
+  #cram-audiobar .cab-ctl{display:flex;align-items:center;gap:6px;justify-content:center;flex-wrap:wrap}
+  #cram-audiobar .cab-b{font-family:var(--body);font-weight:600;font-size:12px;background:var(--bg2);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:5px 10px;cursor:pointer;line-height:1}
+  #cram-audiobar .cab-b:hover{border-color:var(--acc);color:var(--acc)}
+  #cram-audiobar .cab-play{background:var(--acc);color:var(--bg);border-color:var(--acc);min-width:40px}
+  #cram-audiobar .cab-rate{font-family:var(--mono);font-size:11px;color:var(--textMid);min-width:44px;text-align:center}
+  /* ---- video pop-out ---- */
+  #cram-vidpop{position:fixed;bottom:18px;right:18px;z-index:30002;width:360px;max-width:92vw;background:#0b1220;border:2px solid #7c3aed;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.7);padding:10px;display:none;flex-direction:column;gap:8px}
+  #cram-vidpop.show{display:flex}
+  #cram-vidpop .cvp-head{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.72rem;font-weight:700;color:#c4b5fd;letter-spacing:.4px;cursor:move;touch-action:none;user-select:none;-webkit-user-select:none}
+  #cram-vidpop .cvp-title{flex:1;color:#ede9fe;font-family:var(--body);font-weight:600;font-size:.8rem;letter-spacing:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  #cram-vidpop .cvp-min,#cram-vidpop .cvp-close{background:#4c1d95;color:#ede9fe;border:1px solid #7c3aed;border-radius:7px;padding:4px 10px;cursor:pointer;font-weight:700;font-size:.8rem;line-height:1}
+  #cram-vidpop .cvp-min:hover,#cram-vidpop .cvp-close:hover{background:#5b21b6}
+  #cram-vid-el{width:100%;max-height:48vh;background:#000;border-radius:8px;display:block}
+  #cram-vidpop .cvp-row{display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap}
+  #cram-vidpop .cvp-b{background:#1e293b;color:#cbd5e1;border:1px solid #475569;border-radius:7px;padding:5px 13px;cursor:pointer;font-weight:700;font-size:.78rem;line-height:1}
+  #cram-vidpop .cvp-b:hover{background:#334155;color:#fff}
+  #cram-vidpop .cvp-rate{color:#cbd5e1;font-weight:700;font-size:.78rem;min-width:50px;text-align:center;font-family:var(--mono)}
+  #cram-vidpop.min{width:auto;max-width:88vw;gap:0}
+  #cram-vidpop.min #cram-vid-el,#cram-vidpop.min .cvp-row{display:none!important}
+  @media (max-width:600px){#cram-vidpop{bottom:8px;right:8px;left:8px;width:auto;max-width:none}#cram-vidpop.min{left:auto;width:auto;max-width:88vw}}
+  /* ---- slide lightbox ---- */
+  #cram-lightbox{position:fixed;inset:0;z-index:30050;display:none;align-items:center;justify-content:center;background:rgba(6,7,14,.9);padding:24px}
+  #cram-lightbox.show{display:flex}
+  #cram-lightbox .clb-inner{position:relative;max-width:96vw;max-height:92vh;display:flex;flex-direction:column;gap:10px;align-items:center}
+  #cram-lightbox img{max-width:96vw;max-height:82vh;border-radius:10px;border:1px solid var(--line);box-shadow:0 20px 60px rgba(0,0,0,.6);background:#fff;cursor:zoom-in}
+  #cram-lightbox.zoom img{cursor:zoom-out;max-width:none;max-height:none;width:auto}
+  #cram-lightbox .clb-bar{display:flex;align-items:center;gap:12px;font-family:var(--body);font-size:12.5px;color:var(--textMid)}
+  #cram-lightbox .clb-x{position:fixed;top:14px;right:16px;background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:9px;padding:7px 14px;cursor:pointer;font-weight:700;font-size:14px}
+  #cram-lightbox .clb-x:hover{color:var(--crim);border-color:var(--crim)}
+  #cram-lightbox .clb-scroll{overflow:auto;max-width:96vw;max-height:82vh;border-radius:10px}
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -180,6 +225,32 @@ function speak(text,btn){
   speechSynthesis.speak(u);
 }
 
+/* ================= MEDIA — the ONE Dr. Basso cholesterol recording ================= */
+/* Every 🎧/🎬 seeks this single recording; 🖼️ opens the slide that was on screen. */
+var MEDIA_VID="https://pub-7fb2bb3e5a0b4096a57fc578b5a16078.r2.dev/bn0213/labquiz8/lecture-lipid-metabolism-2f1f8ff5.mp4";
+var MEDIA_AUD="https://pub-7fb2bb3e5a0b4096a57fc578b5a16078.r2.dev/bn0213/labquiz8/lecture-lipid-metabolism-e0e83c55.mp3";
+/* Per-item [second, slide] into that recording. Seconds carry a ~4s lead-in and were verified
+   against the timestamped transcript + the drill's slide map (bank lecturequiz9_bank.json). */
+var MC_MEDIA=[[553,"slides/slide_03.png"],[1171,"slides/slide_05.png"],[1226,"slides/slide_05.png"],[1581,"slides/slide_05.png"],[1675,"slides/slide_05.png"],[1850,"slides/slide_07.png"],[3414,"slides/slide_12.png"],[2500,"slides/slide_10.png"],[494,"slides/slide_10.png"],[2539,"slides/slide_10.png"],[3278,"slides/slide_11.png"],[3308,"slides/slide_11.png"],[3308,"slides/slide_11.png"],[2467,"slides/slide_10.png"],[2699,"slides/slide_10.png"],[2146,"slides/slide_09.png"],[2265,"slides/slide_09.png"],[3381,"slides/slide_12.png"],[3414,"slides/slide_12.png"],[3438,"slides/slide_12.png"],[3549,"slides/slide_13.png"],[3594,"slides/slide_13.png"],[3625,"slides/slide_13.png"],[3637,"slides/slide_13.png"],[3651,"slides/slide_13.png"],[3661,"slides/slide_13.png"],[3789,"slides/slide_14.png"],[3765,"slides/slide_14.png"],[3438,"slides/slide_12.png"],[338,"slides/slide_20.png"],[416,"slides/slide_22.png"],[4893,"slides/slide_22.png"],[5008,"slides/slide_23.png"],[5851,"slides/slide_22.png"],[5991,"slides/slide_22.png"],[6590,"slides/slide_23.png"],[5192,"slides/slide_24.png"],[3308,"slides/slide_11.png"],[6940,"slides/slide_24.png"],[1259,"slides/slide_05.png"],[1052,"slides/slide_05.png"]];
+var CRAM_MEDIA=[[553,"slides/slide_03.png"],[2500,"slides/slide_10.png"],[2146,"slides/slide_09.png"],[3549,"slides/slide_13.png"],[338,"slides/slide_20.png"],[6228,"slides/slide_28.png"]];
+function _mmss(s){ s=Math.max(0,Math.floor(s)); return Math.floor(s/60)+':'+('0'+(s%60)).slice(-2); }
+/* Build a 🎧 Hear · 🎬 Watch · 🖼️ Slide row for one anchor. */
+function mediaRow(ts,slide,label){
+  var row=el('div','mediarow');
+  var t=(typeof ts==='number'&&ts>0)?ts:0;
+  row.appendChild(el('span','mlead','▸ Lecture'));
+  var stamp='<span class="mts">'+_mmss(t)+'</span>';
+  var h=el('button','mbtn','🎧 Hear '+stamp);
+  h.title='Play Dr. Basso’s lecture audio from this moment';
+  h.onclick=function(){ if(window.cramAudioPlay)window.cramAudioPlay(t,label); };
+  var w=el('button','mbtn','🎬 Watch '+stamp);
+  w.title='Pop out the lecture video at this moment';
+  w.onclick=function(){ if(window.cramVideoOpen)window.cramVideoOpen(t,label); };
+  row.appendChild(h); row.appendChild(w);
+  if(slide){ var s=el('button','mbtn','🖼️ Slide'); s.title='Open the slide that was on screen'; s.onclick=function(){ if(window.cramSlideOpen)window.cramSlideOpen(slide,label); }; row.appendChild(s); }
+  return row;
+}
+
 /* ================= CRAM ================= */
 function renderCram(){
   var root=document.getElementById('cram'); root.innerHTML='';
@@ -196,6 +267,7 @@ function renderCram(){
     var lb=el('button','listenbtn','\u25b6 Listen');
     lb.onclick=function(){ if(lb.classList.contains('playing')){ speechSynthesis.cancel(); lb.classList.remove('playing'); lb.textContent='\u25b6 Listen'; } else { speak(o[0]+'. '+o[2].map(stripHTML).join('. '), lb); } };
     h.appendChild(lb); card.appendChild(h);
+    var cm=CRAM_MEDIA[i]; if(cm) card.appendChild(mediaRow(cm[0],cm[1],o[0]+' \u2014 Dr. Basso lecture'));
     var ul=el('ul');
     o[2].forEach(function(pt){ ul.appendChild(el('li',null,pt)); });
     card.appendChild(ul); root.appendChild(card);
@@ -221,7 +293,7 @@ var mcDeck=[], mcPicks={}, mcI=0;
 var fcI=0, fcRev=false, fcDeck=[];
 function shuf(a){ for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i];a[i]=a[j];a[j]=t; } return a; }
 function poolIdx(){ var out=[]; MC.forEach(function(r,ix){ if(pfilter==='all'||r[0]===pfilter) out.push(ix); }); return out; }
-function buildMC(){ mcDeck=[]; mcPicks={}; poolIdx().forEach(function(ix){ var r=MC[ix]; var opts=shuf([r[2],r[3],r[4],r[5]].slice()); mcDeck.push({b:r[0],q:r[1],o:opts,c:opts.indexOf(r[2]),src:r[6]}); }); mcI=0; }
+function buildMC(){ mcDeck=[]; mcPicks={}; poolIdx().forEach(function(ix){ var r=MC[ix]; var opts=shuf([r[2],r[3],r[4],r[5]].slice()); mcDeck.push({b:r[0],q:r[1],o:opts,c:opts.indexOf(r[2]),src:r[6],mi:ix}); }); mcI=0; }
 function buildFC(){ fcDeck=poolIdx().map(function(ix){return MC[ix];}); fcI=0; fcRev=false; }
 function renderDrill(){
   var root=document.getElementById('drill'); root.innerHTML='';
@@ -253,6 +325,7 @@ function renderMC(root){
   var od=el('div','opts');
   q.o.forEach(function(opt,oi){ var cls='opt'; if(ans){ if(oi===q.c)cls+=' correct'; else if(oi===mcPicks[mcI])cls+=' wrong'; else cls+=' dim'; } var b=el('button',cls,''); var mark=ans?(oi===q.c?'\u2713':(oi===mcPicks[mcI]?'\u2715':letter(oi))):letter(oi); b.innerHTML='<span class="lt">'+mark+'</span><span>'+opt+'</span>'; b.onclick=function(){ if(mcPicks[mcI]!==undefined) return; mcPicks[mcI]=oi; renderDrill(); }; od.appendChild(b); });
   qc.appendChild(od);
+  var mm=MC_MEDIA[q.mi]; if(mm) qc.appendChild(mediaRow(mm[0],mm[1],'Q'+(mcI+1)+' · '+LABEL[q.b]+' — Dr. Basso lecture'));
   if(ans){ var ex=el('div','expl'); var ok=mcPicks[mcI]===q.c; var lab=el('div','lab',ok?'CORRECT':'NOT QUITE'); lab.style.color=ok?'var(--good)':'var(--crim)'; ex.appendChild(lab); ex.appendChild(el('div','et','Answer: <b style="color:var(--text)">'+q.o[q.c]+'</b>')); var sc=el('div',null,'<span class="src">'+(q.src||'')+'</span>'); sc.style.marginTop='9px'; ex.appendChild(sc); qc.appendChild(ex); }
   root.appendChild(qc);
   var nb=el('div','navbtns');
@@ -271,6 +344,7 @@ function renderFC(root){
   qc.appendChild(el('div','qstem',r[1]));
   if(!fcRev){ var rb=el('button','nb primary','Reveal answer'); rb.style.width='100%'; rb.onclick=function(){ fcRev=true; renderDrill(); }; qc.appendChild(rb); }
   else { var ex=el('div','expl'); var lab=el('div','lab','ANSWER'); lab.style.color='var(--good)'; ex.appendChild(lab); ex.appendChild(el('div','et',r[2])); var sc=el('div',null,'<span class="src">'+(r[6]||'')+'</span>'); sc.style.marginTop='9px'; ex.appendChild(sc); qc.appendChild(ex); }
+  var fm=MC_MEDIA[MC.indexOf(r)]; if(fm) qc.appendChild(mediaRow(fm[0],fm[1],LABEL[r[0]]+' — Dr. Basso lecture'));
   root.appendChild(qc);
   var nb=el('div','navbtns');
   var prev=el('button','nb'+(fcI===0?' off':''),'\u2039 Prev'); prev.onclick=function(){ if(fcI>0){fcI--;fcRev=false;renderDrill();} };
@@ -333,6 +407,130 @@ document.querySelectorAll('.tab').forEach(function(t){
 });
 document.getElementById('foot').innerHTML='Source: Dr. Basso\u2019s Module-11 cholesterol lecture (all instructor). Every Cram point and drill answer is grounded there. Per Basso, the detailed mevalonate/synthesis steps and structures are NOT tested \u2014 no question here touches them. The 41 drill questions are freshly written for this coach.';
 renderCram(); renderFlags(); renderDrill(); renderCoach();
+</script>
+
+<script id="cram-media-js">
+/* Self-contained media layer: one Dr. Basso recording -> 🎧 audio play-from-here,
+   🎬 draggable video pop-out, 🖼️ slide lightbox. Mirrors the lecture MC drill. */
+(function(){
+  if(window.__cramMediaReady) return; window.__cramMediaReady=true;
+  var VID=MEDIA_VID, AUD=MEDIA_AUD;
+  function mmss(s){ s=Math.max(0,Math.floor(s)); return Math.floor(s/60)+':'+('0'+(s%60)).slice(-2); }
+
+  /* ---------- shared audio element ---------- */
+  function getAudio(){
+    var a=document.getElementById('cram-aud');
+    if(!a){ a=document.createElement('audio'); a.id='cram-aud'; a.preload='none'; a.setAttribute('playsinline',''); document.body.appendChild(a); }
+    return a;
+  }
+
+  /* ---------- 🎧 floating audio bar (play from here) ---------- */
+  function buildAudioBar(){
+    var bar=document.getElementById('cram-audiobar');
+    if(bar) return bar;
+    bar=document.createElement('div'); bar.id='cram-audiobar';
+    bar.innerHTML=
+       '<div class="cab-top"><span class="cab-ts" id="cram-aud-ts">0:00</span>'
+      +'<span class="cab-title" id="cram-aud-label">Dr. Basso — Cholesterol lecture</span>'
+      +'<button class="cab-x" title="Close" onclick="window.cramAudClose()">✕</button></div>'
+      +'<div class="cab-ctl">'
+      +'<button class="cab-b" title="Back 10 seconds" onclick="window.cramAudSkip(-10)">« 10s</button>'
+      +'<button class="cab-b cab-play" id="cram-aud-play" title="Play / pause" onclick="window.cramAudToggle()">⏸</button>'
+      +'<button class="cab-b" title="Forward 10 seconds" onclick="window.cramAudSkip(10)">10s »</button>'
+      +'<button class="cab-b" title="Slower" onclick="window.cramAudRate(-0.25)">−</button>'
+      +'<span class="cab-rate" id="cram-aud-rate">1.0×</span>'
+      +'<button class="cab-b" title="Faster (to 3×)" onclick="window.cramAudRate(0.25)">+</button>'
+      +'</div>';
+    document.body.appendChild(bar);
+    var a=getAudio();
+    a.addEventListener('timeupdate',function(){ var t=document.getElementById('cram-aud-ts'); if(t)t.textContent=mmss(a.currentTime); });
+    a.addEventListener('play',function(){ var p=document.getElementById('cram-aud-play'); if(p)p.textContent='⏸'; });
+    a.addEventListener('pause',function(){ var p=document.getElementById('cram-aud-play'); if(p)p.textContent='▶'; });
+    return bar;
+  }
+  window.cramAudioPlay=function(sec,label){
+    if(window.cramVideoPause) window.cramVideoPause();   /* never double audio */
+    var bar=buildAudioBar(); var a=getAudio();
+    var lab=document.getElementById('cram-aud-label'); if(lab)lab.textContent=label||'Dr. Basso — Cholesterol lecture';
+    var tb=document.getElementById('cram-aud-ts'); if(tb)tb.textContent=mmss(sec);
+    bar.style.display='flex';
+    if(a.getAttribute('src')!==AUD){ a.setAttribute('src',AUD); try{a.load();}catch(e){} }
+    var go=function(){ try{a.currentTime=Math.max(0,sec);}catch(e){} var p=a.play(); if(p&&p.catch)p.catch(function(){}); };
+    if(a.readyState>=1){ go(); } else { a.addEventListener('loadedmetadata',go,{once:true}); a.addEventListener('canplay',go,{once:true}); try{a.load();}catch(e){} }
+  };
+  window.cramAudToggle=function(){ var a=getAudio(); if(a.paused){ var p=a.play(); if(p&&p.catch)p.catch(function(){}); } else { a.pause(); } };
+  window.cramAudSkip=function(s){ var a=getAudio(); a.currentTime=Math.max(0,(a.currentTime||0)+s); if(a.paused){ var p=a.play(); if(p&&p.catch)p.catch(function(){}); } };
+  window.cramAudRate=function(d){ var a=getAudio(); var r=Math.min(3,Math.max(0.5,(a.playbackRate||1)+d)); a.playbackRate=r; var el=document.getElementById('cram-aud-rate'); if(el)el.textContent=r.toFixed(1)+'×'; };
+  window.cramAudClose=function(){ var a=getAudio(); try{a.pause();}catch(e){} var bar=document.getElementById('cram-audiobar'); if(bar)bar.style.display='none'; };
+  window.cramAudioPause=function(){ var a=document.getElementById('cram-aud'); if(a){ try{a.pause();}catch(e){} } };
+
+  /* ---------- 🎬 draggable video pop-out ---------- */
+  function buildVidPop(){
+    var pop=document.getElementById('cram-vidpop');
+    if(pop) return pop;
+    pop=document.createElement('div'); pop.id='cram-vidpop';
+    pop.innerHTML=
+       '<div class="cvp-head"><span>🎬 LECTURE VIDEO</span>'
+      +'<span class="cvp-title" id="cram-vid-title">Dr. Basso — Lecture</span>'
+      +'<button class="cvp-min" id="cram-vid-min" title="Minimize (keeps playing)" onclick="window.cramVidMin()">🗕</button>'
+      +'<button class="cvp-close" title="Close" onclick="window.cramVideoClose()">✕</button></div>'
+      +'<div class="cvp-row"><button class="cvp-b" onclick="window.cramVidSkip(-30)">« 30s</button><button class="cvp-b" onclick="window.cramVidSkip(-10)">« 10s</button><button class="cvp-b" onclick="window.cramVidSkip(10)">10s »</button><button class="cvp-b" onclick="window.cramVidSkip(30)">30s »</button></div>'
+      +'<div class="cvp-row"><button class="cvp-b" onclick="window.cramVidRate(-0.25)">− 0.25</button><span class="cvp-rate" id="cram-vid-rate">1.00×</span><button class="cvp-b" onclick="window.cramVidRate(0.25)">+ 0.25</button></div>'
+      +'<video id="cram-vid-el" controls preload="none" playsinline controlslist="nodownload"></video>';
+    document.body.appendChild(pop);
+    initVidDrag(pop);
+    return pop;
+  }
+  window.cramVideoOpen=function(sec,label){
+    if(window.cramAudioPause) window.cramAudioPause();   /* never double audio */
+    var pop=buildVidPop(); var v=document.getElementById('cram-vid-el');
+    var titleEl=document.getElementById('cram-vid-title'); if(titleEl)titleEl.textContent=(label||'Dr. Basso — Lecture')+' · '+mmss(sec);
+    pop.classList.remove('min'); pop.classList.add('show');
+    var minb=document.getElementById('cram-vid-min'); if(minb)minb.textContent='🗕';
+    if(v.getAttribute('src')!==VID){ v.setAttribute('src',VID); try{v.load();}catch(e){} }
+    var go=function(){ try{v.currentTime=Math.max(0,sec);}catch(e){} var p=v.play(); if(p&&p.catch)p.catch(function(){}); };
+    if(v.readyState>=1){ go(); } else { v.addEventListener('loadedmetadata',go,{once:true}); try{v.load();}catch(e){} }
+  };
+  window.cramVidMin=function(){ var pop=document.getElementById('cram-vidpop'); if(!pop)return; var m=pop.classList.toggle('min'); var b=document.getElementById('cram-vid-min'); if(b){ b.textContent=m?'🗖':'🗕'; b.title=m?'Restore':'Minimize (keeps playing)'; } };
+  window.cramVidSkip=function(s){ var v=document.getElementById('cram-vid-el'); if(v)v.currentTime=Math.max(0,(v.currentTime||0)+s); };
+  window.cramVidRate=function(d){ var v=document.getElementById('cram-vid-el'); if(!v)return; var r=Math.min(3,Math.max(0.25,(v.playbackRate||1)+d)); v.playbackRate=r; var el=document.getElementById('cram-vid-rate'); if(el)el.textContent=r.toFixed(2)+'×'; };
+  window.cramVideoClose=function(){ var pop=document.getElementById('cram-vidpop'); if(!pop)return; var v=document.getElementById('cram-vid-el'); if(v){try{v.pause();}catch(e){}} pop.classList.remove('show'); };
+  window.cramVideoPause=function(){ var v=document.getElementById('cram-vid-el'); if(v){try{v.pause();}catch(e){}} };
+  function initVidDrag(pop){
+    var head=pop.querySelector('.cvp-head'); if(!head)return;
+    var drag=false,sx=0,sy=0,sl=0,st=0;
+    function down(e){ if(e.target&&e.target.closest&&e.target.closest('button'))return; var t=(e.touches&&e.touches[0])?e.touches[0]:e; drag=true; var r=pop.getBoundingClientRect(); sx=t.clientX; sy=t.clientY; sl=r.left; st=r.top; pop.style.right='auto'; pop.style.bottom='auto'; pop.style.left=sl+'px'; pop.style.top=st+'px'; if(e.cancelable)e.preventDefault(); }
+    function move(e){ if(!drag)return; var t=(e.touches&&e.touches[0])?e.touches[0]:e; var nl=Math.max(0,Math.min(window.innerWidth-pop.offsetWidth,sl+t.clientX-sx)); var nt=Math.max(0,Math.min(window.innerHeight-pop.offsetHeight,st+t.clientY-sy)); pop.style.left=nl+'px'; pop.style.top=nt+'px'; if(e.cancelable)e.preventDefault(); }
+    function up(){ drag=false; }
+    head.addEventListener('mousedown',down); document.addEventListener('mousemove',move); document.addEventListener('mouseup',up);
+    head.addEventListener('touchstart',down,{passive:false}); document.addEventListener('touchmove',move,{passive:false}); document.addEventListener('touchend',up);
+  }
+
+  /* ---------- 🖼️ slide lightbox ---------- */
+  function buildLightbox(){
+    var lb=document.getElementById('cram-lightbox');
+    if(lb) return lb;
+    lb=document.createElement('div'); lb.id='cram-lightbox';
+    lb.innerHTML=
+       '<button class="clb-x" onclick="window.cramSlideClose()">✕ Close</button>'
+      +'<div class="clb-inner"><div class="clb-scroll"><img id="cram-lb-img" alt="Lecture slide"/></div>'
+      +'<div class="clb-bar"><span id="cram-lb-cap">Slide</span><span style="opacity:.6">· click image to zoom · Esc to close</span></div></div>';
+    document.body.appendChild(lb);
+    lb.addEventListener('click',function(e){ if(e.target===lb) window.cramSlideClose(); });
+    var img=lb.querySelector('#cram-lb-img');
+    img.addEventListener('click',function(){ lb.classList.toggle('zoom'); });
+    return lb;
+  }
+  window.cramSlideOpen=function(slide,label){
+    var lb=buildLightbox(); lb.classList.remove('zoom');
+    var img=document.getElementById('cram-lb-img'); if(img)img.setAttribute('src',slide);
+    var cap=document.getElementById('cram-lb-cap'); if(cap)cap.textContent=(label||'Slide')+' · '+String(slide).split('/').pop();
+    lb.classList.add('show');
+  };
+  window.cramSlideClose=function(){ var lb=document.getElementById('cram-lightbox'); if(lb){ lb.classList.remove('show'); lb.classList.remove('zoom'); } };
+
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') window.cramSlideClose(); });
+})();
 </script>
 
 <style id="fab-ai-companion-css">
